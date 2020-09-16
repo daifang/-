@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+    <link rel="stylesheet" href="./css//history_data.css">
+
+    <title>历史数据</title>
+</head>
+<body>
+    <div class="container">
+        <!-- 头 -->
+        <div class="header">
+            <div class="header_top">
+                <div class="lssj_time">
+                    <span style="margin-left: 3.4rem;">生成时间：</span>
+                    <div>
+                        <span class="lssj_input_dw">
+                            <img src="img/arrow.png" width="12">
+                            <input type="text" class="lssj_input" id="date-group1-2" placeholder="年-月-日">
+                        </span>
+                        <span>-</span>
+                        <span class="lssj_input_dw">
+                            <img src="img/arrow.png" width="12">
+                            <input type="text" class="lssj_input" id="date-group1-21" placeholder="年-月-日">
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="header_bottom">
+                <div class="card">
+                    <p>访问量</p>
+                    <p style="color:#0076ce;font-size: 2rem;">81</p>
+                </div>
+                <div class="card">
+                    <p>访问人数</p>
+                    <p style="color:#0076ce;font-size: 2rem;">2107</p>
+                </div>
+                <div class="cardLast">
+                    <p>客户管理<img src="./img/right.jpg"></p>
+                    <p style="color:#0076ce;font-size: 2rem;">192</p>
+                </div>
+            </div>
+        </div>
+        <!-- 我创建的名片 -->
+        <div id="idCard_title">
+            <img src="./img/title.jpg">
+            <span>我创建的名片</span>
+        </div>
+        <div class="idCard">
+            <div class="idCard_items">
+                <div class="idCard_items_img">
+                    <img src="./img/idCard_img.jpg" alt="图片">
+                </div>
+                <div class="idCard_items_text">
+                    <p>销售修改的名片名称</p>
+                    <div class="hb_line"></div>
+                    <p style="font-size:1rem;color:#999999;">2020-09-09 07:00</p>
+                </div>
+                <div class="idCard_items_foot">
+                    <img src="./img/idCard_01.jpg" alt="">
+                    <span>2021</span>
+                    <img src="./img/idCard_02.jpg" alt="">
+                    <span>87</span>
+                    <img src="./img/idCard_03.jpg" alt="">
+                    <span>102</span>
+                </div>
+            </div>
+            <div class="idCard_items">
+                <div class="idCard_items_img">
+                    <img src="./img//idCard_img.jpg" alt="图片">
+                </div>
+                <div class="idCard_items_text">
+                    <p>戴尔销售名片20200902 12:00</p>
+                    <div class="hb_line"></div>
+                    <p style="font-size:1rem;color:#999999;">2020-09-09 07:00</p>
+                </div>
+                <div class="idCard_items_foot">
+                    <img src="./img/idCard_01.jpg" alt="">
+                    <span>2021</span>
+                    <img src="./img/idCard_02.jpg" alt="">
+                    <span>87</span>
+                    <img src="./img/idCard_03.jpg" alt="">
+                    <span>102</span>
+                </div>
+            </div>
+            <div class="idCard_items">
+                <div class="idCard_items_img">
+                    <img src="./img//idCard_img.jpg" alt="图片">
+                </div>
+                <div class="idCard_items_text">
+                    <p>戴尔销售名片20200901 15:00</p>
+                    <div class="hb_line"></div>
+                    <p style="font-size:1rem;color:#999999;">2020-09-09 07:00</p>
+                </div>
+                <div class="idCard_items_foot">
+                    <img src="./img/idCard_01.jpg" alt="">
+                    <span>2021</span>
+                    <img src="./img/idCard_02.jpg" alt="">
+                    <span>87</span>
+                    <img src="./img/idCard_03.jpg" alt="">
+                    <span>102</span>
+                </div>
+            </div>
+            <div class="idCard_items">
+                <div class="idCard_items_img">
+                    <img src="./img//idCard_img.jpg" alt="图片">
+                </div>
+                <div class="idCard_items_text">
+                    <p>戴尔销售名片20200801 12:00</p>
+                    <div class="hb_line"></div>
+                    <p style="font-size:1rem;color:#999999;">2020-09-09 07:00</p>
+                </div>
+                <div class="idCard_items_foot">
+                    <img src="./img/idCard_01.jpg" alt="">
+                    <span>2021</span>
+                    <img src="./img/idCard_02.jpg" alt="">
+                    <span>87</span>
+                    <img src="./img/idCard_03.jpg" alt="">
+                    <span>102</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./js/history_data.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+	<script>
+		window.onload = function() {
+			new Jdate({
+				el: '#date-group1-2',
+				format: 'YYYY-MM-DD',
+				beginYear: 2000,
+				endYear: 2100
+			})
+			new Jdate({
+				el: '#date-group1-21',
+				format: 'YYYY-MM-DD',
+				beginYear: 2000,
+				endYear: 2100
+			})
+			
+			
+		}
+	</script>
+<script type="text/javascript" src="js/jdate.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,122 @@
+body,html{
+    height: 100%;
+    width: 100%;
+    margin:0 auto ;
+    font-size:62.5%; 
+    font-family: "微软雅黑";
+}
+ul,li{
+    margin:0;
+    padding:0;
+    list-style: none;
+}
+.container{
+    height: 100%;
+    width: 100%;
+    background-color: #f1f1f1;
+    overflow: scroll;
+}
+.idCard_title{
+    height: 3.35rem;
+    line-height: 300%;
+    margin-top: 5%;
+    background-color: white;
+}
+.idCard_title>span{
+    font-size: 1.4rem;
+}
+.idCard_title>img{
+    width: 0.5rem;
+    margin-left: 5%;
+}
+.people{
+    width: 100%;
+    height: 37.5rem;
+    background-color: white;
+}
+.ul{
+    height: 100%;
+    width: 100%;
+}
+.li{
+    height: 8.5%;
+    width: 100%;
+    text-indent: 20px;
+    display: flex;
+}
+.li>span{
+    display: block;
+    line-height: 300%;
+    font-size: 1.2rem;
+}
+.li>span:first-of-type{
+    text-align: right;
+    width: 25%;
+    color: #666666;
+}
+.li>span:last-of-type{
+    text-align: left;
+    width: 75%;
+}
+.li:nth-of-type(odd){
+    background-color:#f9f9f9 ;
+}
+
+input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+  }
+input[type="radio"] + .radio-label:before {
+    content: '';
+    background: #f4f4f4;
+    border-radius: 100%;
+    border: 1px solid #b4b4b4;
+    display: inline-block;
+    width: 1.1rem;
+    height: 1.1rem;
+    position: relative;
+    margin-right: 0.5rem;
+    cursor: pointer;
+    text-align: center;
+  }
+input[type="radio"]:checked + .radio-label:before {
+    background-color: #3197EE;
+    box-shadow: inset 0 0 0 0.2rem #f4f4f4;
+  }
+input[type="radio"]:focus + .radio-label:before {
+    outline: none;
+    border-color: #3197EE;
+  }
+input[type="radio"]:disabled + .radio-label:before {
+    box-shadow: inset 0 0 0 4px #f4f4f4;
+    border-color: #b4b4b4;
+    background: #b4b4b4;
+  }
+input[type="radio"] + .radio-label:empty:before {
+    margin-right: 0;
+  }
+.radio-label:nth-of-type(even){
+    margin-left: 10px;
+}
+
+#having_ul>li{
+    padding-left: 10px;
+    color: #666666;
+    font-size: 1.2rem;
+    line-height: 235%;
+ }
+ #having_ul>li::before{
+     content: "●";
+     color: #ff9900;
+     font-size: 2.1rem;
+     padding-right: 1rem;
+ }
+ .having{
+     height: 21.4rem;
+     background-color: white;
+ }
+ #having_ul{
+    width: 90%;
+    margin-left: 5%;
+
+ }

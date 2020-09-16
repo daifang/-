@@ -1,0 +1,260 @@
+body,html{
+    height: 100%;
+    width: 100%;
+    margin:0 auto ;
+    font-size:62.5%; 
+    font-family: "微软雅黑";
+}
+.container{
+    height: 100%;
+    width: 100%;
+    background-color:#f9f9f9;
+    overflow: scroll;
+}
+.header{
+    height: 26.3rem;
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+.search{
+    width: 90%;
+    margin-left: 5%;
+    height: 5%;
+    border: #0076ce 1px dashed;
+    border-radius: 7px;
+    position: absolute;
+    top: 4%;
+}
+.search>img{
+    width: 7%;
+    float: right;
+    margin-right: 3%;
+    margin-top: 1%;
+    text-indent: 10px;
+}
+#search::placeholder{
+    text-indent: 1rem;
+    font-size: 1.4rem;
+    color: #999999;
+    font-size: 1.3rem;
+}
+#search{
+    width: 90%;
+    border: none;
+    outline: none;
+    height: 100%;
+    text-indent: 1rem;
+}
+.first_kind{
+    width: 100%;
+    height: 50%;
+}
+.second_kind{
+    width:100%;
+    height: 40%;
+}
+.idCard_title{
+    height: 3.35rem;
+    line-height: 300%;
+    margin-top: 5%;
+    background-color: #f9f9f9;
+}
+.idCard_title>span{
+    font-size: 1.4rem;
+    margin-left: 5%;
+    color: #999999;
+}
+.idCard_title>img{
+    width: 0.5rem;
+    margin-left: 8%;
+}
+.kind_list{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:space-around;
+    width: 80%;
+    margin-left: 10%;
+}
+.div{
+    font-size: 1.2rem;
+    text-align: center;
+    border: 1px;
+    background-color: #f2f2f2;
+    line-height: 215%;
+}
+.div:nth-of-type(n+4){
+    width: 49%;
+    height: 2.5rem;
+    margin-top: 1rem;
+}
+.div:nth-last-of-type(n+4){
+    width: 25%;
+    height: 2.5rem;
+}
+.div:nth-last-of-type(3){
+    width: 41%;
+    height: 2.5rem;
+}
+.checked{
+    color:#0070c0;
+    border: 1px #0070c0 solid;
+}
+.div2{
+    font-size: 1.2rem;
+    text-align: center;
+    background-color: #f2f2f2;
+    line-height: 215%;
+}
+.div2:nth-of-type(1){
+    width: 30%;
+}
+.div2:nth-of-type(2){
+    width: 20%;
+}
+.div2:nth-of-type(3){
+    width: 40%;
+}
+.put{
+    width: 100%;
+    text-align: center;
+    height: 15%;
+}
+.top{
+    height: 100%;
+    line-height: 220%;
+}
+.top>img{
+    width: 2.5%;
+}
+.translate{
+    transition: all 0.2s linear;
+}
+.body{
+    background-color: white;
+    border-radius: 15px;
+}
+.idCard_items{
+    height: 7.5rem;
+    display: flex;
+    border-bottom: 0.4px rgb(230, 225, 225) solid;
+    flex-wrap: wrap;
+    width: 94%;
+    margin-left: 3%;
+    float: left;
+}
+.idCard_items{
+    height: 7.5rem;
+    display: flex;
+    border-bottom: 0.4px rgb(230, 225, 225) solid;
+    width: 83%;
+    margin-left: 3%;
+}
+.checkbox{
+    width: 10%;
+    height: 7.5rem;
+    float: left;
+    line-height: 7.5rem;
+    text-align: center;
+}
+.idCard_title>span:first-of-type{
+    margin-left: 5px;
+}
+.idCard_items_img{
+    width: 24%;
+    height: 75%;
+}
+.idCard_items_img>img{
+    width: 100%;
+    height: 100%;
+    padding-left: 5%;
+    padding-top: 5%;
+}
+.idCard_items_text{
+    width: 76%;
+    height: 100%;
+}
+.idCard_items_text>p{
+    margin-left: 10px;
+    color: #666666;
+    display: block;
+    font-size: 1.4rem;
+}
+.idCard_items_text>p:first-of-type{
+    margin-top: 2%;
+}
+.idCard_items_text>p:last-of-type{
+    margin-top: -5%;
+}
+.idCard_items_foot{
+    margin-left: 68%;
+    margin-top: -11%;
+    display: flex;
+    align-items: center;
+}
+.idCard_items_foot>img{
+    width: 11%;
+    height: 10px;
+    margin-left: 20px;
+}
+.idCard_items_foot>span{
+    width: 16%;
+    font-size: 0.9rem;
+    color: #666666;
+}
+.idCard_items_foot_last{
+    margin-left: 67%;
+    display: flex;
+    align-items: center;
+}
+.idCard_items_foot_last>img{
+    width: 10%;
+    height: 10px;
+    margin-left: 19px;
+}
+.idCard_items_foot_last>span{
+    width: 16%;
+    font-size: 1.1rem;
+    color:#666666;;
+}
+input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 18px;
+    margin-right: 10px;
+    position: relative;
+}
+ 
+input[type="checkbox"]::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #fff;
+    width: 100%;
+    height: 100%;
+    border: 0.2rem solid #999999;
+    border-radius: 4px;
+}
+ 
+input[type="checkbox"]:checked::before {
+    content: "✓";
+    background-color: #0076ce;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 1px solid #0076ce;
+    border-radius:4px;
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: bold;
+}
+#text{
+    font-size: 1.2rem;
+}

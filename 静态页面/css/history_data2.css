@@ -1,0 +1,170 @@
+
+
+body,html{
+    height: 100%;
+    width: 100%;
+    margin:0 auto ;
+    font-size:62.5%; 
+    font-family: "微软雅黑";
+}
+.container{
+    height: 100%;
+    width: 100%;
+    background-color: #f3f6f8;
+    overflow: scroll;
+}
+.header{
+    height: 18.5rem;
+    width: 100%;
+    background-color: #0a80d2;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+}
+#img_container{
+    width: 8.85rem;
+    height: 12.8rem;
+    margin-left: 37%;
+}
+#img_container>img{
+    width: 100%;
+    height: 100%;
+    margin-left: 2.5%;
+    margin-top: 2.5%;
+    border-radius: 5px;
+    transform:scale(1);
+    transition: transform 0.3s linear;
+}
+#img_container>img:hover{
+    transition: all 0.3s linear;
+    margin-top: 100%;
+    transform: scale(2.5);
+}
+#img_container>p{
+    width: 115%;
+    display: block;
+    margin-top: 0%;
+    color:white;
+    margin-left: -2%;
+    font-size: 1.1rem;
+}
+.body{
+    height: 70%;
+    background-color: #f5f7f8;
+    border-radius: 15px 15px 0px 0px;
+}
+.idCard_title{
+    height: 4%;
+    padding-top: 20px;
+    margin-left: 5%;
+}
+.idCard_title>img{
+    width: 0.5rem;
+}
+.idCard_title:first-of-type{
+    padding-top: 10px;
+}
+.middle_div{
+    width: 90%;
+    margin-left: 5%;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    background-color: #f9f9f9;
+    margin-top: 8%;
+}
+.card{
+    text-align: center;
+    width: 25%;
+    font-size: 1.4rem;
+}
+.cardLast{
+    text-align: center;
+    width: 25%;
+    font-size: 1.4rem;
+}
+.cardLast>p>img{
+    width:0.6rem;
+    margin-left: 5px;
+}
+.body_history{
+    background-color: rgb(255, 255, 255);
+    border-radius: 15px 15px 0px 0px;
+    height: 35%;
+}
+.body_text{
+    background-color: white;
+    margin-top: 1.5rem;
+    
+}
+.body_text>p{
+    color:#b8b8b8;
+}
+.idCard_items{
+    height: 7.5rem;
+    display: flex;
+    border-bottom: 0.4px rgb(230, 225, 225) solid;
+    flex-wrap: wrap;
+    width: 94%;
+    margin-left: 3%;
+}
+.idCard_title>span:first-of-type{
+    margin-left: 5px;
+}
+.idCard_items_img{
+    width: 24%;
+    height: 75%;
+}
+.idCard_items_img>img{
+    width: 100%;
+    height: 100%;
+    padding-left: 5%;
+    padding-top: 10%;
+}
+.idCard_items_text{
+    width: 76%;
+    height: 100%;
+}
+.idCard_items_text>p{
+    margin-left: 10px;
+    color: #666666;
+    display: block;
+    font-size: 1.4rem;
+}
+.idCard_items_text>p:first-of-type{
+    margin-top: 2%;
+}
+.idCard_items_text>p:last-of-type{
+    margin-top: 5%;
+}
+.idCard_items_foot{
+    margin-left: 68%;
+    margin-top: -11%;
+    display: flex;
+    align-items: center;
+}
+.idCard_items_foot>img{
+    width: 11%;
+    height: 10px;
+    margin-left: 20px;
+}
+.idCard_items_foot>span{
+    width: 16%;
+    font-size: 0.9rem;
+    color: #666666;
+}
+.idCard_items_foot_last{
+    margin-left: 67%;
+    display: flex;
+    align-items: center;
+}
+.idCard_items_foot_last>img{
+    width: 10%;
+    height: 10px;
+    margin-left: 19px;
+}
+.idCard_items_foot_last>span{
+    width: 16%;
+    font-size: 1.1rem;
+    color:#666666;;
+}
