@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
     <link rel="stylesheet" href="./css//history_data.css">
-
     <title>历史数据</title>
 </head>
 <body>
@@ -124,6 +123,7 @@
     </div>
     <script src="./js/history_data.js"></script>
     <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jdate.min.js"></script>
 	<script>
 		window.onload = function() {
 			new Jdate({
@@ -131,17 +131,15 @@
 				format: 'YYYY-MM-DD',
 				beginYear: 2000,
 				endYear: 2100
-			})
+			});
 			new Jdate({
 				el: '#date-group1-21',
 				format: 'YYYY-MM-DD',
 				beginYear: 2000,
 				endYear: 2100
-			})
-			
-			
+			});
 		}
 	</script>
-<script type="text/javascript" src="js/jdate.min.js"></script>
+
 </body>
 </html>
