@@ -9,14 +9,15 @@ body,html{
     height: 100%;
     width: 100%;
     background-color:#f9f9f9;
-    overflow: scroll;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 .header{
     height: 26.3rem;
     background-color: #f9f9f9;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
 }
 .search{
     width: 90%;
@@ -135,6 +136,7 @@ body,html{
 .body{
     background-color: white;
     border-radius: 15px;
+    height: 100%;
 }
 .idCard_items{
     height: 7.5rem;

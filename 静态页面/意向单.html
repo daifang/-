@@ -4,86 +4,96 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/form.css">
+    <link rel="stylesheet" href="./css/animate.css">
     <title>意向单</title>
 </head>
 <body>
+    <div class="success none" id="success">
+        <div class="msg fadeIn animated">
+            <div style="height: 10%;"><img id="close" style="width: 1.8rem;height: 1.8rem;float: right;margin-right: 5%;margin-top: 1.5rem;" src="./img/close.jpg" alt=""></div>
+            <div style="height: 45%;align-items: center;justify-content: center;display: flex;"><img style="width: 12rem;height: 12rem;" src="./img/submit.jpg" alt=""></div>
+            <div style="height: 10%;align-items: center;justify-content: center;display: flex;"><span style="font-size: 1.3rem;">提交成功！</span></div>
+            <div style="height: 10%;align-items: center;justify-content: center;display: flex;"><span style="font-size: 1.3rem;">我们会尽快与您联系，非常感谢～</span></div>
+            <div style="height: 10%;align-items: center;justify-content: center;display: flex;"><span style="font-size: 1.3rem;color: #999999;">页面跳转中～</span></div>
+        </div>
+    </div>
     <div class="container">
         <div class="second_container">
             <div class="third_container">
                 <span class="title">姓名</span>
                 <input type="text" name = 'name' placeholder="请输入姓名"/>
-                <span id="name" class="error hidden">请输入姓名</span>
+                <span id="name" class="error hidden init">请输入姓名</span>
             </div>
         </div>
         <div class="second_container">
             <div class="third_container">
                 <span class="title">手机号</span>
                 <input type="text" name = 'tel' placeholder="请输入手机号"/>
-                <span id="tel" class="error hidden">请输入手机号</span>
+                <span id="tel" class="error hidden init">请输入手机号</span>
             </div>
         </div>
         <div class="second_container">
             <div class="third_container">
                 <span class="title">企业邮箱</span>
                 <input type="text" name='email' placeholder="请输入企业邮箱"/>
-                <span id="email"  class="error hidden">请输入企业邮箱</span>
+                <span id="email"  class="error hidden init">请输入企业邮箱</span>
             </div>
         </div>
         <div class="second_container">
             <div class="third_container">
                 <span class="title">公司全称</span>
                 <input type="text" name = 'job' placeholder="请输入公司全称"/>
-                <span id="job" class="error hidden">请输入公司全称</span>
+                <span id="job" class="error hidden init">请输入公司全称</span>
             </div>
         </div>
         <div class="second_container">
             <div class="third_container">
                 <span class="title">职能</span>
                 <select class="list unselected">
-                    <option value="1" selected style="display: none;">请选择</option>
+                    <option value="" selected style="display: none;">请选择</option>
                     <option value="2">1%</option>
                     <option value="3">2%</option>
                     <option value="4">3%</option>
                     <option value="5">4%</option>
                 </select>
-                <span id="select0" class="error hidden">请选择职能</span>
+                <span id="select0" class="error hidden init">请选择职能</span>
             </div>
         </div>
         <div class="second_container">
             <div class="third_container">
                 <span class="title">职别</span>
                 <select class="list unselected">
-                    <option value="1" selected style="display: none;">请选择</option>
+                    <option value="" selected style="display: none;">请选择</option>
                     <option value="2">1%</option>
                     <option value="3">2%</option>
                     <option value="4">3%</option>
                     <option value="5">4%</option>
                 </select>
-                <span id="select1" class="error hidden">请选择职别</span>
+                <span id="select1" class="error hidden init">请选择职别</span>
             </div>
         </div>
         <div class="second_container">
             <div class="third_container">
                 <span class="title">省份</span>
                 <select class="list unselected">
-                    <option value="1" selected style="display: none;">请选择</option>
+                    <option value="" selected style="display: none;">请选择</option>
                     <option value="2">1%</option>
                     <option value="3">2%</option>
                     <option value="4">3%</option>
                     <option value="5">4%</option>
                 </select>
-                <span id="select2" class="error hidden">请选择省份</span>
+                <span id="select2" class="error hidden init">请选择省份</span>
             </div>
             <div class="third_container">
                 <span class="title">城市</span>
                 <select class="list unselected">
-                    <option value="1" selected style="display: none;">请选择</option>
+                    <option value="" selected style="display: none;">请选择</option>
                     <option value="2">1%</option>
                     <option value="3">2%</option>
                     <option value="4">3%</option>
                     <option value="5">4%</option>
                 </select>
-                <span id="select3" class="error hidden">请选择城市</span>
+                <span id="select3" class="error hidden init">请选择城市</span>
             </div>
         </div>
         <div class="foot">
@@ -92,7 +102,7 @@
                     您是否愿意接受戴尔易安信销售/合作伙伴与您联系？
                 </span>
                 <span style="height: 50%;">
-                    <input id="radio1" class="check1" type="radio" name="check" value="是">
+                    <input id="radio1" class="check1" checked type="radio" name="check" value="是">
                     <label for="radio1" class="radio-label">是</label>
                     <input id="radio2" class="check1" type="radio" name="check" value="否">
                     <label for="radio2" class="radio-label">否</label>
@@ -114,7 +124,13 @@
     </div>
     <script>
         (function(w,d){
-            var list = d.getElementsByClassName('list');
+            const list = d.getElementsByClassName('list');//select
+            const input = d.getElementsByTagName('input');//input
+            const submit = d.getElementById('yes');//确认
+            const error = d.getElementsByClassName('error');//警告
+            const checkbox_input = d.getElementsByClassName('checkbox_input');//隐私确认
+            var   isAgree = false;//页面初始不同意隐私
+            //select样式
             for(let i = 0; i < list.length ;i++ ){
                 list[i].addEventListener('change',(e)=>{
                     e.preventDefault();
@@ -122,34 +138,40 @@
                     hidden(`select${i}`);
                 });
                 list[i].addEventListener('blur',(e)=>{
-                    if(e.target.value == 1){
+                    isUsed(`select${i}`);
+                    if(e.target.value == ""){
                         show(`select${i}`);
                     }else{
-                        hidden(`select${i}`);
+                        hidden(`select${i}`);   
                     }
                 })
             };
+            //隐藏
             function hidden(id){
                 const el = d.getElementById(id);
                 el.classList.add('hidden');
             }
+            //显示
             function show(id){
                 const el = d.getElementById(id);
                 el.classList.remove('hidden');
+            }
+            //判断页面是否被动过
+            function isUsed(id){
+                d.getElementById(id).classList.remove('init');
             }
             //返回上一页
             d.getElementById('back').addEventListener('click',(e)=>{
                 e.preventDefault();
                 window.history.back(-1);
             });
-            //确认
+            //确认按钮
             d.getElementById('yes').addEventListener('click',(e)=>{
                 e.preventDefault();
                 console.log(e.target.classList);
-
             });
-            //表单验证
-            const input = d.getElementsByTagName('input');
+            //表单验证 一
+            
             for(let i = 0; i < input.length;i++){
                 input[i].addEventListener('change',(e)=>{
                     console.log(e.target);
@@ -163,14 +185,63 @@
                 });
                 input[i].addEventListener('blur',(e)=>{
                     if(e.target.type != 'checkbox' && e.target.type != 'radio'){
+                        isUsed(e.target.name);
                         if(e.target.value == '')
                             show(e.target.name);
                         else
                             hidden(e.target.name);  
                     }
-
                 });
             };
+            //隐私同意
+            checkbox_input[0].addEventListener('click',(e)=>{
+                // console.log(e.target.checked)
+                isAgree = e.target.checked;
+            });
+            //表单验证 二  按钮
+            // console.log(error.length);
+            submit.addEventListener('click',(e)=>{
+                e.preventDefault();
+                e.stopPropagation();
+                //初始失败
+                let success = false;
+                for(let i = 0; i < error.length ; i++){
+                    if(!error[i].classList.contains('hidden')){
+                        //存在未填写表单
+                        success = false;
+                        break;
+                    }
+                    else if(error[i].classList.contains('init')){
+                        //用户从未点击过表单
+                        success = false;
+                        break;
+                    }
+                    else if(isAgree == false){
+                        //隐私不同意
+                        success = false;
+                        break;
+                    }
+                    else{
+                        success = true;
+                    }
+                };
+                if(success == true){
+                    d.getElementsByClassName('success')[0].classList.remove('none');
+                }
+                else
+                    alert('请检查信息是否填写完整');
+            });
+            d.getElementsByClassName('success')[0].addEventListener('click',(e)=>{
+                e.stopPropagation();
+                e.preventDefault();
+                e.target.classList.remove('fadeIn');
+                d.getElementsByClassName('success')[0].classList.add('none');
+            });
+            d.getElementById('close').addEventListener('click',(e)=>{
+                e.stopPropagation();
+                e.preventDefault();
+                d.getElementsByClassName('success')[0].classList.add('none');
+            });
         })(window,document);
     </script>
 </body>
