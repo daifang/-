@@ -32,7 +32,7 @@ a{
     color:#999999 ;
 }
 .third_container>input{
-    height: 50%;
+    height: 3.5rem;
     width: 97%;
     border-radius: 5px;
     outline: none;
@@ -43,7 +43,7 @@ a{
 }
 
 .third_container>select{
-    height: 50%;
+    height: 3.5rem;
     width: 97%;
     border-radius: 5px;
     outline: none;
