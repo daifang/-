@@ -3,9 +3,175 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/form.css">
     <title>意向单</title>
 </head>
 <body>
-    
+    <div class="container">
+        <div class="second_container">
+            <div class="third_container">
+                <span class="title">姓名</span>
+                <input type="text" name = 'name' placeholder="请输入姓名"/>
+                <span id="name" class="error hidden">请输入姓名</span>
+            </div>
+        </div>
+        <div class="second_container">
+            <div class="third_container">
+                <span class="title">手机号</span>
+                <input type="text" name = 'tel' placeholder="请输入手机号"/>
+                <span id="tel" class="error hidden">请输入手机号</span>
+            </div>
+        </div>
+        <div class="second_container">
+            <div class="third_container">
+                <span class="title">企业邮箱</span>
+                <input type="text" name='email' placeholder="请输入企业邮箱"/>
+                <span id="email"  class="error hidden">请输入企业邮箱</span>
+            </div>
+        </div>
+        <div class="second_container">
+            <div class="third_container">
+                <span class="title">公司全称</span>
+                <input type="text" name = 'job' placeholder="请输入公司全称"/>
+                <span id="job" class="error hidden">请输入公司全称</span>
+            </div>
+        </div>
+        <div class="second_container">
+            <div class="third_container">
+                <span class="title">职能</span>
+                <select class="list unselected">
+                    <option value="1" selected style="display: none;">请选择</option>
+                    <option value="2">1%</option>
+                    <option value="3">2%</option>
+                    <option value="4">3%</option>
+                    <option value="5">4%</option>
+                </select>
+                <span id="select0" class="error hidden">请选择职能</span>
+            </div>
+        </div>
+        <div class="second_container">
+            <div class="third_container">
+                <span class="title">职别</span>
+                <select class="list unselected">
+                    <option value="1" selected style="display: none;">请选择</option>
+                    <option value="2">1%</option>
+                    <option value="3">2%</option>
+                    <option value="4">3%</option>
+                    <option value="5">4%</option>
+                </select>
+                <span id="select1" class="error hidden">请选择职别</span>
+            </div>
+        </div>
+        <div class="second_container">
+            <div class="third_container">
+                <span class="title">省份</span>
+                <select class="list unselected">
+                    <option value="1" selected style="display: none;">请选择</option>
+                    <option value="2">1%</option>
+                    <option value="3">2%</option>
+                    <option value="4">3%</option>
+                    <option value="5">4%</option>
+                </select>
+                <span id="select2" class="error hidden">请选择省份</span>
+            </div>
+            <div class="third_container">
+                <span class="title">城市</span>
+                <select class="list unselected">
+                    <option value="1" selected style="display: none;">请选择</option>
+                    <option value="2">1%</option>
+                    <option value="3">2%</option>
+                    <option value="4">3%</option>
+                    <option value="5">4%</option>
+                </select>
+                <span id="select3" class="error hidden">请选择城市</span>
+            </div>
+        </div>
+        <div class="foot">
+            <div class="foot_rank_1">
+                <span style="height: 50%; margin-top: 0.5rem;color: #999999;">
+                    您是否愿意接受戴尔易安信销售/合作伙伴与您联系？
+                </span>
+                <span style="height: 50%;">
+                    <input id="radio1" class="check1" type="radio" name="check" value="是">
+                    <label for="radio1" class="radio-label">是</label>
+                    <input id="radio2" class="check1" type="radio" name="check" value="否">
+                    <label for="radio2" class="radio-label">否</label>
+                </span>
+            </div>
+            <div class="foot_rank_2">
+                <div class="checkbox">
+                    <input autocomplate="off" class="checkbox_input" type="checkbox" name=" checkbox" id="">
+                </div>
+                <span style="line-height: 2rem;color: #999999;">
+                    隐私声明：点击提交注册代表您已阅读并同意戴尔 <a style="color: #007cba;" href="#">隐私声明</a> 和 <a href="#" style="color: #007cba;">销售条款</a> 戴尔将根据隐私政策收集您的个人信息，并可能通过上述信息与您联系。
+                </span>
+            </div>
+            <div class="button">
+                <div class="button_1 button_style" id="back">返回上一页</div>
+                <div class="button_2 button_style" id="yes">确认</div>
+            </div>
+        </div>
+    </div>
+    <script>
+        (function(w,d){
+            var list = d.getElementsByClassName('list');
+            for(let i = 0; i < list.length ;i++ ){
+                list[i].addEventListener('change',(e)=>{
+                    e.preventDefault();
+                    list[i].classList.add('selected');
+                    hidden(`select${i}`);
+                });
+                list[i].addEventListener('blur',(e)=>{
+                    if(e.target.value == 1){
+                        show(`select${i}`);
+                    }else{
+                        hidden(`select${i}`);
+                    }
+                })
+            };
+            function hidden(id){
+                const el = d.getElementById(id);
+                el.classList.add('hidden');
+            }
+            function show(id){
+                const el = d.getElementById(id);
+                el.classList.remove('hidden');
+            }
+            //返回上一页
+            d.getElementById('back').addEventListener('click',(e)=>{
+                e.preventDefault();
+                window.history.back(-1);
+            });
+            //确认
+            d.getElementById('yes').addEventListener('click',(e)=>{
+                e.preventDefault();
+                console.log(e.target.classList);
+
+            });
+            //表单验证
+            const input = d.getElementsByTagName('input');
+            for(let i = 0; i < input.length;i++){
+                input[i].addEventListener('change',(e)=>{
+                    console.log(e.target);
+                    if(e.target.type != 'checkbox' && e.target.type != 'radio'){
+                        if(e.target.value == '')
+                            show(e.target.name);
+                        else if(e.target.value.length > 0){
+                            hidden(e.target.name);
+                        } 
+                    }
+                });
+                input[i].addEventListener('blur',(e)=>{
+                    if(e.target.type != 'checkbox' && e.target.type != 'radio'){
+                        if(e.target.value == '')
+                            show(e.target.name);
+                        else
+                            hidden(e.target.name);  
+                    }
+
+                });
+            };
+        })(window,document);
+    </script>
 </body>
 </html>
