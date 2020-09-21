@@ -30,14 +30,14 @@ var top = document.getElementsByClassName('top')[0].addEventListener('click',fun
         document.getElementById('text').innerHTML = '收起';
         document.getElementsByClassName('header')[0].classList.add('translate');
         document.getElementById('text_img').style.transform = "rotate(0deg)";
-        document.getElementsByClassName('header')[0].style = "height:26.3rem;margin-top:18%;";
+        document.getElementsByClassName('header')[0].style = "height:26.3rem;";
         document.getElementsByClassName('first_kind')[0].style = "display:block;";
         document.getElementsByClassName('second_kind')[0].style = "display:block";
     }else{
         document.getElementById('text').innerHTML = '更多筛选条件';
         document.getElementsByClassName('header')[0].classList.add('translate');
         document.getElementById('text_img').style.transform = "rotate(-180deg)";
-        document.getElementsByClassName('header')[0].style = "height:5%;margin-top:18%;";
+        document.getElementsByClassName('header')[0].style = "height:5%;";
         setTimeout(() => {
             document.getElementsByClassName('first_kind')[0].style = "display:none;";
             document.getElementsByClassName('second_kind')[0].style = "display:none";

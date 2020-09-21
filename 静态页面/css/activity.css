@@ -37,7 +37,6 @@ body,html{
 }
 #search::placeholder{
     text-indent: 1rem;
-    font-size: 1.4rem;
     color: #999999;
     font-size: 1.3rem;
 }
@@ -219,7 +218,7 @@ body,html{
 .idCard_items_foot_last>span{
     width: 16%;
     font-size: 1.1rem;
-    color:#666666;;
+    color:#666666;
 }
 input[type="checkbox"] {
     width: 20px;
@@ -230,10 +229,10 @@ input[type="checkbox"] {
     line-height: 18px;
     margin-right: 10px;
     position: relative;
+    overflow: hidden;
 }
  
 input[type="checkbox"]::before {
-    content: "";
     position: absolute;
     top: 0;
     left: 0;
