@@ -46,6 +46,7 @@ body,html{
     outline: none;
     height: 100%;
     text-indent: 1rem;
+    border-radius: 7px;
 }
 .first_kind{
     width: 100%;
@@ -86,7 +87,7 @@ body,html{
     line-height: 215%;
 }
 .div:nth-of-type(n+4){
-    width: 49%;
+    width: 50%;
     height: 2.5rem;
     margin-top: 1rem;
 }
