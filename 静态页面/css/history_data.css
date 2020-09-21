@@ -179,9 +179,10 @@ p {
 }
 .idCard_items_foot{
     margin-left: 66%;
-    margin-top: -20%;
+    margin-top: -14%;
     display: flex;
     align-items: center;
+    height: 20%;
 }
 .idCard_items_foot>img{
     width: 1.5rem;
