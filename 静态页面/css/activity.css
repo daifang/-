@@ -22,7 +22,7 @@ body,html{
 .search{
     width: 90%;
     margin-left: 5%;
-    height: 5%;
+    height: 3.5rem;
     border: #0076ce 1px dashed;
     border-radius: 7px;
     position: absolute;
@@ -247,10 +247,10 @@ input[type="checkbox"]:checked::before {
     content: "✓";
     background-color: #0076ce;
     position: absolute;
-    top: 0;
+    top: 5%;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 90%;
+    height: 90%;
     border: 1px solid #0076ce;
     border-radius:4px;
     color: #ffffff;

@@ -45,10 +45,13 @@ var top = document.getElementsByClassName('top')[0].addEventListener('click',fun
         }, 200);
     }
 });
+
 var checkbox = document.getElementsByClassName('idCard_items');
+
 for (let i = 0; i < checkbox.length; i++) {
     const element = checkbox[i];
     element.addEventListener('click',()=>{
         window.open('./活动详情.html','_self');
     });
+    
 }
