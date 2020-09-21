@@ -247,7 +247,7 @@ input[type="checkbox"]:checked::before {
     content: "✓";
     background-color: #0076ce;
     position: absolute;
-    top: 5%;
+    top: 0;
     left: 0;
     width: 90%;
     height: 90%;
