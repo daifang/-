@@ -35,22 +35,20 @@ var top = document.getElementsByClassName('top')[0].addEventListener('click',fun
         document.getElementsByClassName('second_kind')[0].style = "display:block";
     }else{
         document.getElementById('text').innerHTML = '更多筛选条件';
+        document.getElementById('text').style = 'margin-bottom : 0';
         document.getElementsByClassName('header')[0].classList.add('translate');
         document.getElementById('text_img').style.transform = "rotate(-180deg)";
-        document.getElementsByClassName('header')[0].style = "height:5%;";
+        document.getElementsByClassName('header')[0].style = "height:3rem;";
         setTimeout(() => {
             document.getElementsByClassName('first_kind')[0].style = "display:none;";
             document.getElementsByClassName('second_kind')[0].style = "display:none";
         }, 200);
     }
 });
-
 var checkbox = document.getElementsByClassName('idCard_items');
-
 for (let i = 0; i < checkbox.length; i++) {
     const element = checkbox[i];
     element.addEventListener('click',()=>{
         window.open('./活动详情.html','_self');
     });
-    
 }
