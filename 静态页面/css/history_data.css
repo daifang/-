@@ -184,8 +184,8 @@ p {
     align-items: center;
 }
 .idCard_items_foot>img{
-    width: 10px;
-    height: 8px;
+    width: 1.5rem;
+    height: 1rem;
     margin-left: 5%;
     float: left;
 }
