@@ -1,0 +1,38 @@
+#sets{
+    height: 200px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+#sets>div{
+    height: 30%;
+    width: 100%;
+    line-height: 65px;
+    background-color: rgb(238, 238, 238);
+}
+#sets>div>span{
+    display: block;
+    margin-left: 5%;
+    font-size: 20px;
+    float: left;
+}
+#sets>div>img{
+    display: block;
+    transform: scale(0.3);
+    float: right;
+}
+#exit{
+    width: 85%;;
+    height: 50px;
+    background-color: rgb(145, 145, 145);
+    position: relative;
+    top:200px;
+    left: 7.5%;
+    border-radius: 10px;
+    font-size: 25px;
+    font-weight: 900;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    line-height:50px ;
+}

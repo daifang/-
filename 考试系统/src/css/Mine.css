@@ -1,0 +1,47 @@
+#header{
+    height: 25%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+}
+
+#body{
+    height: 75%;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    
+}
+#body>div{
+    width: 30%;
+}
+#body>div>img{
+    width: 100%;
+}
+#Mine{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+#author{
+    height: 100%;
+    width: 20%;
+}
+#author>img{
+    width: 100%;
+}
+#src{
+    height: 100%;
+    width: 30%;
+}
+#set{
+    height: 40%;
+    width: 20%;
+}
+#header>div{
+    height:50%;
+    text-align: center;
+    line-height: 100%;
+}

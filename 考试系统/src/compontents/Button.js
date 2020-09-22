@@ -14,7 +14,7 @@ export default class Button extends Component {
         if(localStorage.getItem('userId') == ''){
             window.location.hash = '/';
         }else{
-            window.location.hash = '/detail';
+            window.location.hash = '/Mine';
         }
     }
     render() {
@@ -47,7 +47,7 @@ export default class Button extends Component {
                     console.log(data);
                     if(data.status == 200){
                         //登录成功,跳转
-                        window.location.hash = '/detail';
+                        window.location.hash = '/Mine';
                         localStorage.setItem('userId',data.data);
                     }else if(data.status == 40001){
                         //登录失败，提示

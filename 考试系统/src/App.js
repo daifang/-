@@ -1,6 +1,7 @@
 import React from 'react';
 import './css/App.css';
 import {HashRouter,Route, Switch} from 'react-router-dom';
+import './css/animate.css';
 import Login from './pages/login';
 import Detail from './pages/Detail';
 import Sets from './pages/Sets';
@@ -17,7 +18,7 @@ function App() {
                 <Route exact path="/detail" component={Detail}/>
                 <Route exact path="/sets" component={Sets}/>
                 <Route exact path="/mine" component={Mine}/>
-                <Route exact path="/Classes" component={Classes}/>
+                <Route exact path="/classes" component={Classes}/>
                 <Route exact path="/finalTests" component={Final}/>
                 <Route exact path="/result" component={Result}/>
              </Switch>

@@ -12,7 +12,9 @@ export default class login extends Component {
             }
         }
     }
-
+    componentDidMount(){
+        document.title = '登录';
+    }
     render() {
         return (
             <div style={{

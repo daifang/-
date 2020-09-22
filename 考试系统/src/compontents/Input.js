@@ -11,6 +11,7 @@ export default class Input extends Component {
                     {this.props.title}
                 </span>
                 <input 
+                    autoComplete = 'off'
                     type = {this.props.type} 
                     style = {this.props.style}
                     placeholder = {this.props.placeholder}
