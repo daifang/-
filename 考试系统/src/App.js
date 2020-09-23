@@ -9,6 +9,7 @@ import Mine from './pages/Mine';
 import Classes from './pages/Classes';
 import Final from './pages/Final';
 import Result from './pages/Result';
+import Change from './pages/Change';
 function App() {
   return (
     <div className="App">
@@ -21,6 +22,7 @@ function App() {
                 <Route exact path="/classes" component={Classes}/>
                 <Route exact path="/finalTests" component={Final}/>
                 <Route exact path="/result" component={Result}/>
+                <Route exact path="/change/:op" component={Change}/>
              </Switch>
         </HashRouter>
     </div>

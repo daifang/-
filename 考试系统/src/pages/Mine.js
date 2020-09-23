@@ -35,12 +35,14 @@ export default class Mine extends Component {
         return (
             <div id="Mine" className = "slideInRight animated">
                 <div id="header">
-                    <div id = "author"><img style={{borderRadius:'100%'}} src = {this.state.imgSrc}/></div>
+                    <div id = "author">
+                        <img style={{borderRadius:'100%'}} src = {this.state.imgSrc}/>
+                    </div>
                     <div id = "src">
                         <h3>{this.state.username}</h3>
                         <p>{this.state.userSchool}</p>
                     </div>
-                    <div id = 'right'>
+                    <div id = 'right' onClick = {()=>{this.goTo('/detail')}}>
                         <img 
                             style={{transform:'scale(0.4)'}} 
                             src = '/right.png'

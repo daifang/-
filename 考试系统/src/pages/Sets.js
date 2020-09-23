@@ -9,13 +9,13 @@ export default class Sets extends Component {
     }
     render() {
         return (
-            <div>
-                <div id = 'sets'>
-                    <div>
+            <div className = 'slideInRight animated'>
+                <div id = 'sets' >
+                    <div onClick = {()=>{this.goTo('/change/tel')}}>
                         <span>修改手机号</span>
                         <img src = '/right.png'/>
                     </div>
-                    <div>
+                    <div onClick = {()=>{this.goTo('/change/password')}}>
                         <span>修改登录密码</span>
                         <img src = '/right.png'/>
                     </div>
@@ -36,5 +36,8 @@ export default class Sets extends Component {
             localStorage.setItem('userId','');
             window.location.hash = '/';
         }
+    }
+    goTo = (url)=>{
+        window.location.hash = url;
     }
 }

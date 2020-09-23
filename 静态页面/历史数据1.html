@@ -35,8 +35,8 @@
                     <p>访问人数</p>
                     <p style="color:#0076ce;font-size: 2rem;">2107</p>
                 </div>
-                <div class="cardLast">
-                    <p>客户管理<img src="./img/right.jpg"></p>
+                <div class="cardLast" id="manage">
+                    <p style="margin-left: 10%;">客户管理<img src="./img/right.jpg" ></p>
                     <p style="color:#0076ce;font-size: 2rem;">192</p>
                 </div>
             </div>
@@ -138,7 +138,10 @@
 				beginYear: 2000,
 				endYear: 2100
 			});
-		}
+        }
+        document.getElementById('manage').addEventListener('click',()=>{
+            window.open('./客户管理1.html',"_self");
+        });
 	</script>
 
 </body>

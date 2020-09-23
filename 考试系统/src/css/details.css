@@ -1,0 +1,27 @@
+#details{
+    height: 90%;
+    margin-top: 10%;
+}
+
+#details>p{
+    width: 90%;
+    height: 50px;
+    margin-left: 5%;
+    background-color: rgb(243, 243, 243);
+    line-height: 50px;
+    font-size: 17px;
+}
+#details>p>span:first-of-type{
+    color: rgb(121, 121, 121);
+    display: block;
+    width: 35%;
+    float: left;
+    margin-left: 5%;
+}
+#details>p>span:last-of-type{
+    display: block;
+    width: 50%;
+    float: left;
+    text-align: center;
+    margin-left: -20%;
+}

@@ -51,7 +51,7 @@ ul,li{
 }
 .li>span:first-of-type{
     text-align: right;
-    width: 25%;
+    width: 40%;
     color: #666666;
 }
 .li>span:last-of-type{

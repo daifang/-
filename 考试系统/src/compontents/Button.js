@@ -11,7 +11,7 @@ export default class Button extends Component {
         }
     };
     componentDidMount(){
-        if(localStorage.getItem('userId') == ''){
+        if(localStorage.getItem('userId') == '' || !localStorage.getItem('userId')){
             window.location.hash = '/';
         }else{
             window.location.hash = '/Mine';

@@ -6,9 +6,10 @@
     justify-content: space-around;
 }
 #sets>div{
-    height: 30%;
-    width: 100%;
-    line-height: 65px;
+    height: 55px;
+    margin-left: 2.5%;
+    width: 95%;
+    line-height: 55px;
     background-color: rgb(238, 238, 238);
 }
 #sets>div>span{

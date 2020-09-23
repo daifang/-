@@ -21,7 +21,9 @@ export default class login extends Component {
                 display:"flex",
                 flexDirection:'column',
                 height:'100%'
-            }}>
+            }}
+            className = "animated fadeInUp"
+            >
                 {/* <div id = "home">
                     <a href = '/#/detail'><img src='/home.png'/></a>
                 </div> */}
@@ -41,7 +43,8 @@ export default class login extends Component {
                             outLine:'none',
                             marginLeft:'5%',
                             marginTop:'5%',
-                            height:'30px'
+                            height:'30px',
+                            fontSize:'20px'
                         }}
                         onChange = {this.onChange}
                         placeholder = {'请输入用户名'}
@@ -59,7 +62,8 @@ export default class login extends Component {
                             borderRight:'none',
                             marginLeft:'5%',
                             marginTop:'5%',
-                            height:'30px'
+                            height:'30px',
+                            fontSize:'20px'
                         }}
                         onChange = {this.onChange}
                         placeholder = {'请输入密码'}
