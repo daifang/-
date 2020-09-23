@@ -26,6 +26,10 @@ export default class Mine extends Component {
                     imgSrc:res.data.imgSrc?res.data.imgSrc:this.state.imgSrc
                 });
             }else if(res.data.status == 40301){
+                alert('登录状态已过期,请重新登录');
+                localStorage.setItem('userId','');
+                window.location.hash = '/';
+            }else{
                 localStorage.setItem('userId','');
                 window.location.hash = '/';
             }
