@@ -63,7 +63,9 @@ export default class Section extends Component {
                 width:'100%',
                 height:'100%',
                 overflow:'scroll'
-            }}>
+            }}
+                className = "animated slideInRight"
+            >
                 <ul style={{width:'100%'}}>
                 {
                     this.state.data.map(val=>{

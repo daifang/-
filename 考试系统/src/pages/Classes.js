@@ -34,7 +34,9 @@ export default class Final extends Component {
                     url:'/api/student/videoCourseDesign/getChapterList'
                 }).then((response) => {
                     if(this.state.courseId == 0){
-                        console.log('没有选课')
+                        alert('登录状态已过期,请重新登录');
+                        localStorage.setItem('userId','');
+                        window.location.hash = '/';
                     }else{
                         // console.log(this.state.courseId)
                         this.setState({
@@ -51,12 +53,12 @@ export default class Final extends Component {
         document.title = '章节测试';
     }
     render() {
-        var temp = this.state.data.map((item,index) => <p key={item.id} id={item.id} className="content" onClick = {(e)=>{this.goTo(e)}}><span className="con_p">{item.name}</span></p>)
+        var temp = this.state.data.map((item,index) => <p key={item.id} id={item.id} className="class_content" onClick = {(e)=>{this.goTo(e)}}><span className="con_p">{item.name}</span></p>)
 
         return (
             <div className="animated slideInRight">
-                <div id="head"></div>
-                <div id="content">
+                <div id="class_head"></div>
+                <div id="class_content">
                     {temp}
                 </div>
             </div>
