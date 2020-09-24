@@ -29,7 +29,7 @@ export default class Mine extends Component {
                     userSchool:res.data.stuProfessional?res.data.stuProfessional:'...',
                     imgSrc:res.data.imgSrc?res.data.imgSrc:this.state.imgSrc
                 });
-                localStorage.setItem('userInfor',JSON.stringify(res.data));
+                localStorage.setItem('userInfo',JSON.stringify(res.data));
             }
         })
     }

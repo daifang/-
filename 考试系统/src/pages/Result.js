@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
 import '../css/result.css';
 import Axios from 'axios';
-import List from '../compontents/Result_list';
 export default class Result extends Component {
     constructor(){
         super();
         this.state = {
             pageType:{
                 normal:'getChapterExamScoreList',
-                final:'getChapterExamScoreDetail'
+                final:'getFinalExamScoreSimpleInfo'
             },
-            data : 'isBottom为true时滚动到底部，此时+20代表离底部20像素之内就判断为滚动到底部，继续加载数据'.split(''),
+            data : [],
             type:'normal',
             pageNum:0,
             pageSize:6
@@ -20,8 +19,14 @@ export default class Result extends Component {
         this.load();
         document.getElementById('result_list').addEventListener('scroll',(e)=>{
             let isLoad = this.isBottom(e);
-            if(isLoad)
-                this.load();
+            if(isLoad){
+                this.setState({
+                    pageNum:this.state.pageNum++
+                },()=>{
+                    this.load();
+                })
+                
+            }
             else
                 return false;
         })
@@ -38,7 +43,7 @@ export default class Result extends Component {
             data:{
                 pageNumber:this.state.pageNum,
                 pageSize:this.state.pageSize,
-                course_id:JSON.parse(localStorage.getItem('userInfor')).course_id 
+                course_id:JSON.parse(localStorage.getItem('userInfo')).course_id 
             }
         }).then(res=>{
             if(res.data.status == 40301){
@@ -47,6 +52,7 @@ export default class Result extends Component {
                 window.location.hash = '/';
             }else{
                 //拼接数据
+                // console.log('data');
                 console.log(res);
                 this.setState({
                     data:this.state.data.concat(res.data.data)
@@ -61,7 +67,7 @@ export default class Result extends Component {
                 <div id = 'header_result'>
                     <div
                         id = 'normal'
-                        className = 'topMenu'
+                        className = 'topMenu selected'
                         onTouchEnd = {(e)=>{
                             this.changePage(e,0);
                         }}
@@ -78,9 +84,87 @@ export default class Result extends Component {
                         期末考试成绩
                     </div>
                 </div>
-                <List 
-                    data = {this.state.data}
-                />
+                <div id = 'result_list'>
+                    <ul 
+                        style={{
+                            height:'auto',
+                            width:'90%',
+                            marginLeft:'5%',
+                            marginTop:'5%'
+                        }}
+                        
+                    >
+                        {//渲染列表
+                            this.state.data.map(val=>{
+                                return(
+                                    <li 
+                                        style = {{
+                                            height:'90px'
+                                        }}
+                                        id = {val?val.id:Number.parseInt(Math.random()*100)}
+                                        key = {val?val.id:Number.parseInt(Math.random()*100)}
+                                        onTouchEnd = {(e)=>{
+                                            e.stopPropagation();
+                                            this.goTo(e,'/resultDetail/');
+                                        }}
+                                        className = "animated fadeIn"
+                                    >
+                                        <div style={{
+                                            width:'100%',
+                                            height:'100%',
+                                            display:'flex',
+                                            backgroundColor:''
+                                            }}
+                                            id = {val?val.id:Number.parseInt(Math.random()*100)}
+                                        >
+                                        <span style={{
+                                            display:"flex",
+                                            flexDirection:'column',
+                                            width:'80%'
+                                            }}
+                                            id = {val?val.id:Number.parseInt(Math.random()*100)}
+                                        >
+                                        <span
+                                            style={{
+                                                fontSize:'20px',
+                                                height:'50%',
+                                                lineHeight:'45px',
+                                                textIndent:'10px'
+                                            }}
+                                            id = {val?val.id:Number.parseInt(Math.random()*100)}
+                                        >{
+                                            val?val.lesson_name + val.chapter_name?val.lesson_name:val.course_name+val.page_name:'还没有任何成绩'
+                                        }</span>
+                                        <span
+                                            style={{
+                                                fontSize:'15px',
+                                                height:'50%',
+                                                lineHeight:'45px',
+                                                textIndent:'10px'
+                                            }}
+                                            id = {val?val.id:Number.parseInt(Math.random()*100)}
+                                        >{
+                                            val?val.chapter_name?val.chapter_name:"考试时间: " + val.hand_in_time:'...'
+                                            }</span>
+                                        </span>
+                                        <span
+                                        style={{
+                                            width:'20%',
+                                            lineHeight:'90px',
+                                            textIndent:'8px',
+                                            fontSize:'30px',
+                                            color:val?val.is_pass?'#33a6ff':'gray':'gray'
+                                        }}
+                                        id = {val?val.id:Number.parseInt(Math.random()*100)}
+                                    >{
+                                        val?val.score:'？'
+                                    }</span>
+                                </div>
+                            </li>
+                        )})
+                    }
+                    </ul>
+                </div>
                 <div id = 'result_foot'>
                     成绩详情
                 </div>
@@ -88,18 +172,19 @@ export default class Result extends Component {
         )
     }
     isBottom = (e)=>{
+        //判断滚动条是否到底
         const { clientHeight, scrollHeight, scrollTop } = e.target;
-        // const { clientHeight, scrollHeight, scrollTop } = this.scroll;
- 
-        const isBottom = scrollTop + clientHeight + 20 > scrollHeight;
-        console.log(scrollTop, clientHeight, scrollHeight, isBottom);
+        const isBottom = Number.parseInt(scrollTop)  +Number.parseInt(clientHeight)   > scrollHeight;
+        // console.log(scrollTop, clientHeight, scrollHeight, isBottom);
         return isBottom;
     }
     changePage = (e,num1)=>{
         //设置页面数据来源
         this.setState({
-            type:e.target.id
+            type:e.target.id,
+            data:[]
         },()=>{
+            console.log('清空并请求');
             this.componentDidMount();
         });
         //改变样式 17% -> 68%  滑动
@@ -114,5 +199,11 @@ export default class Result extends Component {
             Menu[1].classList.add('selected');
             Menu[0].classList.remove('selected');
         }
+    }
+
+    goTo = (e,url)=>{
+        console.log(url);
+        console.log(e.target);
+        window.location.hash = url + e.target.id + "&" + this.state.type;
     }
 }

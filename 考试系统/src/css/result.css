@@ -2,9 +2,10 @@
     display: flex;
     width: 100%;
     height: 60px;
-    background-color: wheat;
+    background-color: rgb(255, 255, 255);
     align-items: flex-end;
     justify-content: space-around;
+    border-bottom: 1px rgb(180, 180, 180) solid;
 }
 #header_result>div{
     width: 100%;
@@ -16,7 +17,7 @@
 #blue_line{
     height: 3px;
     width: 15%;
-    background-color: royalblue;
+    background-color: #33a6ff;
     left: 17%;
     border-radius: 20px;
     margin-top: 65px;
@@ -29,5 +30,16 @@
 }
 #result_list{
     overflow: scroll;
-    height: 80%;
+    height: 85%;
+}
+#result_foot{
+    height: 20%;
+    font-size: 20px;
+    text-align: center;
+    color: #33a6ff;
+}
+#header_bg{
+    background-color: #33a6ff;
+    width: 100%;
+    height: 25%;
 }
