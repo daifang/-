@@ -10,10 +10,12 @@ import Classes from './pages/Classes';
 import Final from './pages/Final';
 import Result from './pages/Result';
 import Change from './pages/Change';
+import Msg from './pages/Msg';
+import Section from './pages/Section';
 function App() {
   return (
     <div className="App">
-        <HashRouter> 
+        <HashRouter>
              <Switch>
                 <Route exact path="/" component={Login}/>
                 <Route exact path="/detail" component={Detail}/>
@@ -23,6 +25,8 @@ function App() {
                 <Route exact path="/finalTests" component={Final}/>
                 <Route exact path="/result" component={Result}/>
                 <Route exact path="/change/:op" component={Change}/>
+                <Route exact path="/msgs" component = {Msg}/>
+                <Route exact path="/section/:key" component={Section}/>
              </Switch>
         </HashRouter>
     </div>

@@ -29,6 +29,7 @@ export default class Mine extends Component {
                     userSchool:res.data.stuProfessional?res.data.stuProfessional:'...',
                     imgSrc:res.data.imgSrc?res.data.imgSrc:this.state.imgSrc
                 });
+                localStorage.setItem('userInfor',JSON.stringify(res.data));
             }
         })
     }
@@ -43,25 +44,27 @@ export default class Mine extends Component {
                         <h3>{this.state.username}</h3>
                         <p>{this.state.userSchool}</p>
                     </div>
-                    <div id = 'right' onClick = {()=>{this.goTo('/detail')}}>
+                    <div id = 'right' onTouchEnd = {()=>{this.goTo('/detail')}}>
                         <img 
-                            style={{transform:'scale(0.4)'}} 
+                            style={{transform:'scale(0.4)'}}
                             src = '/right.png'
                         />
                     </div>
-                    <div id = "set"  style={{borderRadius:'100%',height:'40%',transform:'scale(0.8)'}}>
-                        <img onClick = {()=>{this.goTo('/sets')}} src='/setting.png'/>
+                    <div id = "set"  style={{borderRadius:'100%',height:'35%',transform:'scale(1)'}}>
+                        {/* {消息页} */}
+                        {/* <img  onTouchEnd = {()=>{this.goTo('/msgs')}} src='/msg.png'/> */}
+                        <img  onTouchEnd = {()=>{this.goTo('/sets')}} src='/setting.png'/>
                     </div>
                 </div>
                 <div id="body">
                     <div>
-                        <img onClick = {()=>{this.goTo('/classes')}} src = '/classes.png'/>
+                        <img onTouchEnd = {()=>{this.goTo('/classes')}} src = '/classes.png'/>
                     </div>
                     <div>
-                        <img onClick = {()=>{this.goTo('/finalTests')}} src = '/final.png'/>
+                        <img onTouchEnd = {()=>{this.goTo('/finalTests')}} src = '/final.png'/>
                     </div>
                     <div>
-                        <img onClick = {()=>{this.goTo('/result')}} src = '/studentC.png'/>
+                        <img onTouchEnd = {()=>{this.goTo('/result')}} src = '/studentC.png'/>
                     </div>
                 </div>
             </div>

@@ -4,15 +4,16 @@
 }
 #tel_txt{
     width: 90%;
-    height: 35px;
+    height: 55px;
     outline: none;
     font-size: 20px;
     text-indent: 10px;
     border: none;
-    background-color: rgb(219, 219, 219);
+    background-color: rgb(247, 247, 247);
     border-radius: 5px;
     margin-top: 5%;
     margin-left: 5%;
+    border-bottom: 0.5px rgb(233, 233, 233) solid;
 }
 #tel_txt::placeholder{
     font-size: 20px;
@@ -36,35 +37,37 @@
 
 #password{
     width: 90%;
-    height: 35px;
+    height: 55px;
     outline: none;
     font-size: 20px;
     text-indent: 10px;
     border: none;
-    background-color: rgb(219, 219, 219);
+    background-color: rgb(247, 247, 247);
     border-radius: 5px;
     margin-top: 5%;
     margin-left: 5%;
+    border-bottom: 0.5px rgb(233, 233, 233) solid;
 }
 #newPassword{
     width: 90%;
-    height: 35px;
+    height: 55px;
     outline: none;
     font-size: 20px;
     text-indent: 10px;
     border: none;
-    background-color: rgb(219, 219, 219);
+    background-color: rgb(247, 247, 247);
     border-radius: 5px;
     margin-top: 5%;
     margin-left: 5%;
+    border-bottom: 0.5px rgb(233, 233, 233) solid;
 }
 #password::placeholder{
     font-size: 20px;
     text-indent: 10px;
-    color: rgb(83, 83, 83);
+    color: rgb(167, 167, 167);
 }
 #newPassword::placeholder{
     font-size: 20px;
     text-indent: 10px;
-    color: rgb(83, 83, 83);
+    color: rgb(153, 153, 153);
 }

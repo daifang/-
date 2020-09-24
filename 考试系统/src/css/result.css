@@ -1,0 +1,33 @@
+#header_result{
+    display: flex;
+    width: 100%;
+    height: 60px;
+    background-color: wheat;
+    align-items: flex-end;
+    justify-content: space-around;
+}
+#header_result>div{
+    width: 100%;
+    height: 100%;
+    line-height: 80px;
+    font-size: 18px;
+    text-align: center;
+}
+#blue_line{
+    height: 3px;
+    width: 15%;
+    background-color: royalblue;
+    left: 17%;
+    border-radius: 20px;
+    margin-top: 65px;
+    position: absolute;
+    transition: left 0.8s ease;
+}
+.selected{
+    font-size: 20px;
+    font-weight: 700;
+}
+#result_list{
+    overflow: scroll;
+    height: 80%;
+}
