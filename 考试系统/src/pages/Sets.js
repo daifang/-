@@ -104,7 +104,7 @@ export default class Sets extends Component {
                 // console.log(res);
                 //改变课程id
                 alert(res.data.msg);
-                let obj = JSON.parse(localStorage.getItem('userInfor'));
+                let obj = JSON.parse(localStorage.getItem('userInfo'));
                 obj.course_id = id;
                 obj.course_name = course_name;
                 localStorage.setItem('userInfor',JSON.stringify(obj));

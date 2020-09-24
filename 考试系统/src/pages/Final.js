@@ -15,7 +15,6 @@ export default class Final extends Component {
     }
 
     getData = () => {
-        console.log(this.state.masege.courseId)
         Axios({
             method:'post',
             data: this.state.masege,

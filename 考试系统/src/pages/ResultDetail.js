@@ -87,7 +87,7 @@ export default class ResultDetail extends Component {
                             justifyContent:'center',
                             justifyItems:'center'
                         }}>
-                            <span style ={{display:'flex',width:'40%',height:'100%',alignItems:'center'}}>
+                            <span style ={{display:'flex',width:this.state.type=='final'?'40%':'80%',height:'100%',alignItems:'center'}}>
                                 <span style={{textIndent:'10px'}}>考试成绩</span>
                                 <span style={{textIndent:'10px',fontSize:'35px'}}>{this.state.data.data.score}分</span>
                             </span>
@@ -126,7 +126,7 @@ export default class ResultDetail extends Component {
                                     >
                                         {
                                             val.question_array.map(val1=>{
-                                                // console.log(val1);
+                                                console.log(val1);
                                                 return(
                                                     <li style={{
                                                         width:'40px',
@@ -140,7 +140,8 @@ export default class ResultDetail extends Component {
                                                         lineHeight:'40px',
                                                         textAlign:'center',
                                                         borderRadius:'5px'
-                                                    }}>
+                                                    }}
+                                                    >
                                                         {val1.context}
                                                     </li>
                                                 )

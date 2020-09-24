@@ -99,7 +99,8 @@ export default class Result extends Component {
                                 return(
                                     <li 
                                         style = {{
-                                            height:'90px'
+                                            height:'90px',
+                                            borderBottom:'1px gray solid'
                                         }}
                                         id = {val?val.id:Number.parseInt(Math.random()*100)}
                                         key = {val?val.id:Number.parseInt(Math.random()*100)}
@@ -133,7 +134,7 @@ export default class Result extends Component {
                                             }}
                                             id = {val?val.id:Number.parseInt(Math.random()*100)}
                                         >{
-                                            val?val.lesson_name + val.chapter_name?val.lesson_name:val.course_name+val.page_name:'还没有任何成绩'
+                                            val?(val.lesson_name + val.chapter_name?'所属章节:' + val.lesson_name:val.course_name+val.page_name):'当前没有数据'
                                         }</span>
                                         <span
                                             style={{

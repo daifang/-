@@ -13,6 +13,7 @@ import Change from './pages/Change';
 import Msg from './pages/Msg';
 import Section from './pages/Section';
 import ResultDetail from './pages/ResultDetail';
+import Test from './pages/Test';
 function App() {
   return (
     <div className="App">
@@ -29,6 +30,7 @@ function App() {
                 <Route exact path="/msgs" component = {Msg}/>
                 <Route exact path="/section/:key" component={Section}/>
                 <Route exact path = "/resultDetail/:id" component = {ResultDetail}/>
+                <Route exact path = "/test/:id" component = {Test}/>
              </Switch>
         </HashRouter>
     </div>
