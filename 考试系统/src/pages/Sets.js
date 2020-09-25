@@ -17,8 +17,9 @@ export default class Sets extends Component {
                 Authorization:localStorage.getItem('userId')
             }
         }).then(res=>{
-            console.log(res.data.status);
+            console.log(res);
             if(res.data.status == 40301){
+                localStorage.setItem('userId','');
                 window.location.hash = '/';
             }else{
                 this.setState({
@@ -62,6 +63,7 @@ export default class Sets extends Component {
                                             value = {val.course_name}
                                             id = {val.course_id}
                                             style={{textAlign:"center",width:'100%'}}
+                                            key = {val.course_id}
                                         >
                                             {val.course_name}
                                         </option>
@@ -107,7 +109,7 @@ export default class Sets extends Component {
                 let obj = JSON.parse(localStorage.getItem('userInfo'));
                 obj.course_id = id;
                 obj.course_name = course_name;
-                localStorage.setItem('userInfor',JSON.stringify(obj));
+                localStorage.setItem('userInfo',JSON.stringify(obj));
             })
             return true;
         }else{

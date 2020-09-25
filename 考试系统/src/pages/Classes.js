@@ -33,14 +33,14 @@ export default class Final extends Component {
                     },
                     url:'/api/student/videoCourseDesign/getChapterList'
                 }).then((response) => {
-                    if(this.state.courseId == 0){
+                    if(response.data.status){
                         alert('登录状态已过期,请重新登录');
                         localStorage.setItem('userId','');
                         window.location.hash = '/';
                     }else{
                         // console.log(this.state.courseId)
                         this.setState({
-                            data: response.data.data
+                            data: response.data.data?response.data.data:{ok:true}
                         })
                         // console.log(response.data.data);
                     }
@@ -49,24 +49,30 @@ export default class Final extends Component {
         })
     }
     componentDidMount(){
-        this.getData();
         document.title = '章节测试';
+        this.getData();
     }
     render() {
-        var temp = this.state.data.map((item,index) => <p key={item.id} id={item.id} className="class_content" onClick = {(e)=>{this.goTo(e)}}><span className="con_p">{item.name}</span></p>)
+        if(!this.state.data.ok){
+            var temp = this.state.data.map((item,index) => <p key={item.id} id={item.id} className="class_content" onTouchEnd = {(e)=>{this.goTo(e)}}><span className="con_p">{item.name}</span></p>)
 
-        return (
-            <div className="animated slideInRight">
-                <div id="class_head"></div>
-                <div id="class_content">
-                    {temp}
+            return (
+                <div className="animated slideInRight">
+                    <div id="class_head"></div>
+                    <div id="class_content">
+                        {temp}
+                    </div>
                 </div>
-            </div>
-        )
+            )
+        }else{
+            return(
+                <div style={{width:'100%',height:'30%',textAlign:'center',fontSize:'25px',marginTop:'30%'}} className="animated slideInRight">
+                    
+                </div>
+            )
+        }
     }
-    
     goTo = (e)=>{
         window.location.hash = 'Section/'+e.target.id;
     }
-
 }

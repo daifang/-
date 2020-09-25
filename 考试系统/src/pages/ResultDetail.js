@@ -32,6 +32,7 @@ export default class ResultDetail extends Component {
             }
         }).then(res=>{
             if(res.data.status == 40301){
+                localStorage.setItem('userId','');
                 window.location.hash = '/';
             }else{
                 console.log(res.data);
@@ -76,8 +77,8 @@ export default class ResultDetail extends Component {
                             flexDirection:'column',
                             alignItems:"flex-start"
                         }}>
-                            <span style={{height:'50%',width:'70%',lineHeight:'300%',textIndent:'15px'}}>{`考试名:${this.state.data.data.course_name}`}</span>
-                            <span style={{height:'50%',width:'70%',lineHeight:'300%',textIndent:'15px'}}>{`交卷时间:${this.state.data.data.hand_in_time}`}</span>
+                            <span style={{height:'50%',width:'70%',lineHeight:'300%',textIndent:'15px'}}>{`考试名:${this.state.data.data.course_name?this.state.data.data.course_name:'无'}`}</span>
+                            <span style={{height:'50%',width:'70%',lineHeight:'300%',textIndent:'15px'}}>{`交卷时间:${this.state.data.data.hand_in_time?this.state.data.data.hand_in_time:'无'}`}</span>
                         </div>
                         <div style = {{
                             height:'50%',
@@ -87,12 +88,12 @@ export default class ResultDetail extends Component {
                             justifyContent:'center',
                             justifyItems:'center'
                         }}>
-                            <span style ={{display:'flex',width:this.state.type=='final'?'40%':'80%',height:'100%',alignItems:'center'}}>
-                                <span style={{textIndent:'10px'}}>考试成绩</span>
-                                <span style={{textIndent:'10px',fontSize:'35px'}}>{this.state.data.data.score}分</span>
+                            <span style ={{display:'flex',width:this.state.type=='final'?'40%':'95%',height:'100%',alignItems:'center'}}>
+                                <span style={{textIndent:'10px'}}>考试成绩:</span>
+                                <span style={{textIndent:'10px',fontSize:'35px'}}>{this.state.data.data.score?this.state.data.data.score:'∞'}分</span>
                             </span>
                             <span style ={{display:this.state.type=='final'?'flex':'none',width:'60%',height:'100%',alignItems:'center'}}>
-                                <span style={{textIndent:'10px'}}>考试结果</span>
+                                <span style={{textIndent:'10px'}}>考试结果:</span>
                                 <span style={{textIndent:'10px',fontSize:'35px',color:this.state.data.data.is_pass?'green':'red'}}>{this.state.data.data.is_pass?'及格':'不及格'}</span>
                             </span>
                         </div>

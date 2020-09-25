@@ -102,8 +102,8 @@ export default class Result extends Component {
                                             height:'90px',
                                             borderBottom:'1px gray solid'
                                         }}
-                                        id = {val?val.id:Number.parseInt(Math.random()*100)}
-                                        key = {val?val.id:Number.parseInt(Math.random()*100)}
+                                        id = {val?val.id:'none'}
+                                        key = {val?val.id:'none'}
                                         onTouchEnd = {(e)=>{
                                             e.stopPropagation();
                                             this.goTo(e,'/resultDetail/');
@@ -116,14 +116,14 @@ export default class Result extends Component {
                                             display:'flex',
                                             backgroundColor:''
                                             }}
-                                            id = {val?val.id:Number.parseInt(Math.random()*100)}
+                                            id = {val?val.id:'none'}
                                         >
                                         <span style={{
                                             display:"flex",
                                             flexDirection:'column',
                                             width:'80%'
                                             }}
-                                            id = {val?val.id:Number.parseInt(Math.random()*100)}
+                                            id = {val?val.id:'none'}
                                         >
                                         <span
                                             style={{
@@ -132,9 +132,9 @@ export default class Result extends Component {
                                                 lineHeight:'45px',
                                                 textIndent:'10px'
                                             }}
-                                            id = {val?val.id:Number.parseInt(Math.random()*100)}
+                                            id = {val?val.id:'none'}
                                         >{
-                                            val?(val.lesson_name + val.chapter_name?'所属章节:' + val.lesson_name:val.course_name+val.page_name):'当前没有数据'
+                                            val?(val.lesson_name + val.chapter_name?'所属章节:' + val.lesson_name:val.course_name+val.page_name):'当前没有成绩'
                                         }</span>
                                         <span
                                             style={{
@@ -143,9 +143,9 @@ export default class Result extends Component {
                                                 lineHeight:'45px',
                                                 textIndent:'10px'
                                             }}
-                                            id = {val?val.id:Number.parseInt(Math.random()*100)}
+                                            id = {val?val.id:'none'}
                                         >{
-                                            val?val.chapter_name?val.chapter_name:"考试时间: " + val.hand_in_time:'...'
+                                            val?val.chapter_name?val.chapter_name:"考试时间: " + val.hand_in_time:''
                                             }</span>
                                         </span>
                                         <span
@@ -156,9 +156,9 @@ export default class Result extends Component {
                                             fontSize:'30px',
                                             color:val?val.is_pass?'#33a6ff':'gray':'gray'
                                         }}
-                                        id = {val?val.id:Number.parseInt(Math.random()*100)}
+                                        id = {val?val.id:'none'}
                                     >{
-                                        val?val.score:'？'
+                                        val?val.score:'∞'
                                     }</span>
                                 </div>
                             </li>
