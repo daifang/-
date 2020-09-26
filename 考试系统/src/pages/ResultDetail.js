@@ -1,5 +1,5 @@
 import Axios from 'axios';
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
 export default class ResultDetail extends Component {
     constructor(){
@@ -88,13 +88,13 @@ export default class ResultDetail extends Component {
                             justifyContent:'center',
                             justifyItems:'center'
                         }}>
-                            <span style ={{display:'flex',width:this.state.type=='final'?'40%':'95%',height:'100%',alignItems:'center'}}>
+                            <span style ={{display:'flex',width:this.state.type=='final'?'50%':'95%',height:'100%',alignItems:'center'}}>
                                 <span style={{textIndent:'10px'}}>考试成绩:</span>
-                                <span style={{textIndent:'10px',fontSize:'35px'}}>{this.state.data.data.score?this.state.data.data.score:'∞'}分</span>
+                                <span style={{fontSize:'35px'}}>{this.state.data.data.score?this.state.data.data.score:'0'}分</span>
                             </span>
                             <span style ={{display:this.state.type=='final'?'flex':'none',width:'60%',height:'100%',alignItems:'center'}}>
                                 <span style={{textIndent:'10px'}}>考试结果:</span>
-                                <span style={{textIndent:'10px',fontSize:'35px',color:this.state.data.data.is_pass?'green':'red'}}>{this.state.data.data.is_pass?'及格':'不及格'}</span>
+                                <span style={{fontSize:'35px',color:this.state.data.data.is_pass?'green':'red'}}>{this.state.data.data.is_pass?'及格':'不及格'}</span>
                             </span>
                         </div>
                 </div>
@@ -140,7 +140,12 @@ export default class ResultDetail extends Component {
                                                         fontWeight:'700',
                                                         lineHeight:'40px',
                                                         textAlign:'center',
-                                                        borderRadius:'5px'
+                                                        borderRadius:'5px',
+                                                        border:val1.is_answered?'none':'0.1px solid gray'
+                                                    }}
+                                                    id = {this.state.data.data.id+'&'+this.state.type}
+                                                    onTouchEnd = {(e)=>{
+                                                        this.goTo(e);
                                                     }}
                                                     >
                                                         {val1.context}
@@ -156,5 +161,9 @@ export default class ResultDetail extends Component {
                 </div>
             </div>
         )
+    }
+    goTo = (e)=>{
+        console.log(e.target.name);
+        window.location.hash = '/testdetail/'+e.target.id;
     }
 }

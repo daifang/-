@@ -54,6 +54,10 @@ input[type="radio"]:checked + .radio-label:before {
     background-color: #3197EE;
     box-shadow: inset 0 0 0 0.2rem #f4f4f4;
 }
+.radio-label-error:before{
+    background-color: #ff1e00;
+    box-shadow: inset 0 0 0 0.2rem #f4f4f4;
+}
 input[type="radio"]:focus + .radio-label:before {
     outline: none;
     border-color: #3197EE;
@@ -86,15 +90,17 @@ input[type="radio"] + .radio-label:before {
   }
 
   input[type="checkbox"] {
-    width: 20px;
-    height: 20px;
+    width: 25px;
+    height: 25px;
     display: inline-block;
     text-align: center;
     vertical-align: middle;
-    line-height: 18px;
-    margin-right: 10px;
+    line-height: 24px;
     position: relative;
     overflow: hidden;
+    outline: none;
+    margin-left: 10%;
+    margin-top: 7%;
 }
  
 input[type="checkbox"]::before {
@@ -102,8 +108,8 @@ input[type="checkbox"]::before {
     top: 0;
     left: 0;
     background: #fff;
-    width: 100%;
-    height: 100%;
+    width: 150%;
+    height: 150%;
     border: 0.2rem solid #999999;
     border-radius: 4px;
 }
@@ -125,4 +131,11 @@ input[type="checkbox"]:checked::before {
 label{
     width: 90%;
     margin-left: 5%;
+}
+
+#hand_in{
+    position:absolute;
+    width: 100%;
+    height: 100%;
+    background-color: white;
 }
