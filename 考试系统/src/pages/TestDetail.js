@@ -27,7 +27,7 @@ export default class Test extends Component {
         }
     }
     componentDidMount(){
-        //计时
+        
 
         //获取试题
         // console.log(this.props.match.params.id.split('&')[1]);

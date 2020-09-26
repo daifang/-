@@ -124,10 +124,8 @@ export default class Test extends Component {
                 })
             }
         })
-
-        if(this.state.timer != null) {
-            clearInterval(this.state.timer);
-        }
+        //计时
+        clearInterval(timer);
         var timer =  setInterval(()=>{
             var time = localStorage.getItem('time');
             time--;
@@ -136,11 +134,6 @@ export default class Test extends Component {
                 time:time
             })
         },1000);
-        this.setState({
-            timer:timer
-        },()=>{
-
-        })
     }
     render() {
         // console.log(this.state.data_list);
