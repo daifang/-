@@ -25,7 +25,8 @@ export default class Test extends Component {
             testTime:0,
             data:[],
             content:true,
-            show:false
+            show:false,
+            timer:null
         }
         localStorage.setItem('testTime',0)
     }
@@ -35,10 +36,6 @@ export default class Test extends Component {
             type:this.props.match.params.id.split('&')[this.props.match.params.id.split('&').length-1]
         },()=>{
             if(this.state.type == 'normal'){
-                // console.log({
-                //     lessonId:this.props.match.params.id.split('&')[0]
-                // });
-                //请求章节数据
                 Axios({
                     url:'/api/student/videoCourseDesign/getQuestionList',
                     method:'POST',
@@ -50,11 +47,10 @@ export default class Test extends Component {
                         Authorization:localStorage.getItem('userId')
                     }
                 }).then(res=>{
-                    // console.log(res);
                     //初始化题目
                     if(res.data.code == 500){
                         alert(res.data.msg);
-                        window.location.hash = '/Mine'
+                        window.location.hash = '/Mine';
                     }
                     else{
                         console.log(res);
@@ -135,24 +131,27 @@ export default class Test extends Component {
             }
         })
         //计时
-        clearInterval(timer);
-        var timer =  setInterval(()=>{
-            var time = localStorage.getItem('time');
-            if(time <= 0){
-                time = 0;
-                clearInterval(timer);
-                this.change_nr();
-            }else{
-                time--;
-            }
-            localStorage.setItem('time',time);
-            var testTime = localStorage.getItem('testTime');
-            testTime++;
-            localStorage.setItem("testTime",testTime);
-            this.setState({
-                time:time
-            })
-        },1000);
+        clearInterval(this.state.timer);
+        this.setState({
+            timer:setInterval(()=>{
+                var time = localStorage.getItem('time');
+                if(time <= 0){
+                    time = 0;
+                    clearInterval(this.state.timer);
+                    this.change_nr(true);
+                }else{
+                    time--;
+                }
+                localStorage.setItem('time',time);
+                var testTime = localStorage.getItem('testTime');
+                testTime++;
+                localStorage.setItem("testTime",testTime);
+                this.setState({
+                    time:time
+                })
+            },1000)
+        })
+
     }
     render() {
         // console.log(this.state.data_list);
@@ -231,71 +230,7 @@ export default class Test extends Component {
                             display:this.state.show?'block':'none',
                         }}
                     >
-                        
                     </div>
-                    <div 
-                        style={{
-                            width:'70%',
-                            height:'110px',
-                            backgroundColor:'white',
-                            position:'absolute',
-                            top: '0',right: '0',left: '0',bottom: '0',
-                            margin:'auto',
-                            zIndex:'1',
-                            borderRadius:'20px',
-                            paddingTop:'30px',
-                            display:this.state.show?'block':'none'
-                        }}>
-                            <span
-                            style={{
-                                marginLeft:'10px'
-                            }}>
-                                {this.state.content?"还有题未答，确定要交卷吗？":"交卷后不能再作答，确定要交卷吗？"}
-                            </span>
-                            <div 
-                            style={{
-                                width:'50%',
-                                height:'35px',
-                                position:'absolute',
-                                top: '1',right: '0',left: '0',bottom: '0',
-                                display:'inline',
-                                float:'left',
-                                borderTop:'1px solid #7F7F7F',
-                                borderBottomLeftRadius:'20px',
-                                textAlign:'center',
-                                paddingTop:'15px',
-                            }}
-                            onTouchEnd={this.change_qx}>
-                                <span
-                                style={{
-                                    color:'#2C9AEF',
-                                }}>
-                                    取消
-                                </span>
-                            </div>
-                            <div 
-                            style={{
-                                width:'49%',
-                                height:'35px',
-                                position:'absolute',
-                                top: '1',right: '0',left: '1',bottom: '0',
-                                display:'inline',
-                                float:'left',
-                                borderTop:'1px solid #7F7F7F',
-                                borderLeft:'1px solid #7F7F7F',
-                                borderBottomRightRadius:'20px',
-                                textAlign:'center',
-                                paddingTop:'15px',
-                            }}
-                            onTouchEnd={this.change_nr}>
-                                <span
-                                style={{
-                                    color:'#2C9AEF',
-                                }}>
-                                    交卷
-                                </span>
-                            </div>
-                        </div>
                     <div 
                         style={{
                             width:'100%',
@@ -308,7 +243,7 @@ export default class Test extends Component {
                             position:'fixed',
                             top: '100',right: '0',left: '0',bottom: '0',
                             }}
-                        onTouchEnd={this.change_jj}    
+                        onTouchEnd={this.change_nr}    
                             >交卷
                     </div>
                 </div>
@@ -541,7 +476,7 @@ export default class Test extends Component {
             content:true
         })
     }
-    change_nr=()=>{
+    change_nr=(q)=>{
         console.log(12);
         let arr_xz=[],
             arr_dx=[],
@@ -549,26 +484,31 @@ export default class Test extends Component {
             obj1={group_num:1,question_class:1,question_array:arr_xz},
             obj2={group_num:2,question_class:2,question_array:arr_dx},
             obj3={group_num:3,question_class:3,question_array:arr_pd},
-            q_list=[obj1,obj2,obj3];
-        this.setState({
-            content:false
-        },()=>{
-            if(this.state.content == true){
-                
-                let temp1 = JSON.parse(localStorage.getItem("userInfo")),
-                    temp2 = JSON.parse(localStorage.getItem('id')),
-                    temp3 = JSON.parse(localStorage.getItem("testTime")),
-                    temp4 = JSON.parse(localStorage.getItem("test"))
-                    console.log(temp3);
-                    this.state.data.map(val=>{
-                        switch(val.question_class){
-                            case 1:arr_xz.push(val)
-                                    break;
-                            case 2:arr_dx.push(val)
-                                    break;
-                            case 3:arr_pd.push(val)
-                        }
-                    })
+            q_list=[obj1,obj2,obj3],
+            sign = true;
+            let temp1 = JSON.parse(localStorage.getItem("userInfo")),
+            temp2 = JSON.parse(localStorage.getItem('id')),
+            temp3 = JSON.parse(localStorage.getItem("testTime")),
+            temp4 = JSON.parse(localStorage.getItem("test"))
+            console.log(temp3);
+            this.state.data.map(val=>{
+                switch(val.question_class){
+                    case 1:arr_xz.push(val)
+                            break;
+                    case 2:arr_dx.push(val)
+                            break;
+                    case 3:arr_pd.push(val)
+                }
+            })
+            for(let i = 0;i < this.state.data.length;i++){
+                if(!this.state.data[i].isAnswered){
+                    sign = false;
+                    break;
+                }else{
+                    sign = true;
+                }
+            }
+            if(q){
                 Axios({
                     url:'/api/student/videoCourseDesign/handInChapterQuestion',
                     method:'POST',
@@ -590,6 +530,7 @@ export default class Test extends Component {
                     console.log(res);
                     if(res.data.code == 0){
                         alert("提交成功！");
+                        clearInterval(this.state.timer);
                         Axios({
                             url:'/api/student/examination/getChapterExamScoreList',
                             method:'POST',
@@ -611,7 +552,105 @@ export default class Test extends Component {
                         window.location.hash = '/';
                     }
                 })
+                return 0;
             }
-        })
+            if(sign){
+                let yes = window.confirm('交卷后不能再作答，确定要交卷吗？');
+                if(yes){
+
+                Axios({
+                    url:'/api/student/videoCourseDesign/handInChapterQuestion',
+                    method:'POST',
+                    data:{
+                        course_id:temp1.course_id,
+                        chapter_id:temp2.chapter_id,
+                        section_id:temp2.section_id,
+                        lesson_id:temp2.lesson_id,
+                        question_time:temp3,
+                        chapter_pass_rate:temp4.pass_rate,
+                        totalSize:this.state.data.length,
+                        scoring_formula:temp4.scoring_formula,
+                        questionList:q_list,
+                    },
+                    headers:{
+                        Authorization:localStorage.getItem('userId')
+                    }
+                }).then((res)=>{
+                    console.log(res);
+                    if(res.data.code == 0){
+                        alert("提交成功！");
+                        clearInterval(this.state.timer);
+                        Axios({
+                            url:'/api/student/examination/getChapterExamScoreList',
+                            method:'POST',
+                            headers:{
+                                Authorization:localStorage.getItem('userId')
+                            },
+                            data:{
+                                course_id:JSON.parse(localStorage.getItem('userInfo')).course_id,
+                                pageSize:10000,
+                                pageNumber:1 
+                            }
+                        }).then(res=>{
+                            //
+                            console.log(res);
+                        })
+                        window.location.hash = '/resultDetail/';
+                    }else{
+                        alert("提交出错，请重试！");
+                        window.location.hash = '/';
+                    }
+                })
+                }
+
+            }else{
+                let ok = window.confirm('还有问题没有回答，是否要提交');
+                if(ok){
+                    Axios({
+                        url:'/api/student/videoCourseDesign/handInChapterQuestion',
+                        method:'POST',
+                        data:{
+                            course_id:temp1.course_id,
+                            chapter_id:temp2.chapter_id,
+                            section_id:temp2.section_id,
+                            lesson_id:temp2.lesson_id,
+                            question_time:temp3,
+                            chapter_pass_rate:temp4.pass_rate,
+                            totalSize:this.state.data.length,
+                            scoring_formula:temp4.scoring_formula,
+                            questionList:q_list,
+                        },
+                        headers:{
+                            Authorization:localStorage.getItem('userId')
+                        }
+                    }).then((res)=>{
+                        console.log(res);
+                        if(res.data.code == 0){
+                            alert("提交成功！");
+                            clearInterval(this.state.timer);
+                            Axios({
+                                url:'/api/student/examination/getChapterExamScoreList',
+                                method:'POST',
+                                headers:{
+                                    Authorization:localStorage.getItem('userId')
+                                },
+                                data:{
+                                    course_id:JSON.parse(localStorage.getItem('userInfo')).course_id,
+                                    pageSize:10000,
+                                    pageNumber:1 
+                                }
+                            }).then(res=>{
+                                //
+                                console.log(res);
+                            })
+                            window.location.hash = '/resultDetail/';
+                        }else{
+                            alert("提交出错，请重试！");
+                            window.location.hash = '/';
+                        }
+                    })
+                }
+            }
+
     }
 }
