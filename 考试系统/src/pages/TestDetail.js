@@ -15,7 +15,7 @@ export default class Test extends Component {
             //章节
             lesson_id:'',
             //答题卡,题目
-            data_list:{},
+            data_list:[],
             //返回后台答案
             answer_list:[],
             //渲染
@@ -76,7 +76,8 @@ export default class Test extends Component {
                                             })
                                         })
                                         this.setState({
-                                            data_list:question_list
+                                            data_list:question_list,
+                                            len:question_list.length-1
                                         },()=>{
                                             // console.log(this.state.data_list);
                                         });
@@ -140,7 +141,7 @@ export default class Test extends Component {
     }
     render() {
         console.log(this.state.data_list);
-        if(this.state.data_list[this.state.question_num].selectList)
+        if(this.state.data_list.length > this.state.len)
         return(
             <div style = {{display:'flex',flexDirection:'column',height:'100%'}}>
             {/* <List/> */}

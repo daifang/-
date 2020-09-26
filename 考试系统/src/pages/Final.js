@@ -12,7 +12,6 @@ export default class Final extends Component {
             num : 0
         }
     }
-
     getData = () => {
         Axios({
             method:'post',
@@ -68,7 +67,7 @@ export default class Final extends Component {
         }
     }
     goToTest = (e)=>{
-        localStorage.setItem('time',this.state.data.answer_time);
+        localStorage.setItem('time',this.state.data.answer_time*60);
         window.location.hash = 'test/'+this.state.data.page_id+"$"+this.state.data.id+"&"+"final";
     }
     goTo = (e)=>{

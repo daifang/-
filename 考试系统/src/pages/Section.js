@@ -99,7 +99,7 @@ export default class Section extends Component {
                                                     <span style={{display:'block',marginLeft:'5%',fontSize:'15px',marginTop:'5%',color:'rgb(163, 163, 163)'}}>{'答题时间:'+val1.question_time}</span>
                                                     <div 
                                                         style={{
-                                                            display:val1?'none':'block',
+                                                            display:val1.examination?'block':'none',
                                                             fontSize:'15px',
                                                             float:'right',
                                                             position:'relative',

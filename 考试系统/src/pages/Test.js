@@ -124,6 +124,23 @@ export default class Test extends Component {
                 })
             }
         })
+
+        if(this.state.timer != null) {
+            clearInterval(this.state.timer);
+        }
+        var timer =  setInterval(()=>{
+            var time = localStorage.getItem('time');
+            time--;
+            localStorage.setItem('time',time);
+            this.setState({
+                time:time
+            })
+        },1000);
+        this.setState({
+            timer:timer
+        },()=>{
+
+        })
     }
     render() {
         // console.log(this.state.data_list);
@@ -236,11 +253,6 @@ export default class Test extends Component {
                     display:'flex',
                     flexDirection:'column'
                 }}
-                    onTouchEnd = {
-                        (e)=>{
-                            this.hand(e);
-                        }
-                    }
                 >
                     <span style={{backgroundColor:' #33a6ff',width:'40%',marginLeft:'30%',borderRadius:'10px',color:'white',marginTop:'5%'}}>{this.state.question_num+1}/{this.state.data_list.length}</span>
                     <span style={{marginTop:"10%",color:' #33a6ff'}}>答题卡-交卷</span>
@@ -314,7 +326,7 @@ export default class Test extends Component {
     }
     time = (time)=>{
         //
-        var value = parseInt(time*60);
+        var value = parseInt(time);
         var theTime = parseInt(value);// 秒
         var middle= 0;// 分
         var hour= 0;// 小时
