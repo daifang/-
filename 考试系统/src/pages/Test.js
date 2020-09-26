@@ -1,6 +1,5 @@
 import Axios from 'axios';
 import React, { Component } from 'react';
-import List from '../compontents/List';
 export default class Test extends Component {
     constructor(){
         super();
@@ -25,7 +24,6 @@ export default class Test extends Component {
         }
     }
     componentDidMount(){
-        //计时
 
         //获取试题
         this.setState({
@@ -47,6 +45,35 @@ export default class Test extends Component {
                     }
                 }).then(res=>{
                     // console.log(res);
+                    //初始化题目
+                    if(res.data.code == 500){
+                        alert(res.data.msg);
+                        window.location.hash = '/Mine'
+                    }
+                    else{
+                        // console.log(res.data);
+                        this.setState({
+                            data_list:res.data.data.questionList,
+                            len:res.data.data.questionList.length
+                        },()=>{
+                            let question_list = [];
+                            // console.log(this.state.data_list);
+                            this.state.data_list.map(val=>{
+                                val.question_array.map(val1=>{
+                                    val1.isAnswered = false;
+                                    val1.selectList.map(val2=>{
+                                        val2.checked = false;
+                                    })
+                                    question_list.push(val1);
+                                })
+                            })
+                            this.setState({
+                                data_list:question_list
+                            },()=>{
+                                // console.log(this.state.data_list);
+                            });
+                        })
+                    }
                 });
             }else if(this.state.type == 'final'){
                 //请求期末数据
@@ -77,10 +104,10 @@ export default class Test extends Component {
                             len:res.data.data.questionList.length
                         },()=>{
                             let question_list = [];
-                            console.log(this.state.data_list);
+                            // console.log(this.state.data_list);
                             this.state.data_list.map(val=>{
                                 val.question_array.map(val1=>{
-                                    val1.isAuswered = false;
+                                    val1.isAnswered = false;
                                     val1.selectList.map(val2=>{
                                         val2.checked = false;
                                     })
@@ -90,7 +117,7 @@ export default class Test extends Component {
                             this.setState({
                                 data_list:question_list
                             },()=>{
-                                console.log(this.state.data_list);
+                                // console.log(this.state.data_list);
                             });
                         })
                     }
@@ -103,7 +130,7 @@ export default class Test extends Component {
         if(this.state.data_list.length > this.state.len)
         return(
             <div style = {{display:'flex',flexDirection:'column',height:'100%'}}>
-            {/* <List/> */}
+            {/* <List data={}/> */}
             <div style = {{
                 height:'20%',
                 display:'flex',
@@ -116,10 +143,10 @@ export default class Test extends Component {
                         marginTop:'5%'
                     }}
                 >
-                    <span style={{width:"40%",marginLeft:'5%'}}>
-                        {`[${this.state.question_num+1}][${this.state.questType[this.state.data_list[this.state.question_num].question_class?this.state.data_list[this.state.question_num].question_class:'1']}]`}
+                    <span style={{width:"40%",marginLeft:'5%',color:'#3197EE',fontSize:"20px"}}>
+                        {`[${this.state.question_num+1}][${this.state.questType[this.state.data_list[this.state.question_num].question_class?this.state.data_list[this.state.question_num].question_class:'1']}题]`}
                     </span>
-                    <span>{`剩余时间:${this.time(localStorage.getItem('time'))}`}</span>
+                    <span style={{fontSize:'20px'}}>{`剩余时间:${this.time(localStorage.getItem('time'))}`}</span>
                 </div>
                 <div 
                     className = 'question'
@@ -138,7 +165,7 @@ export default class Test extends Component {
                     //选择题选项
                     this.state.data_list[this.state.question_num].selectList.map(
                         (val,idx)=>{
-                            console.log(val);
+                            // console.log(val);
                             if(this.state.data_list[this.state.question_num].question_class == 1)
                             return(
                                 <li>
@@ -240,7 +267,6 @@ export default class Test extends Component {
             <div>加载中</div>
         )
     }
-
     next = ()=>{
         // console.log('下一个');
         // console.log(this.state.question_num + 2>=this.state.data_list.length?'0':1);
@@ -254,21 +280,20 @@ export default class Test extends Component {
             question_num:this.state.question_num  <= 0?0:this.state.question_num - 1
         })
     }
-
     hand = (e)=>{
         console.log('交卷');
 
     }
     handler = (e,num)=>{
-        console.log(e.target.checked);
+        // console.log(e.target.checked);
         let list = this.state.data_list;
         if(num == 2){
             list[this.state.question_num].selectList[e.target.name].checked = e.target.checked;
-            list[this.state.question_num].isAuswered = false;
+            list[this.state.question_num].isAnswered = false;
             let user_answer = [];
             list[this.state.question_num].selectList.map((val,idx)=>{
                 if(val.checked){
-                    list[this.state.question_num].isAuswered = true;
+                    list[this.state.question_num].isAnswered = true;
                 }
                 val.checked?user_answer.push(val.select_id):user_answer.splice(0,0);
             })
@@ -278,13 +303,13 @@ export default class Test extends Component {
                 val.checked = false;
             });
             list[this.state.question_num].selectList[e.target.name].checked = true;
-            list[this.state.question_num].isAuswered = true;
+            list[this.state.question_num].isAnswered = true;
             list[this.state.question_num].user_answer = list[this.state.question_num].selectList[e.target.name].checked?[list[this.state.question_num].selectList[e.target.name].select_id]:[]
         }
         this.setState({
             data_list:list
         },()=>{
-            console.log(this.state.data_list);
+            // console.log(this.state.data_list);
         })
     }
     time = (time)=>{

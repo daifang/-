@@ -99,8 +99,8 @@ input[type="radio"] + .radio-label:before {
     position: relative;
     overflow: hidden;
     outline: none;
-    margin-left: 10%;
-    margin-top: 7%;
+    margin-left: 5%;
+    margin-top: 5%;
 }
  
 input[type="checkbox"]::before {
@@ -115,8 +115,9 @@ input[type="checkbox"]::before {
 }
  
 input[type="checkbox"]:checked::before {
-    content: "✓";
-    background-color: #0076ce;
+    content: "";
+    background-color: #3197EE;
+    box-shadow: inset 0 0 0 0.2rem #f4f4f4;
     position: absolute;
     top: 0;
     left: 0;

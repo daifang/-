@@ -15,7 +15,7 @@ export default class Test extends Component {
             //章节
             lesson_id:'',
             //答题卡,题目
-            data_list:[],
+            data_list:{},
             //返回后台答案
             answer_list:[],
             //渲染
@@ -30,7 +30,7 @@ export default class Test extends Component {
         //计时
 
         //获取试题
-        console.log(this.props.match.params.id.split('&')[1]);
+        // console.log(this.props.match.params.id.split('&')[1]);
         if(this.props.match.params.id.split('&')[1] == 'normal'){
             // console.log({
             //     lessonId:this.props.match.params.id.split('&')[0]
@@ -46,30 +46,39 @@ export default class Test extends Component {
                     Authorization:localStorage.getItem('userId')
                 }
             }).then(res=>{
-                console.log(res);
+                // console.log(res);
                                 //初始化题目
                                 if(res.data.code == 500){
                                     alert(res.data.msg);
                                     window.location.hash = '/Mine';
                                 }
-                                else{
-                                    console.log(res);
-                                    
+                                else{               
                                     this.setState({
                                         data_list:JSON.parse(res.data.data.question_list),
                                         len:JSON.parse(res.data.data.question_list).length
                                     },()=>{
                                         let question_list = [];
-                                        console.log(this.state.data_list);
+                                        // console.log(this.state.data_list);
                                         this.state.data_list.map(val=>{
                                             val.question_array.map(val1=>{
+                                                // val1.isAuswered = false;
+                                                if(val1.user_answer){
+                                                    val1.user_answer.map(val3=>{
+                                                        val1.selectList.map(val2=>{
+                                                            val2.checked = false;
+                                                            if(val3 == val2.select_id){
+                                                                 val2.checked = true;
+                                                            }
+                                                        })
+                                                    })
+                                                }
                                                 question_list.push(val1);
                                             })
                                         })
                                         this.setState({
                                             data_list:question_list
                                         },()=>{
-                                            console.log(this.state.data_list);
+                                            // console.log(this.state.data_list);
                                         });
                                     })
                                 }
@@ -96,16 +105,26 @@ export default class Test extends Component {
                     window.location.hash = '/Mine';
                 }
                 else{
-                    console.log(res);
-                    
+                    // console.log(res);
                     this.setState({
                         data_list:JSON.parse(res.data.data.question_list),
                         len:JSON.parse(res.data.data.question_list).length
                     },()=>{
                         let question_list = [];
-                        console.log(this.state.data_list);
+                        // console.log(this.state.data_list);
                         this.state.data_list.map(val=>{
                             val.question_array.map(val1=>{
+                                console.log(val1);
+                                if(val1.user_answer){
+                                    val1.user_answer.map(val3=>{
+                                        val1.selectList.map(val2=>{
+                                            val2.checked = false;
+                                            if(val3 == val2.select_id){
+                                                 val2.checked = true;
+                                            }
+                                        })
+                                    })
+                                }
                                 question_list.push(val1);
                             })
                         })
@@ -120,8 +139,8 @@ export default class Test extends Component {
         }
     }
     render() {
-        // console.log(this.state.data_list);
-        if(this.state.data_list.length > this.state.len)
+        console.log(this.state.data_list);
+        if(this.state.data_list[this.state.question_num].selectList)
         return(
             <div style = {{display:'flex',flexDirection:'column',height:'100%'}}>
             {/* <List/> */}
@@ -159,11 +178,19 @@ export default class Test extends Component {
                     //选择题选项
                     this.state.data_list[this.state.question_num].selectList.map(
                         (val,idx)=>{
-                            console.log(val);
+                            // console.log(val);
                             if(this.state.data_list[this.state.question_num].question_class == 1)
                             return(
                                 <li>
-                                    <input id={val.select_id} name={idx} class="check1" checked = {val.checked} type="radio" value={val.select_content}/>
+                                    <input 
+                                        id={val.select_id} 
+                                        name={idx} 
+                                        class="check1" 
+                                        checked = {val.checked} 
+                                        type="radio" 
+                                        value={val.select_content}
+
+                                    />
                                     <label for={val.select_id} class="radio-label" style={{display:'flex',alignItems:'center'}}>
                                         <span style={{width:'10%',marginTop:'5%',color:'#0076ce'}}>{val.select_name}、</span>
                                         <span style={{width:"80%",marginTop:'5%',fontSize:'20px'}}>{val.select_content}</span> 
@@ -204,16 +231,8 @@ export default class Test extends Component {
                     justifyContent:'center'
                 }}
             >
-                <span style={{width:'50%',textAlign:'center'}}>
-                    {`正确答案:${
-                       1 // this.state.data_list[this.state.question_num]
-                    }`}
-                </span>
-                <span style={{width:'50%',textAlign:'center'}}>
-                    {`你的答案:${
-                        this.answer(this.state.data_list[this.state.question_num].user_answer,this.state.data_list[this.state.question_num].selectList)
-                    }`}
-                </span>
+                <span style={{width:'50%',textAlign:'center'}}>{`正确答案:${this.answer(this.state.data_list[this.state.question_num].answer_right,this.state.data_list[this.state.question_num].selectList)}`}</span>
+                <span style={{width:'50%',textAlign:'center'}}>{`你的答案:${this.answer(this.state.data_list[this.state.question_num].user_answer?this.state.data_list[this.state.question_num].user_answer:[],this.state.data_list[this.state.question_num].selectList)}`}</span>
             </div>
             <div 
                 className = "test_foot"
@@ -296,14 +315,18 @@ export default class Test extends Component {
             question_num:this.state.question_num  <= 0?0:this.state.question_num - 1
         });
     }
-    answer = (arr,obj)=>{
+    answer = (arr,brr)=>{
         let j = 0,str = '';
-        for(let i in obj){
-            if(arr[j] == obj.select_id){
-                str + ' ' + obj.select_name
-            }
-            j++;
-        }
+        brr.map(val=>{
+            eval(arr).map(val1=>{
+                
+                if(val1 == val.select_id){
+                    // console.log(val,val1);
+                    str += ' '+val.select_name
+                    // console.log(str);
+                }
+            })
+        })
         return str;
     }
 }

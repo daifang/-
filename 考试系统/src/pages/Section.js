@@ -87,6 +87,7 @@ export default class Section extends Component {
                                     {
                                         //二级列表
                                         val.lesson_list.map(val1=>{
+                                            console.log(val1)
                                             return(
                                                 <li 
                                                     className="sec_list"
@@ -112,7 +113,7 @@ export default class Section extends Component {
                                                             borderRadius:'5px',
                                                             color:'white'
                                                         }}
-                                                        id = {val1.id}
+                                                        id = {val1.id +"&" + val.id}
                                                         onTouchEnd = {(e)=>{
                                                             this.goTo(e);
                                                         }}
@@ -133,6 +134,8 @@ export default class Section extends Component {
         )
     }
     goTo = (e)=>{
+        let id = JSON.stringify({chapter_id:this.props.match.params.key,section_id:e.target.id.split('&')[1],lesson_id:e.target.id.split('&')[0]});
+        localStorage.setItem('id',id);
         window.location.hash = '/test/'+e.target.id;
     }
 }

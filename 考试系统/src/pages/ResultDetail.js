@@ -115,7 +115,7 @@ export default class ResultDetail extends Component {
                             this.state.question_list.map(val=>{
                                 // console.log(val);
                                 return(
-                                    <ul 
+                                    <li 
                                         id = {val.question_class}
                                         style={{
                                             width:'100%',
@@ -153,7 +153,7 @@ export default class ResultDetail extends Component {
                                                 )
                                             })
                                         }
-                                    </ul>
+                                    </li>
                                 )
                             })
                         }
@@ -163,7 +163,7 @@ export default class ResultDetail extends Component {
         )
     }
     goTo = (e)=>{
-        console.log(e.target.name);
+        // console.log(e.target.name);
         window.location.hash = '/testdetail/'+e.target.id;
     }
 }

@@ -24,7 +24,7 @@ export default class Final extends Component {
             },
             url:'/api/student/examination/getFinalExamSimpleInfo'
         }).then((response) => {
-            // console.log(response);
+            console.log(response);
             if(response.data.status == 40301){
                 alert('登录过期,重新登陆');
                 localStorage.setItem('userId','');
