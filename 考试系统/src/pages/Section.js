@@ -96,7 +96,9 @@ export default class Section extends Component {
                                                     }}
                                                 >
                                                     <span style={{display:'block',marginTop:'-6%',marginLeft:'5%',fontSize:'20px'}}>{val1.name}</span>
-                                                    <span style={{display:'block',marginLeft:'5%',fontSize:'15px',marginTop:'5%',color:'rgb(163, 163, 163)'}}>{'答题时间:'+val1.question_time}</span>
+                                                    <span style={{display:'block',marginLeft:'5%',fontSize:'15px',marginTop:'5%',color:'rgb(163, 163, 163)'}}>
+                                                        {(val1.question_time==undefined?'暂无试题':'答题时间:'+val1.question_time)}
+                                                    </span>
                                                     <div 
                                                         style={{
                                                             display:val1.examination?'block':'none',
@@ -113,6 +115,7 @@ export default class Section extends Component {
                                                             borderRadius:'5px',
                                                             color:'white'
                                                         }}
+                                                        className = {val1.question_time}
                                                         id = {val1.id +"&" + val.id}
                                                         onTouchEnd = {(e)=>{
                                                             this.goTo(e);
@@ -134,8 +137,14 @@ export default class Section extends Component {
         )
     }
     goTo = (e)=>{
-        let id = JSON.stringify({chapter_id:this.props.match.params.key,section_id:e.target.id.split('&')[1],lesson_id:e.target.id.split('&')[0]});
+        let id = JSON.stringify({
+            chapter_id:this.props.match.params.key,
+            section_id:e.target.id.split('&')[1],
+            lesson_id:e.target.id.split('&')[0]
+        });
         localStorage.setItem('id',id);
-        window.location.hash = '/test/'+e.target.id;
+        console.log(e.target.classList[0]);
+        localStorage.setItem('time',e.target.classList[0]*60);
+        window.location.hash = '/test/'+e.target.id + "&" + "normal";
     }
 }

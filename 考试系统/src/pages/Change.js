@@ -35,9 +35,10 @@ export default class Change extends Component {
     render() {
         if(this.state.op == 'tel'){
             //修改手机号
+            let tel = JSON.parse(localStorage.getItem('userInfo')).stuPhone
             return (
                 <div id = 'tel' className="animated slideInRight">
-                    <input placeholder = '请填写手机号' id = 'tel_txt' onChange = {(e)=>{this.setState({
+                    <input placeholder = {tel} id = 'tel_txt' onChange = {(e)=>{this.setState({
                         tel:e.target.value
                     })}}/>
                     <div onClick = {()=>{this.post(`/api/student/${this.state.title[this.state.op].post}`)}} className = 'ok'>确认</div>
@@ -48,7 +49,7 @@ export default class Change extends Component {
             return (
                 <div style = {{height:'100%'}} className="animated slideInRight">
                     <input 
-                        placeholder = '请填写新密码' 
+                        placeholder = {'请填写新密码'} 
                         id = 'password' 
                         type = 'password'
                         onChange = {(e)=>{this.setState({
@@ -94,7 +95,7 @@ export default class Change extends Component {
                 alert(res.data.msg);
                 window.location.hash = '/';
             }else{
-                alert(res.data.msg);
+                // alert(res.data.msg);
             }
         })
     }
@@ -114,7 +115,7 @@ export default class Change extends Component {
                 alert(res.data.msg);
                 window.location.hash = '/';
             }else{
-                alert(res.data.msg);
+                // alert(res.data.msg);
             }
         })
     }

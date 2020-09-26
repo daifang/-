@@ -1,5 +1,6 @@
 import Axios from 'axios';
 import React, { Component } from 'react';
+import Card from '../compontents/Testcard';
 export default class Test extends Component {
     constructor(){
         super();
@@ -20,11 +21,15 @@ export default class Test extends Component {
             question_num:0,
             nowQuestData:{},
             questType:['','单选','多选',"判断"],
-            len:1
+            len:1,
+            testTime:0,
+            data:[],
+            content:true,
+            show:false
         }
+        localStorage.setItem('testTime',0)
     }
     componentDidMount(){
-
         //获取试题
         this.setState({
             type:this.props.match.params.id.split('&')[this.props.match.params.id.split('&').length-1]
@@ -38,7 +43,8 @@ export default class Test extends Component {
                     url:'/api/student/videoCourseDesign/getQuestionList',
                     method:'POST',
                     data:{
-                        lessonId:this.props.match.params.id.split('&')[0]
+                        lessonId:Number.parseInt(this.props.match.params.id.split('&')[0]),
+                        pageNumber:0
                     },
                     headers:{
                         Authorization:localStorage.getItem('userId')
@@ -51,7 +57,8 @@ export default class Test extends Component {
                         window.location.hash = '/Mine'
                     }
                     else{
-                        // console.log(res.data);
+                        console.log(res);
+                        localStorage.setItem('test',JSON.stringify(res.data.data));
                         this.setState({
                             data_list:res.data.data.questionList,
                             len:res.data.data.questionList.length
@@ -68,9 +75,9 @@ export default class Test extends Component {
                                 })
                             })
                             this.setState({
-                                data_list:question_list
+                                data:question_list
                             },()=>{
-                                // console.log(this.state.data_list);
+                                // console.log(this.state.data);
                             });
                         })
                     }
@@ -99,11 +106,13 @@ export default class Test extends Component {
                     }
                     else{
                         // console.log(res.data);
+                        localStorage.setItem('test',JSON.stringify(res.data.data));
                         this.setState({
                             data_list:res.data.data.questionList,
                             len:res.data.data.questionList.length
                         },()=>{
                             let question_list = [];
+
                             // console.log(this.state.data_list);
                             this.state.data_list.map(val=>{
                                 val.question_array.map(val1=>{
@@ -114,10 +123,11 @@ export default class Test extends Component {
                                     question_list.push(val1);
                                 })
                             })
+                            // console.log(question_list);
                             this.setState({
-                                data_list:question_list
+                                data:question_list
                             },()=>{
-                                // console.log(this.state.data_list);
+                                // console.log(this.state.data);
                             });
                         })
                     }
@@ -128,8 +138,17 @@ export default class Test extends Component {
         clearInterval(timer);
         var timer =  setInterval(()=>{
             var time = localStorage.getItem('time');
-            time--;
+            if(time <= 0){
+                time = 0;
+                clearInterval(timer);
+                this.change_nr();
+            }else{
+                time--;
+            }
             localStorage.setItem('time',time);
+            var testTime = localStorage.getItem('testTime');
+            testTime++;
+            localStorage.setItem("testTime",testTime);
             this.setState({
                 time:time
             })
@@ -137,10 +156,162 @@ export default class Test extends Component {
     }
     render() {
         // console.log(this.state.data_list);
-        if(this.state.data_list.length > this.state.len)
+        if(this.state.data.length > 0)
         return(
             <div style = {{display:'flex',flexDirection:'column',height:'100%'}}>
-            {/* <List data={}/> */}
+ <div style ={{height:'100%s',display:'none'}} id = "card">
+                    <div
+                    style={{
+                        width:'100%',
+                        height:'90%',
+                        position:'fixed',
+                        backgroundColor:'white',
+                        top: '0',right: '0',left: '0',bottom: '0',
+                        // display:'none'
+                    }}>
+                        <div 
+                        style={{
+                            width:'100%',
+                            height:'10%',
+                            float:'left',
+                            
+                        }} onTouchEnd={(e)=>{
+                            document.getElementById('card').style.display = 'none';
+                            document.getElementById('select_list').style.display = 'block';
+                            }}>
+                            <img src="/quxiao.png"
+                            style={{
+                                transform:'scale(0.15)',
+                                marginTop:'-17%',
+                                marginLeft:'-17%'
+                            }}></img>
+                        </div>
+                        {
+                            this.state.data.map((ite,index)=>{
+                                // console.log(ite)
+                                return(
+                                <div style={
+                                    ite.isAnswered?{
+                                        width:'40px',
+                                        height:'40px',
+                                        backgroundColor:'#ECFFFD',
+                                        display:'inline',
+                                        float:'left',
+                                        marginTop:'20px',
+                                        marginLeft:'5%',
+                                        textAlign:'center',
+                                        lineHeight:'40px',
+                                        fontSize:'23px',
+                                        borderRadius:'4px'
+                                    }:{
+                                        width:'40px',
+                                        height:'40px',
+                                        backgroundColor:'white',
+                                        display:'inline',
+                                        float:'left',
+                                        marginTop:'20px',
+                                        marginLeft:'5%',
+                                        textAlign:'center',
+                                        lineHeight:'40px',
+                                        fontSize:'23px',
+                                        border:'1px solid gray',
+                                        borderRadius:'4px'
+                                }}>{index+1}</div>
+                                )
+                            })
+                        }
+                    </div>
+                    <div 
+                        style={{
+                            position:'fixed',
+                            top: '0',right: '0',left: '0',bottom: '0',
+                            backgroundColor:'#666666',
+                            opacity:'0.6',
+                            float:'left',
+                            display:this.state.show?'block':'none',
+                        }}
+                    >
+                        
+                    </div>
+                    <div 
+                        style={{
+                            width:'70%',
+                            height:'110px',
+                            backgroundColor:'white',
+                            position:'absolute',
+                            top: '0',right: '0',left: '0',bottom: '0',
+                            margin:'auto',
+                            zIndex:'1',
+                            borderRadius:'20px',
+                            paddingTop:'30px',
+                            display:this.state.show?'block':'none'
+                        }}>
+                            <span
+                            style={{
+                                marginLeft:'10px'
+                            }}>
+                                {this.state.content?"还有题未答，确定要交卷吗？":"交卷后不能再作答，确定要交卷吗？"}
+                            </span>
+                            <div 
+                            style={{
+                                width:'50%',
+                                height:'35px',
+                                position:'absolute',
+                                top: '1',right: '0',left: '0',bottom: '0',
+                                display:'inline',
+                                float:'left',
+                                borderTop:'1px solid #7F7F7F',
+                                borderBottomLeftRadius:'20px',
+                                textAlign:'center',
+                                paddingTop:'15px',
+                            }}
+                            onTouchEnd={this.change_qx}>
+                                <span
+                                style={{
+                                    color:'#2C9AEF',
+                                }}>
+                                    取消
+                                </span>
+                            </div>
+                            <div 
+                            style={{
+                                width:'49%',
+                                height:'35px',
+                                position:'absolute',
+                                top: '1',right: '0',left: '1',bottom: '0',
+                                display:'inline',
+                                float:'left',
+                                borderTop:'1px solid #7F7F7F',
+                                borderLeft:'1px solid #7F7F7F',
+                                borderBottomRightRadius:'20px',
+                                textAlign:'center',
+                                paddingTop:'15px',
+                            }}
+                            onTouchEnd={this.change_nr}>
+                                <span
+                                style={{
+                                    color:'#2C9AEF',
+                                }}>
+                                    交卷
+                                </span>
+                            </div>
+                        </div>
+                    <div 
+                        style={{
+                            width:'100%',
+                            height:'30px',
+                            backgroundColor:'#2C9AEF',
+                            border:'0px',
+                            float:'left',
+                            textAlign:'center',
+                            paddingTop:'10px',
+                            position:'fixed',
+                            top: '100',right: '0',left: '0',bottom: '0',
+                            }}
+                        onTouchEnd={this.change_jj}    
+                            >交卷
+                    </div>
+                </div>
             <div style = {{
                 height:'20%',
                 display:'flex',
@@ -154,7 +325,7 @@ export default class Test extends Component {
                     }}
                 >
                     <span style={{width:"40%",marginLeft:'5%',color:'#3197EE',fontSize:"20px"}}>
-                        {`[${this.state.question_num+1}][${this.state.questType[this.state.data_list[this.state.question_num].question_class?this.state.data_list[this.state.question_num].question_class:'1']}题]`}
+                        {`[${this.state.question_num+1}][${this.state.questType[this.state.data[this.state.question_num].question_class?this.state.data[this.state.question_num].question_class:'1']}题]`}
                     </span>
                     <span style={{fontSize:'20px'}}>{`剩余时间:${this.time(localStorage.getItem('time'))}`}</span>
                 </div>
@@ -164,19 +335,22 @@ export default class Test extends Component {
                         width:'100%'
                     }}
                 >
-                    <p style={{marginLeft:'5%',fontSize:'20px'}}>{this.state.data_list[this.state.question_num].context}</p>
+                    <p style={{marginLeft:'5%',fontSize:'20px'}}>{this.state.data[this.state.question_num].context}</p>
                 </div>
             </div>
             <ul style= {{
                 height:'70%',
                 width:'100%'
-            }}>
+            }}
+                id='select_list'
+            >
                 {
                     //选择题选项
-                    this.state.data_list[this.state.question_num].selectList.map(
+
+                    this.state.data[this.state.question_num].selectList.map(
                         (val,idx)=>{
                             // console.log(val);
-                            if(this.state.data_list[this.state.question_num].question_class == 1)
+                            if(this.state.data[this.state.question_num].question_class == 1)
                             return(
                                 <li>
                                     <input id={val.select_id} name={idx} class="check1" onChange={(e)=>{this.handler(e)}} checked = {val.checked} type="radio" value={val.select_content}/>
@@ -186,7 +360,7 @@ export default class Test extends Component {
                                     </label>
                                 </li>
                             )
-                            else if(this.state.data_list[this.state.question_num].question_class == 2)
+                            else if(this.state.data[this.state.question_num].question_class == 2)
                             return(
                                 <li>
                                     <input id={val.select_id} class="check1" type="checkbox" onChange={(e)=>{this.handler(e,2)}}  name={idx} value={val.select_content} checked = {val.checked}/>
@@ -196,7 +370,7 @@ export default class Test extends Component {
                                     </label>
                                 </li>
                             )
-                            else if(this.state.data_list[this.state.question_num].question_class == 3)
+                            else if(this.state.data[this.state.question_num].question_class == 3)
                             return(
                                 <li>
                                     <input id={val.select_id} class="check1" type="radio" onChange={(e)=>{this.handler(e)}} name={idx} value={val.select_content} checked = {val.checked}/>
@@ -246,8 +420,12 @@ export default class Test extends Component {
                     display:'flex',
                     flexDirection:'column'
                 }}
+                onTouchEnd = {()=>{
+                    this.hand();
+                }}
+                id = 'select_list'
                 >
-                    <span style={{backgroundColor:' #33a6ff',width:'40%',marginLeft:'30%',borderRadius:'10px',color:'white',marginTop:'5%'}}>{this.state.question_num+1}/{this.state.data_list.length}</span>
+                    <span style={{backgroundColor:' #33a6ff',width:'40%',marginLeft:'30%',borderRadius:'10px',color:'white',marginTop:'5%'}}>{this.state.question_num+1}/{this.state.data.length}</span>
                     <span style={{marginTop:"10%",color:' #33a6ff'}}>答题卡-交卷</span>
                 </span>
                 <span style={{
@@ -273,11 +451,18 @@ export default class Test extends Component {
         )
     }
     next = ()=>{
-        // console.log('下一个');
-        // console.log(this.state.question_num + 2>=this.state.data_list.length?'0':1);
         this.setState({
-            question_num:this.state.question_num + 2>this.state.data_list.length?this.state.question_num :this.state.question_num + 1
+            question_num:this.state.question_num +1 == this.state.data.length?this.state.question_num:this.state.question_num + 1
         })
+        console.log(this.state.question_num);
+        if(this.state.question_num+1 == this.state.data.length){
+            let yes = window.confirm('是否要交卷');
+            if(yes == true){
+                this.change_nr();
+            }else{
+                return false;
+            }
+        }
     }
     last = ()=>{
         // console.log('上一个');
@@ -287,11 +472,12 @@ export default class Test extends Component {
     }
     hand = (e)=>{
         console.log('交卷');
-
+        document.getElementById('card').style.display = 'block';
+        document.getElementById('select_list').style.display = 'none';
     }
     handler = (e,num)=>{
         // console.log(e.target.checked);
-        let list = this.state.data_list;
+        let list = this.state.data;
         if(num == 2){
             list[this.state.question_num].selectList[e.target.name].checked = e.target.checked;
             list[this.state.question_num].isAnswered = false;
@@ -340,5 +526,92 @@ export default class Test extends Component {
             result = " "+parseInt(hour)+" : " +result;
         }
         return result;
+    }
+
+
+
+    change_jj=()=>{
+        this.setState({
+            show:true
+        })
+    }
+    change_qx=()=>{
+        this.setState({
+            show:false,
+            content:true
+        })
+    }
+    change_nr=()=>{
+        console.log(12);
+        let arr_xz=[],
+            arr_dx=[],
+            arr_pd=[],
+            obj1={group_num:1,question_class:1,question_array:arr_xz},
+            obj2={group_num:2,question_class:2,question_array:arr_dx},
+            obj3={group_num:3,question_class:3,question_array:arr_pd},
+            q_list=[obj1,obj2,obj3];
+        this.setState({
+            content:false
+        },()=>{
+            if(this.state.content == true){
+                
+                let temp1 = JSON.parse(localStorage.getItem("userInfo")),
+                    temp2 = JSON.parse(localStorage.getItem('id')),
+                    temp3 = JSON.parse(localStorage.getItem("testTime")),
+                    temp4 = JSON.parse(localStorage.getItem("test"))
+                    console.log(temp3);
+                    this.state.data.map(val=>{
+                        switch(val.question_class){
+                            case 1:arr_xz.push(val)
+                                    break;
+                            case 2:arr_dx.push(val)
+                                    break;
+                            case 3:arr_pd.push(val)
+                        }
+                    })
+                Axios({
+                    url:'/api/student/videoCourseDesign/handInChapterQuestion',
+                    method:'POST',
+                    data:{
+                        course_id:temp1.course_id,
+                        chapter_id:temp2.chapter_id,
+                        section_id:temp2.section_id,
+                        lesson_id:temp2.lesson_id,
+                        question_time:temp3,
+                        chapter_pass_rate:temp4.pass_rate,
+                        totalSize:this.state.data.length,
+                        scoring_formula:temp4.scoring_formula,
+                        questionList:q_list,
+                    },
+                    headers:{
+                        Authorization:localStorage.getItem('userId')
+                    }
+                }).then((res)=>{
+                    console.log(res);
+                    if(res.data.code == 0){
+                        alert("提交成功！");
+                        Axios({
+                            url:'/api/student/examination/getChapterExamScoreList',
+                            method:'POST',
+                            headers:{
+                                Authorization:localStorage.getItem('userId')
+                            },
+                            data:{
+                                course_id:JSON.parse(localStorage.getItem('userInfo')).course_id,
+                                pageSize:10000,
+                                pageNumber:1 
+                            }
+                        }).then(res=>{
+                            //
+                            console.log(res);
+                        })
+                        window.location.hash = '/resultDetail/';
+                    }else{
+                        alert("提交出错，请重试！");
+                        window.location.hash = '/';
+                    }
+                })
+            }
+        })
     }
 }

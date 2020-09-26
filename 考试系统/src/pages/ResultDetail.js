@@ -15,7 +15,8 @@ export default class ResultDetail extends Component {
             api:{
                 normal:'Chapter',
                 final:'Final'
-            }
+            },
+            questionType:['','单选题','多选题','判断题']
         }
     }
     componentDidMount(){
@@ -77,8 +78,8 @@ export default class ResultDetail extends Component {
                             flexDirection:'column',
                             alignItems:"flex-start"
                         }}>
-                            <span style={{height:'50%',width:'70%',lineHeight:'300%',textIndent:'15px'}}>{`考试名:${this.state.data.data.course_name?this.state.data.data.course_name:'无'}`}</span>
-                            <span style={{height:'50%',width:'70%',lineHeight:'300%',textIndent:'15px'}}>{`交卷时间:${this.state.data.data.hand_in_time?this.state.data.data.hand_in_time:'无'}`}</span>
+                            <span style={{height:'50%',width:'70%',lineHeight:'300%',textIndent:'20px',fontSize:'18px'}}>{`${this.state.data.data.chapter_name + " " + this.state.data.data.lesson_name}`}</span>
+                            <span style={{height:'50%',width:'70%',lineHeight:'300%',textIndent:'20px',fontSize:'17px'}}>{`交卷时间:${this.state.data.data.hand_in_time?this.state.data.data.hand_in_time:'无'}`}</span>
                         </div>
                         <div style = {{
                             height:'50%',
@@ -112,8 +113,9 @@ export default class ResultDetail extends Component {
                     <ul>      
                         {
                             //题目信息
-                            this.state.question_list.map(val=>{
+                            this.state.question_list.map((val,idx)=>{
                                 // console.log(val);
+                                let i = 0;
                                 return(
                                     <li 
                                         id = {val.question_class}
@@ -121,13 +123,14 @@ export default class ResultDetail extends Component {
                                             width:'100%',
                                             height:'auto',
                                             display:'flex',
-                                            flexWrap:'wrap',
                                             justifyContent:"right"
                                         }}
                                     >
+
                                         {
-                                            val.question_array.map(val1=>{
+                                            val.question_array.map((val1,idx1)=>{
                                                 console.log(val1);
+                                                i++;
                                                 return(
                                                     <li style={{
                                                         width:'40px',
@@ -148,7 +151,7 @@ export default class ResultDetail extends Component {
                                                         this.goTo(e);
                                                     }}
                                                     >
-                                                        {val1.context}
+                                                        {idx1+1}
                                                     </li>
                                                 )
                                             })
