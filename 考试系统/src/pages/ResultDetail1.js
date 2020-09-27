@@ -4,7 +4,7 @@ export default class ResultDetail1 extends Component {
         super();
         this.state = {
             data:null,
-            type:'normal',
+            type:localStorage.getItem('type'),
             question_list:[{question_array:[{is_answered:1,is_right:1}]}],
             api:{
                 normal:'Chapter',
