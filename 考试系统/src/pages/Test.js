@@ -1,6 +1,5 @@
 import Axios from 'axios';
 import React, { Component } from 'react';
-import Card from '../compontents/Testcard';
 export default class Test extends Component {
     constructor(){
         super();
@@ -24,7 +23,6 @@ export default class Test extends Component {
             len:1,
             testTime:0,
             data:[],
-            content:true,
             show:false,
             timer:null,
             hand_data:{}
@@ -36,6 +34,9 @@ export default class Test extends Component {
         }
     }
     componentDidMount(){
+        if(localStorage.getItem('time') == null){
+            window.location.hash = '/';
+        }
         //获取试题
         this.setState({
             type:this.props.match.params.id.split('&')[this.props.match.params.id.split('&').length-1]
@@ -163,12 +164,6 @@ export default class Test extends Component {
                 })
             },1000)
         });
-        //返回事件
-        window.addEventListener('popstate',(e)=>{
-            e.preventDefault();
-            console.log('禁止回退');
-            window.location.hash = window.location.hash;
-        })
     }
     componentWillUnmount(){
         this.state.timer&&clearInterval(this.state.timer)
@@ -492,14 +487,12 @@ export default class Test extends Component {
     }
     change_qx=()=>{
         this.setState({
-            show:false,
-            content:true
+            show:false
         })
     }
     change_nr=(q)=>{
-        console.log(12);
-        localStorage.removeItem('time');
-        console.log(this.state.hand_data);
+        // console.log(12);
+        // console.log(this.state.hand_data);
         if(this.state.type == 'final'){
             console.log('期末交卷');
             let arr_xz=[],
@@ -510,7 +503,7 @@ export default class Test extends Component {
             obj3={group_num:3,question_class:3,question_array:arr_pd},
             q_list=[obj1,obj2,obj3],
             sign = true;
-            let temp3 = JSON.parse(localStorage.getItem("testTime"));
+            let temp3 = Number.parseInt(localStorage.getItem("testTime")/60);
             this.state.data.map(val=>{
                 switch(val.question_class){
                     case 1:arr_xz.push(val)
@@ -529,6 +522,7 @@ export default class Test extends Component {
                 }
             }
             if(q){
+                
                 Axios({
                     url:'/api/student/examination/handInPageQuestion',
                     method:'POST',
@@ -550,6 +544,7 @@ export default class Test extends Component {
                         alert("提交成功！");
                         let str = JSON.stringify(res.data.data);
                         localStorage.setItem('result',str);
+                        localStorage.setItem('type','final');
                         localStorage.removeItem('time');
                         window.location.hash = '/resultDetail/';
                     }else{
@@ -560,7 +555,7 @@ export default class Test extends Component {
                 return 0;
             }
             if(sign){
-                localStorage.removeItem('time');
+               
                 let yes = window.confirm('交卷后不能再作答，确定要交卷吗？');
                 if(yes){
                     Axios({
@@ -584,6 +579,7 @@ export default class Test extends Component {
                         if(res.data.code == 0){
                             alert("提交成功！");
                             let str = JSON.stringify(res.data.data);
+                            localStorage.setItem('type','final');
                             localStorage.setItem('result',str);
                             localStorage.removeItem('time');
                             window.location.hash = '/resultDetail/';
@@ -598,6 +594,7 @@ export default class Test extends Component {
                 let ok = window.confirm('还有问题没有回答，是否要提交');
                 clearInterval(this.state.timer);
                 if(ok){
+                    
                     Axios({
                         url:'/api/student/examination/handInPageQuestion',
                         method:'POST',
@@ -619,6 +616,7 @@ export default class Test extends Component {
                         if(res.data.code == 0){
                             alert("提交成功！");
                             let str = JSON.stringify(res.data.data);
+                            localStorage.setItem('type','final');
                             localStorage.setItem('result',str);
                             localStorage.removeItem('time');
                             window.location.hash = '/resultDetail/';
@@ -642,7 +640,7 @@ export default class Test extends Component {
             sign = true;
             let temp1 = JSON.parse(localStorage.getItem("userInfo")),
             temp2 = JSON.parse(localStorage.getItem('id')),
-            temp3 = JSON.parse(localStorage.getItem("testTime")),
+            temp3 = Number.parseInt(localStorage.getItem("testTime")/60),
             temp4 = JSON.parse(localStorage.getItem("test"))
             console.log(temp3);
             this.state.data.map(val=>{
@@ -663,6 +661,7 @@ export default class Test extends Component {
                 }
             }
             if(q){
+                
                 Axios({
                     url:'/api/student/videoCourseDesign/handInChapterQuestion',
                     method:'POST',
@@ -682,9 +681,9 @@ export default class Test extends Component {
                     }
                 }).then((res)=>{
                     console.log(res);
-
                     if(res.data.code == 0){
                         alert("提交成功！");
+                        localStorage.setItem('type','normal');
                         let str = JSON.stringify(res.data.data);
                         localStorage.setItem('result',str);
                         localStorage.removeItem('time');
@@ -697,7 +696,7 @@ export default class Test extends Component {
                 return 0;
             }
             if(sign){
-                localStorage.removeItem('time');
+                
                 let yes = window.confirm('交卷后不能再作答，确定要交卷吗？');
                 if(yes){
                 Axios({
@@ -722,6 +721,7 @@ export default class Test extends Component {
                     if(res.data.code == 0){
                         alert("提交成功！");
                         let str = JSON.stringify(res.data.data);
+                        localStorage.setItem('type','normal');
                         localStorage.setItem('result',str);
                         localStorage.removeItem('time');
                         window.location.hash = '/resultDetail/';
@@ -758,6 +758,7 @@ export default class Test extends Component {
                         if(res.data.code == 0){
                             alert("提交成功！");
                             let str = JSON.stringify(res.data.data);
+                            localStorage.setItem('type','normal');
                             localStorage.setItem('result',str);
                             localStorage.removeItem('time');
                             window.location.hash = '/resultDetail/';

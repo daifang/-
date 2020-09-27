@@ -166,7 +166,12 @@ export default class Result extends Component {
                     }
                     </ul>
                 </div>
-                <div id = 'result_foot'>
+                <div 
+                    id = 'result_foot' 
+                    onTouchEnd = {(e)=>{
+                        this.getDetail(e);
+                    }}
+                >
                     成绩详情
                 </div>
             </div>
@@ -206,5 +211,19 @@ export default class Result extends Component {
         console.log(url);
         console.log(e.target);
         window.location.hash = url + e.target.id + "&" + this.state.type;
+    }
+    getDetail = (e)=>{
+        Axios({
+            url:'/api/student/examination/getStudentExamStatisticPicture',
+            headers:{
+                Authorization:localStorage.getItem('userId')
+            },
+            data:{
+                course_id:JSON.parse(localStorage.getItem('userInfo')).course_id
+            },
+            method:'POST'
+        }).then(res=>{
+            console.log(res);
+        })
     }
 }

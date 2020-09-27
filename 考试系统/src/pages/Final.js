@@ -96,7 +96,7 @@ export default class Final extends Component {
     }
     goToTest = (e)=>{
         localStorage.setItem('time',this.state.data.answer_time*60);
-        let test_time = this.state.data.answer_time*6000;//分钟
+        let test_time = this.state.data.answer_time*60000;//分钟
         let date = e.target.id.split(' ')[0].split('-').concat(e.target.id.split(' ')[1].split(':'));//考试时间
         console.log(date);
         date.map(val=>{

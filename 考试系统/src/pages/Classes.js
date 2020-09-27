@@ -54,7 +54,7 @@ export default class Final extends Component {
     }
     render() {
         if(!this.state.data.ok){
-            var temp = this.state.data.map((item,index) => <p key={item.id} id={item.id} className="class_content" onTouchEnd = {(e)=>{this.goTo(e)}}><span className="con_p">{item.name}</span></p>)
+            var temp = this.state.data.map((item,index) => <p key={item.id} id={item.id} className="class_content" onTouchEnd = {(e)=>{this.goTo(e)}}><span className="con_p" style={{fontSize:'20px',lineHeight:"60px"}}>{item.name}</span></p>)
 
             return (
                 <div className="animated slideInRight">

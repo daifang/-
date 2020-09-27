@@ -78,7 +78,7 @@ export default class ResultDetail extends Component {
                             flexDirection:'column',
                             alignItems:"flex-start"
                         }}>
-                            <span style={{height:'50%',width:'70%',lineHeight:'300%',textIndent:'20px',fontSize:'18px'}}>{`${(this.state.data.data.chapter_name?this.state.data.data.chapter_name:this.state.data.data.course_name) + " " + (this.state.data.data.lesson_name? this.state.data.data.lesson_name:this.state.data.data.page_name)}`}</span>
+                            <span style={{height:'50%',width:'70%',lineHeight:'300%',textIndent:'20px',fontSize:'20px'}}>{`${(this.state.data.data.chapter_name?this.state.data.data.chapter_name:this.state.data.data.course_name) + " " + (this.state.data.data.lesson_name? this.state.data.data.lesson_name:this.state.data.data.page_name)}`}</span>
                             <span style={{height:'50%',width:'70%',lineHeight:'300%',textIndent:'20px',fontSize:'14px'}}>{`交卷时间:${this.state.data.data.hand_in_time?this.state.data.data.hand_in_time:'无'}`}</span>
                         </div>
                         <div style = {{
@@ -90,12 +90,12 @@ export default class ResultDetail extends Component {
                             justifyItems:'center'
                         }}>
                             <span style ={{display:'flex',width:this.state.type=='final'?'50%':'95%',height:'100%',alignItems:'center'}}>
-                                <span style={{textIndent:'10px'}}>考试成绩:</span>
-                                <span style={{fontSize:'35px'}}>{this.state.data.data.score?this.state.data.data.score:'0'}分</span>
+                                <span style={{textIndent:'15px',fontSize:'13px'}}>考试成绩:</span>
+                                <span style={{fontSize:'30px'}}>{this.state.data.data.score?this.state.data.data.score:'0'}分</span>
                             </span>
                             <span style ={{display:this.state.type=='final'?'flex':'none',width:'60%',height:'100%',alignItems:'center'}}>
-                                <span style={{textIndent:'10px'}}>考试结果:</span>
-                                <span style={{fontSize:'35px',color:this.state.data.data.is_pass?'green':'red'}}>{this.state.data.data.is_pass?'及格':'不及格'}</span>
+                                <span style={{textIndent:'10px',fontSize:'13px'}}>考试结果:</span>
+                                <span style={{fontSize:'30px',color:this.state.data.data.is_pass?'green':'red'}}>{this.state.data.data.is_pass?'及格':'不及格'}</span>
                             </span>
                         </div>
                 </div>
@@ -124,8 +124,11 @@ export default class ResultDetail extends Component {
                                         style={{
                                                 display:val.question_array.length?'block':'none',
                                                 marginLeft:'4%',
-                                                marginTop:"5%"
-                                        }}> {this.state.questionType[val.question_class]}</div>
+                                                marginTop:"5%",
+                                                fontSize:'13px'
+                                        }}> 
+                                            {this.state.questionType[val.question_class]}
+                                        </div>
                                     <ul style={{width:'100%',display:'flex'}}>
                                     {
                                             val.question_array.map((val1,idx1)=>{
@@ -142,7 +145,7 @@ export default class ResultDetail extends Component {
                                                         lineHeight:'40px',
                                                         textAlign:'center',
                                                         borderRadius:'5px',
-                                                        border:val1.is_answered?'none':'0.1px solid gray'
+                                                        border:val1.is_answered?'none':'0.5px solid gray'
                                                     }}
                                                     id = {this.state.data.data.id+'&'+this.state.type}
                                                     onTouchEnd = {(e)=>{

@@ -110,6 +110,7 @@ export default class Sets extends Component {
                 obj.course_id = id;
                 obj.course_name = course_name;
                 localStorage.setItem('userInfo',JSON.stringify(obj));
+                window.location.hash = '/';
             })
             return true;
         }else{

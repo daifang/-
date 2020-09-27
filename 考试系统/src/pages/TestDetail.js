@@ -161,8 +161,8 @@ export default class Test extends Component {
                         marginTop:'5%'
                     }}
                 >
-                    <span style={{width:"40%",marginLeft:'5%'}}>
-                        {`[${this.state.question_num+1}][${this.state.questType[this.state.data_list[this.state.question_num].question_class?this.state.data_list[this.state.question_num].question_class:'1']}]`}
+                    <span style={{width:"40%",marginLeft:'5%',fontSize:"18px",color:'#3197EE'}}>
+                        {`${this.state.question_num+1}、【${this.state.questType[this.state.data_list[this.state.question_num].question_class?this.state.data_list[this.state.question_num].question_class:'1']}题】`}
                     </span>
                     {/* <span>{`剩余时间:${this.time(localStorage.getItem('time'))}`}</span> */}
                 </div>
@@ -172,12 +172,13 @@ export default class Test extends Component {
                         width:'100%'
                     }}
                 >
-                    <p style={{marginLeft:'5%',fontSize:'20px'}}>{this.state.data_list[this.state.question_num].context}</p>
+                    <p style={{marginLeft:'5%',fontSize:'20px',marginLeft:'10%'}}>{this.state.data_list[this.state.question_num].context}</p>
                 </div>
             </div>
             <ul style= {{
-                height:'70%',
-                width:'100%'
+                height:'60%',
+                width:'100%',
+                marginLeft:'5%'
             }}>
                 {
                     //选择题选项
@@ -197,7 +198,7 @@ export default class Test extends Component {
 
                                     />
                                     <label for={val.select_id} class="radio-label" style={{display:'flex',alignItems:'center'}}>
-                                        <span style={{width:'10%',marginTop:'5%',color:'#0076ce'}}>{val.select_name}、</span>
+                                        <span style={{width:'10%',marginTop:'5%',color:'#0076ce',fontSize:"20px"}}>{val.select_name}、</span>
                                         <span style={{width:"80%",marginTop:'5%',fontSize:'20px'}}>{val.select_content}</span> 
                                     </label>
                                 </li>
@@ -229,22 +230,24 @@ export default class Test extends Component {
             <div 
                 style={{
                     display:'flex',
-                    width:'100%',
-                    height:'20%',
+                    width:'90%',
+                    marginLeft:'5%',
+                    height:'30%',
                     backgroundColor:'white',
                     alignItems:'center',
-                    justifyContent:'center'
+                    justifyContent:'center',
+                    borderTop:'0.1px solid gray'
                 }}
             >
-                <span style={{width:'50%',textAlign:'center'}}>{`正确答案:${this.answer(this.state.data_list[this.state.question_num].answer_right,this.state.data_list[this.state.question_num].selectList)}`}</span>
-                <span style={{width:'50%',textAlign:'center'}}>{`你的答案:${this.answer(this.state.data_list[this.state.question_num].user_answer?this.state.data_list[this.state.question_num].user_answer:[],this.state.data_list[this.state.question_num].selectList)}`}</span>
+                <span style={{width:'40%',textAlign:'center',fontSize:"20px"}}>{`正确答案:${this.answer(this.state.data_list[this.state.question_num].answer_right,this.state.data_list[this.state.question_num].selectList)}`}</span>
+                <span style={{width:'40%',textAlign:'center',fontSize:'20px'}}>{`你的答案:${this.answer(this.state.data_list[this.state.question_num].user_answer?this.state.data_list[this.state.question_num].user_answer:[],this.state.data_list[this.state.question_num].selectList)}`}</span>
             </div>
             <div 
                 className = "test_foot"
                 style={{
                     display:'flex',
                     width:'100%',
-                    height:'10%',
+                    height:'15%',
                     backgroundColor:'white',
                     alignItems:'center',
                     justifyContent:'center',
@@ -261,11 +264,11 @@ export default class Test extends Component {
                         this.last(e);
                     }}
                 >
-                    <span style={{fontSize:"19px",height:'100%',lineHeight:'270%',color:"#cdcdcd",fontWeight:"700",marginLeft:'5%'}}>
-                        {'⋘'}
+                    <span style={{fontSize:"30px",height:'100%',lineHeight:'200%',color:"#3197EE",fontWeight:"700",marginLeft:'5%'}}>
+                        {"<"}
                     </span>
                     <span
-                        style={{height:'100%',lineHeight:"450%",color:"#cdcdcd",fontWeight:"700",marginLeft:'10%'}}
+                        style={{height:'100%',lineHeight:"300%",color:"#3197EE",fontWeight:"100",marginLeft:'10%',fontSize:'20px'}}
                     >上一题</span>
                 </span>
                 <span style={{
@@ -276,7 +279,7 @@ export default class Test extends Component {
                     flexDirection:'column'
                 }}
                 >
-                    <span style={{backgroundColor:' #33a6ff',width:'40%',marginLeft:'30%',borderRadius:'10px',color:'white',marginTop:'5%'}}>{this.state.question_num+1}/{this.state.data_list.length}</span>
+                    <span style={{backgroundColor:' #33a6ff',width:'40%',marginLeft:'30%',borderRadius:'10px',color:'white',marginTop:'5%',height:'30%',fontSize:'20px'}}>{this.state.question_num+1}/{this.state.data_list.length}</span>
                     {/* <span style={{marginTop:"10%",color:' #33a6ff'}}>答题卡-交卷</span> */}
                 </span>
                 <span style={{
@@ -290,8 +293,8 @@ export default class Test extends Component {
                         this.next(e);
                     }}
                 >
-                    <span style={{height:'100%',lineHeight:"450%",color:"#cdcdcd",fontWeight:"700",marginRight:'10%'}}>下一题</span>
-                    <span style={{fontSize:"19px",height:'100%',lineHeight:'270%',color:"#cdcdcd",fontWeight:"700",marginRight:'5%'}}>{'⋙'}</span>
+                    <span style={{height:'100%',lineHeight:"300%",color:"#3197EE",fontWeight:"100",marginRight:'10%',fontSize:'20px'}}>下一题</span>
+                    <span style={{fontSize:"30px",height:'100%',lineHeight:'200%',color:"#3197EE",fontWeight:"700",marginRight:'5%'}}>{'>'}</span>
                 </span>
             </div>
         </div>

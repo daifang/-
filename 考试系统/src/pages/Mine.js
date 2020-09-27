@@ -40,9 +40,9 @@ export default class Mine extends Component {
                     <div id = "author">
                         <img style={{borderRadius:'100%'}} src = {this.state.imgSrc}/>
                     </div>
-                    <div id = "src">
+                    <div id = "src" style={{marginTop:'-10%'}}>
                         <h3>{this.state.username}</h3>
-                        <p>{this.state.userSchool}</p>
+                        <p>{this.state.userSchool}</p> 
                     </div>
                     <div id = 'right' onTouchEnd = {()=>{this.goTo('/detail')}}>
                         <img 
