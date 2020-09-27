@@ -15,6 +15,7 @@ import Section from './pages/Section';
 import ResultDetail from './pages/ResultDetail';
 import Test from './pages/Test';
 import TestDetail from './pages/TestDetail';
+import ResultDetail1 from './pages/ResultDetail1';
 function App() {
   return (
     <div className="App">
@@ -33,6 +34,7 @@ function App() {
                 <Route exact path = "/resultDetail/:id" component = {ResultDetail}/>
                 <Route exact path = "/test/:id" component = {Test}/>
                 <Route exact path = "/testdetail/:id" component = {TestDetail}/>
+                <Route exact path = "/resultDetail" component = {ResultDetail1}/>
              </Switch>
         </HashRouter>
     </div>

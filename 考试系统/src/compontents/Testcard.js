@@ -13,7 +13,6 @@ export default class TestCard extends Component {
             marTop:'36px',
         }
     }
-
     componentDidMount(){
         document.title = '答题卡';
         // console.log(this.props.data);

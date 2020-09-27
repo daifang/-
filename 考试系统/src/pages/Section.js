@@ -115,7 +115,7 @@ export default class Section extends Component {
                                                             borderRadius:'5px',
                                                             color:'white'
                                                         }}
-                                                        className = {val1.question_time}
+                                                        className = {val1.question_time + ' ' + val1.begin_time}
                                                         id = {val1.id +"&" + val.id}
                                                         onTouchEnd = {(e)=>{
                                                             this.goTo(e);
@@ -144,7 +144,24 @@ export default class Section extends Component {
         });
         localStorage.setItem('id',id);
         console.log(e.target.classList[0]);
-        localStorage.setItem('time',e.target.classList[0]*60);
-        window.location.hash = '/test/'+e.target.id + "&" + "normal";
+        //当前考试剩余时间
+        if(e.target.classList[1] != undefined){
+            let test_time = e.target.classList[0]*6000;
+            let date = (e.target.classList[1]+"").split('-').concat((e.target.classList[2]+"").split(':'));//考试时间
+            console.log(date);
+            date.map(val=>{
+                val = val*1;
+            })
+            console.log(date);
+            let create_sec = (Date.UTC(date[0],date[1],date[2],date[3],date[4],date[5]));//创造时间
+            let now_time = Date.UTC(new Date().getFullYear(),new Date().getMonth()+1,new Date().getDate(),new Date().getHours(),new Date().getMinutes(),new Date().getSeconds());
+            let has_time = (now_time)  - Number.parseInt(create_sec);//毫秒
+            console.log(now_time,create_sec);
+            console.log(has_time);
+            let time = test_time - has_time;
+            console.log(time);
+            localStorage.setItem('time',time);
+            window.location.hash = '/test/'+e.target.id + "&" + "normal";
+        }
     }
 }

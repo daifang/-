@@ -26,7 +26,8 @@ export default class Test extends Component {
             data:[],
             content:true,
             show:false,
-            timer:null
+            timer:null,
+            hand_data:{}
         }
         localStorage.setItem('testTime',0)
     }
@@ -101,11 +102,12 @@ export default class Test extends Component {
                         window.location.hash = '/Mine'
                     }
                     else{
-                        // console.log(res.data);
+                        console.log(res.data);
                         localStorage.setItem('test',JSON.stringify(res.data.data));
                         this.setState({
                             data_list:res.data.data.questionList,
-                            len:res.data.data.questionList.length
+                            len:res.data.data.questionList.length,
+                            hand_data:res.data.data
                         },()=>{
                             let question_list = [];
 
@@ -123,7 +125,7 @@ export default class Test extends Component {
                             this.setState({
                                 data:question_list
                             },()=>{
-                                // console.log(this.state.data);
+                                console.log(this.state.hand_data);
                             });
                         })
                     }
@@ -134,15 +136,21 @@ export default class Test extends Component {
         clearInterval(this.state.timer);
         this.setState({
             timer:setInterval(()=>{
-                var time = localStorage.getItem('time');
-                if(time <= 0){
-                    time = 0;
+                var time = Number.parseInt(localStorage.getItem('time'));
+                if(Number.isNaN(time)){
+                    localStorage.removeItem('time');
+                    window.location.hash = '/resultDetail';
                     clearInterval(this.state.timer);
-                    this.change_nr(true);
                 }else{
-                    time--;
+                    if(time -1000 <= 0){
+                        localStorage.removeItem('time');
+                        clearInterval(this.state.timer);
+                        this.change_nr(true);
+                    }else{
+                        time-=1000;
+                    }
+                    localStorage.setItem('time',time);
                 }
-                localStorage.setItem('time',time);
                 var testTime = localStorage.getItem('testTime');
                 testTime++;
                 localStorage.setItem("testTime",testTime);
@@ -150,8 +158,16 @@ export default class Test extends Component {
                     time:time
                 })
             },1000)
+        });
+        //返回事件
+        window.addEventListener('popstate',(e)=>{
+            e.preventDefault();
+            console.log('禁止回退');
+            window.location.hash = window.location.hash;
         })
-
+    }
+    componentWillUnmount(){
+        this.state.timer&&clearInterval(this.state.timer)
     }
     render() {
         // console.log(this.state.data_list);
@@ -440,7 +456,7 @@ export default class Test extends Component {
     }
     time = (time)=>{
         //
-        var value = parseInt(time);
+        var value = parseInt(time/1000);
         var theTime = parseInt(value);// 秒
         var middle= 0;// 分
         var hour= 0;// 小时
@@ -478,7 +494,141 @@ export default class Test extends Component {
     }
     change_nr=(q)=>{
         console.log(12);
-        let arr_xz=[],
+        localStorage.removeItem('time');
+        console.log(this.state.hand_data);
+        if(this.state.type == 'final'){
+            console.log('期末交卷');
+            let arr_xz=[],
+            arr_dx=[],
+            arr_pd=[],
+            obj1={group_num:1,question_class:1,question_array:arr_xz},
+            obj2={group_num:2,question_class:2,question_array:arr_dx},
+            obj3={group_num:3,question_class:3,question_array:arr_pd},
+            q_list=[obj1,obj2,obj3],
+            sign = true;
+            let temp3 = JSON.parse(localStorage.getItem("testTime"));
+            this.state.data.map(val=>{
+                switch(val.question_class){
+                    case 1:arr_xz.push(val)
+                            break;
+                    case 2:arr_dx.push(val)
+                            break;
+                    case 3:arr_pd.push(val)
+                }
+            })
+            for(let i = 0;i < this.state.data.length;i++){
+                if(!this.state.data[i].isAnswered){
+                    sign = false;
+                    break;
+                }else{
+                    sign = true;
+                }
+            }
+            if(q){
+                Axios({
+                    url:'/api/student/examination/handInPageQuestion',
+                    method:'POST',
+                    data:{
+                        id:this.state.hand_data.id,
+                        page_id:this.state.hand_data.page_id,
+                        question_time:temp3,
+                        pass_rate:this.state.hand_data.pass_rate,
+                        totalSize:this.state.hand_data.totalSize,
+                        scoring_formula:this.state.hand_data.scoring_formula,
+                        questionList:q_list,
+                    },
+                    headers:{
+                        Authorization:localStorage.getItem('userId')
+                    }
+                }).then((res)=>{
+                    console.log(res);
+                    if(res.data.code == 0){
+                        alert("提交成功！");
+                        let str = JSON.stringify(res.data.data);
+                        localStorage.setItem('result',str);
+                        localStorage.removeItem('time');
+                        window.location.hash = '/resultDetail/';
+                    }else{
+                        alert("提交出错，请重试！");
+                        window.location.hash = '/';
+                    }
+                })
+                return 0;
+            }
+            if(sign){
+                localStorage.removeItem('time');
+                let yes = window.confirm('交卷后不能再作答，确定要交卷吗？');
+                if(yes){
+                    Axios({
+                        url:'/api/student/examination/handInPageQuestion',
+                        method:'POST',
+                        data:{
+                            id:this.props.match.params.id.split('&')[0].split('$')[1],
+                            page_id:this.props.match.params.id.split('&')[0].split('$')[0],
+                            question_time:temp3,
+                            pass_rate:this.state.data_list.pass_rate,
+                            totalSize:this.state.data_list.totalSize,
+                            scoring_formula:this.state.data_list.scoring_formula,
+                            questionList:q_list,
+                        },
+                        headers:{
+                            Authorization:localStorage.getItem('userId')
+                        }
+                    }).then((res)=>{
+                        console.log(res);
+    
+                        if(res.data.code == 0){
+                            alert("提交成功！");
+                            let str = JSON.stringify(res.data.data);
+                            localStorage.setItem('result',str);
+                            localStorage.removeItem('time');
+                            window.location.hash = '/resultDetail/';
+                        }else{
+                            alert("提交出错，请重试！");
+                            window.location.hash = '/';
+                        }
+                    })
+                }
+
+            }else{
+                let ok = window.confirm('还有问题没有回答，是否要提交');
+                clearInterval(this.state.timer);
+                if(ok){
+                    Axios({
+                        url:'/api/student/examination/handInPageQuestion',
+                        method:'POST',
+                        data:{
+                            id:this.props.match.params.id.split('&')[0].split('$')[1],
+                            page_id:this.props.match.params.id.split('&')[0].split('$')[0],
+                            question_time:temp3,
+                            pass_rate:this.state.data_list.pass_rate,
+                            totalSize:this.state.data_list.totalSize,
+                            scoring_formula:this.state.data_list.scoring_formula,
+                            questionList:q_list,
+                        },
+                        headers:{
+                            Authorization:localStorage.getItem('userId')
+                        }
+                    }).then((res)=>{
+                        console.log(res);
+    
+                        if(res.data.code == 0){
+                            alert("提交成功！");
+                            let str = JSON.stringify(res.data.data);
+                            localStorage.setItem('result',str);
+                            localStorage.removeItem('time');
+                            window.location.hash = '/resultDetail/';
+                        }else{
+                            console.log(res);
+                            alert(res.msg);
+                            window.location.hash = '/';
+                        }
+                    })
+                }
+            }
+        }else{
+            //章节考试
+            let arr_xz=[],
             arr_dx=[],
             arr_pd=[],
             obj1={group_num:1,question_class:1,question_array:arr_xz},
@@ -528,24 +678,12 @@ export default class Test extends Component {
                     }
                 }).then((res)=>{
                     console.log(res);
+
                     if(res.data.code == 0){
                         alert("提交成功！");
-                        clearInterval(this.state.timer);
-                        Axios({
-                            url:'/api/student/examination/getChapterExamScoreList',
-                            method:'POST',
-                            headers:{
-                                Authorization:localStorage.getItem('userId')
-                            },
-                            data:{
-                                course_id:JSON.parse(localStorage.getItem('userInfo')).course_id,
-                                pageSize:10000,
-                                pageNumber:1 
-                            }
-                        }).then(res=>{
-                            //
-                            console.log(res);
-                        })
+                        let str = JSON.stringify(res.data.data);
+                        localStorage.setItem('result',str);
+                        localStorage.removeItem('time');
                         window.location.hash = '/resultDetail/';
                     }else{
                         alert("提交出错，请重试！");
@@ -555,9 +693,9 @@ export default class Test extends Component {
                 return 0;
             }
             if(sign){
+                localStorage.removeItem('time');
                 let yes = window.confirm('交卷后不能再作答，确定要交卷吗？');
                 if(yes){
-
                 Axios({
                     url:'/api/student/videoCourseDesign/handInChapterQuestion',
                     method:'POST',
@@ -579,22 +717,9 @@ export default class Test extends Component {
                     console.log(res);
                     if(res.data.code == 0){
                         alert("提交成功！");
-                        clearInterval(this.state.timer);
-                        Axios({
-                            url:'/api/student/examination/getChapterExamScoreList',
-                            method:'POST',
-                            headers:{
-                                Authorization:localStorage.getItem('userId')
-                            },
-                            data:{
-                                course_id:JSON.parse(localStorage.getItem('userInfo')).course_id,
-                                pageSize:10000,
-                                pageNumber:1 
-                            }
-                        }).then(res=>{
-                            //
-                            console.log(res);
-                        })
+                        let str = JSON.stringify(res.data.data);
+                        localStorage.setItem('result',str);
+                        localStorage.removeItem('time');
                         window.location.hash = '/resultDetail/';
                     }else{
                         alert("提交出错，请重试！");
@@ -605,6 +730,7 @@ export default class Test extends Component {
 
             }else{
                 let ok = window.confirm('还有问题没有回答，是否要提交');
+                clearInterval(this.state.timer);
                 if(ok){
                     Axios({
                         url:'/api/student/videoCourseDesign/handInChapterQuestion',
@@ -627,22 +753,9 @@ export default class Test extends Component {
                         console.log(res);
                         if(res.data.code == 0){
                             alert("提交成功！");
-                            clearInterval(this.state.timer);
-                            Axios({
-                                url:'/api/student/examination/getChapterExamScoreList',
-                                method:'POST',
-                                headers:{
-                                    Authorization:localStorage.getItem('userId')
-                                },
-                                data:{
-                                    course_id:JSON.parse(localStorage.getItem('userInfo')).course_id,
-                                    pageSize:10000,
-                                    pageNumber:1 
-                                }
-                            }).then(res=>{
-                                //
-                                console.log(res);
-                            })
+                            let str = JSON.stringify(res.data.data);
+                            localStorage.setItem('result',str);
+                            localStorage.removeItem('time');
                             window.location.hash = '/resultDetail/';
                         }else{
                             alert("提交出错，请重试！");
@@ -651,6 +764,6 @@ export default class Test extends Component {
                     })
                 }
             }
-
+        }
     }
 }

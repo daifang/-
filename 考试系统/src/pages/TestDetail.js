@@ -62,15 +62,19 @@ export default class Test extends Component {
                                         this.state.data_list.map(val=>{
                                             val.question_array.map(val1=>{
                                                 // val1.isAuswered = false;
-                                                if(val1.user_answer){
-                                                    val1.user_answer.map(val3=>{
+                                                val1.selectList.map(val2=>{
+                                                    val2.checked = false;
+                                                })
+                                                if(val1.answer_right){
+                                                    eval(val1.answer_right).map(val3=>{
                                                         val1.selectList.map(val2=>{
-                                                            val2.checked = false;
                                                             if(val3 == val2.select_id){
+                                                                console.log(val2,val3);
                                                                  val2.checked = true;
                                                             }
                                                         })
                                                     })
+                                                    console.log(this.state.data_list);
                                                 }
                                                 question_list.push(val1);
                                             })
@@ -271,11 +275,6 @@ export default class Test extends Component {
                     display:'flex',
                     flexDirection:'column'
                 }}
-                    onTouchEnd = {
-                        (e)=>{
-                            this.hand(e);
-                        }
-                    }
                 >
                     <span style={{backgroundColor:' #33a6ff',width:'40%',marginLeft:'30%',borderRadius:'10px',color:'white',marginTop:'5%'}}>{this.state.question_num+1}/{this.state.data_list.length}</span>
                     {/* <span style={{marginTop:"10%",color:' #33a6ff'}}>答题卡-交卷</span> */}
