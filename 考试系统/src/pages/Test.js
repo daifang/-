@@ -29,7 +29,11 @@ export default class Test extends Component {
             timer:null,
             hand_data:{}
         }
-        localStorage.setItem('testTime',0)
+        if(localStorage.getItem('testTime') != null){
+            localStorage.setItem('testTime',localStorage.getItem('testTime'));
+        }else{
+            localStorage.setItem('testTime',0);
+        }
     }
     componentDidMount(){
         //获取试题
@@ -278,7 +282,7 @@ export default class Test extends Component {
                     <span style={{width:"40%",marginLeft:'5%',color:'#3197EE',fontSize:"20px"}}>
                         {`[${this.state.question_num+1}][${this.state.questType[this.state.data[this.state.question_num].question_class?this.state.data[this.state.question_num].question_class:'1']}题]`}
                     </span>
-                    <span style={{fontSize:'20px'}}>{`剩余时间:${this.time(localStorage.getItem('time'))}`}</span>
+                    <span style={{fontSize:'13px',marginLeft:'5%',marginTop:'2%'}}>{`剩余时间:${this.time(localStorage.getItem('time'))}`}</span>
                 </div>
                 <div 
                     className = 'question'
@@ -357,7 +361,7 @@ export default class Test extends Component {
                         this.last(e);
                     }}
                 >
-                    <span style={{fontSize:"25px",height:'100%',lineHeight:'270%',color:"#cdcdcd",fontWeight:"700",marginLeft:'5%'}}>
+                    <span style={{fontSize:"19px",height:'100%',lineHeight:'270%',color:"#cdcdcd",fontWeight:"700",marginLeft:'5%'}}>
                         {'⋘'}
                     </span>
                     <span
@@ -391,7 +395,7 @@ export default class Test extends Component {
                     }}
                 >
                     <span style={{height:'100%',lineHeight:"450%",color:"#cdcdcd",fontWeight:"700",marginRight:'10%'}}>下一题</span>
-                    <span style={{fontSize:"25px",height:'100%',lineHeight:'270%',color:"#cdcdcd",fontWeight:"700",marginRight:'5%'}}>{'⋙'}</span>
+                    <span style={{fontSize:"19px",height:'100%',lineHeight:'270%',color:"#cdcdcd",fontWeight:"700",marginRight:'5%'}}>{'⋙'}</span>
                 </span>
             </div>
         </div>
@@ -620,7 +624,7 @@ export default class Test extends Component {
                             window.location.hash = '/resultDetail/';
                         }else{
                             console.log(res);
-                            alert(res.msg);
+                            alert(res.data.msg);
                             window.location.hash = '/';
                         }
                     })

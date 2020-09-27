@@ -1,4 +1,4 @@
-import Axios from 'axios';
+
 import React, { Component } from 'react';
 
 export default class ResultDetail1 extends Component {
@@ -21,7 +21,6 @@ export default class ResultDetail1 extends Component {
         this.setState({
             question_list:this.state.data.questionList
         })
-        
     }
     render() {
         return (

@@ -161,6 +161,11 @@ export default class Section extends Component {
             let time = test_time - has_time;
             console.log(time);
             localStorage.setItem('time',time);
+            if(localStorage.getItem('testTime') != null){
+                localStorage.setItem('testTime',localStorage.getItem('testTime'));
+            }else{
+                localStorage.setItem('testTime',0);
+            }
             window.location.hash = '/test/'+e.target.id + "&" + "normal";
         }
     }

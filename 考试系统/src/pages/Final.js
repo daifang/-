@@ -108,6 +108,11 @@ export default class Final extends Component {
         let time = test_time - has_time;
         localStorage.setItem('time',time);
         localStorage.setItem('finalTest',JSON.stringify(this.state.data));
+        if(localStorage.getItem('testTime') != null){
+            localStorage.setItem('testTime',localStorage.getItem('testTime'));
+        }else{
+            localStorage.setItem('testTime',0);
+        }
         window.location.hash = 'test/'+this.state.data.page_id+"$"+this.state.data.id+"&"+"final";
     }
     goTo = (e)=>{

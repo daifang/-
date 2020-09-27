@@ -261,7 +261,7 @@ export default class Test extends Component {
                         this.last(e);
                     }}
                 >
-                    <span style={{fontSize:"25px",height:'100%',lineHeight:'270%',color:"#cdcdcd",fontWeight:"700",marginLeft:'5%'}}>
+                    <span style={{fontSize:"19px",height:'100%',lineHeight:'270%',color:"#cdcdcd",fontWeight:"700",marginLeft:'5%'}}>
                         {'⋘'}
                     </span>
                     <span
@@ -291,7 +291,7 @@ export default class Test extends Component {
                     }}
                 >
                     <span style={{height:'100%',lineHeight:"450%",color:"#cdcdcd",fontWeight:"700",marginRight:'10%'}}>下一题</span>
-                    <span style={{fontSize:"25px",height:'100%',lineHeight:'270%',color:"#cdcdcd",fontWeight:"700",marginRight:'5%'}}>{'⋙'}</span>
+                    <span style={{fontSize:"19px",height:'100%',lineHeight:'270%',color:"#cdcdcd",fontWeight:"700",marginRight:'5%'}}>{'⋙'}</span>
                 </span>
             </div>
         </div>
