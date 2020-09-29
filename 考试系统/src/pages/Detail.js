@@ -47,7 +47,7 @@ export default class Detail extends Component {
                     <span>{this.state.data.stuProfessional}</span>
                 </p>
                 <p>
-                    <span>手机号 :</span>
+                    <span>电话 :</span>
                     <span>{this.state.data.stuPhone}</span>
                 </p>
             </div>

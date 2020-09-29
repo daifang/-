@@ -74,10 +74,11 @@ export default class Section extends Component {
                                 id = {val.id} 
                                 key = {val.id}
                                 style={{
-                                    width:'100%'
+                                    width:'90%',
+                                    marginLeft:"5%"
                                 }}
                             >
-                               <span style={{fontSize:'26px',display:'block',marginTop:'5%',marginLeft:'5%',color:'rgb(163, 163, 163)'}}>{val.name}</span> 
+                               <span style={{fontSize:'14px',display:'block',marginTop:'5%',marginLeft:'5%',color:'rgb(163, 163, 163)'}}>{val.name}</span> 
                                 <ul style ={{
                                         width:'90%',
                                         marginLeft:"10%",
@@ -92,28 +93,30 @@ export default class Section extends Component {
                                                 <li 
                                                     className="sec_list"
                                                     style={{
-                                                        marginTop:"15px"
+                                                        marginTop:"20px",
+                                                        marginLeft:'-15px',
                                                     }}
                                                 >
-                                                    <span style={{display:'block',marginTop:'-6%',marginLeft:'5%',fontSize:'20px'}}>{val1.name}</span>
-                                                    <span style={{display:'block',marginLeft:'5%',fontSize:'15px',marginTop:'5%',color:'rgb(163, 163, 163)'}}>
-                                                        {(val1.question_time==undefined?'暂无试题':'答题时间:'+val1.question_time)}
+                                                    <span style={{display:'block',marginTop:'-5%',marginLeft:'5%',fontSize:'15px',overflowWrap:'break-word',width:'90%'}}>{val1.name}</span>
+                                                    <span style={{display:'block',marginLeft:'5%',fontSize:'13px',marginTop:'3%',color:'rgb(163, 163, 163)'}}>
+                                                        {(val1.question_time==undefined?'暂无试题':'答题时间:'+'  '+val1.question_time)+'分钟'}
                                                     </span>
                                                     <div 
                                                         style={{
                                                             display:val1.examination?'block':'none',
-                                                            fontSize:'15px',
+                                                            fontSize:'13px',
                                                             float:'right',
                                                             position:'relative',
                                                             right:'5%',
-                                                            top:'-30px',
+                                                            top:'-35px',
                                                             backgroundColor:' #33a6ff',
                                                             height:'30px',
-                                                            width:'20%',
+                                                            width:'22%',
                                                             lineHeight:'30px',
                                                             textAlign:'center',
-                                                            borderRadius:'5px',
-                                                            color:'white'
+                                                            borderRadius:'15px',
+                                                            color:'white',
+                                                            fontWeight:'200'
                                                         }}
                                                         className = {val1.question_time + ' ' + val1.begin_time}
                                                         id = {val1.id +"&" + val.id}
@@ -146,16 +149,14 @@ export default class Section extends Component {
         //当前考试剩余时间
         if(e.target.classList[1] != undefined){
             let test_time = e.target.classList[0]*60000;
+            localStorage.setItem('examTime',test_time);
             let date = (e.target.classList[1]+"").split('-').concat((e.target.classList[2]+"").split(':'));//考试时间
             console.log(date);
             date.map(val=>{
                 val = val*1;
             })
             let create_sec = (Date.UTC(date[0],date[1],date[2],date[3],date[4],date[5]));//创造时间
-            let now_time = Date.UTC(new Date().getFullYear(),new Date().getMonth()+1,new Date().getDate(),new Date().getHours(),new Date().getMinutes(),new Date().getSeconds());
-            let has_time = (now_time)  - Number.parseInt(create_sec);//毫秒
-            let time = test_time - has_time;
-            localStorage.setItem('time',time);
+            localStorage.setItem('create_time',create_sec);//创建时间
             if(localStorage.getItem('testTime') != null){
                 localStorage.setItem('testTime',localStorage.getItem('testTime'));
             }else{
@@ -164,4 +165,5 @@ export default class Section extends Component {
             window.location.hash = '/test/'+e.target.id + "&" + "normal";
         }
     }
+
 }

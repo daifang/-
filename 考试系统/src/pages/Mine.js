@@ -8,7 +8,7 @@ export default class Mine extends Component {
         this.state = {
             username:'获取中...',
             userSchool:'...',
-            imgSrc:'/student.png'
+            imgSrc:'/exam/student.png'
         }
     }
     componentDidMount(){
@@ -40,31 +40,31 @@ export default class Mine extends Component {
                     <div id = "author">
                         <img style={{borderRadius:'100%'}} src = {this.state.imgSrc}/>
                     </div>
-                    <div id = "src" style={{marginTop:'-10%'}}>
+                    <div id = "src" style={{marginTop:'-5%',textAlign:'left'}}>
                         <h3>{this.state.username}</h3>
-                        <p>{this.state.userSchool}</p> 
+                        <p style={{marginTop:'-15%',marginLeft:'0%',textAlign:'left'}}>{this.state.userSchool}</p> 
                     </div>
-                    <div id = 'right' onTouchEnd = {()=>{this.goTo('/detail')}}>
+                    <div id = 'right' onTouchEnd = {()=>{this.goTo('/detail')}} style={{marginLeft:'-10%',marginTop:'6%'}}>
                         <img 
-                            style={{transform:'scale(0.4)'}}
-                            src = '/right.png'
+                            style={{transform:'scale(0.4)',marginTop:'-50%'}}
+                            src = '/exam/right.png'
                         />
                     </div>
-                    <div id = "set"  style={{borderRadius:'100%',height:'35%',transform:'scale(1)'}}>
+                    <div id = "set"  style={{borderRadius:'100%',height:'35%',transform:'scale(1)',width:'20%',paddingTop:'17px',paddingLeft:'50px'}}>
                         {/* {消息页} */}
                         {/* <img  onTouchEnd = {()=>{this.goTo('/msgs')}} src='/msg.png'/> */}
-                        <img  onTouchEnd = {()=>{this.goTo('/sets')}} src='/setting.png'/>
+                        <img  onTouchEnd = {()=>{this.goTo('/sets')}} src='/exam/setting.png'/>
                     </div>
                 </div>
                 <div id="body">
                     <div>
-                        <img onTouchEnd = {()=>{this.goTo('/classes')}} src = '/classes.png'/>
+                        <img onTouchEnd = {()=>{this.goTo('/classes')}} src = '/exam/classes.png'/>
                     </div>
                     <div>
-                        <img onTouchEnd = {()=>{this.goTo('/finalTests')}} src = '/final.png'/>
+                        <img onTouchEnd = {()=>{this.goTo('/finalTests')}} src = '/exam/final.png'/>
                     </div>
                     <div>
-                        <img onTouchEnd = {()=>{this.goTo('/result')}} src = '/studentC.png'/>
+                        <img onTouchEnd = {()=>{this.goTo('/result')}} src = '/exam/studentC.png'/>
                     </div>
                 </div>
             </div>

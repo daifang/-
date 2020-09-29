@@ -1,4 +1,4 @@
-import Axios from 'axios';
+
 import React, { Component } from 'react';
 export default class Test extends Component {
     constructor(){
@@ -27,121 +27,46 @@ export default class Test extends Component {
             data:[]
         }
     }
+    componentWillUnmount(){
+        window.removeEventListener('storage',()=>{console.log('remove')});
+    }
     componentDidMount(){
-        
-
-        //获取试题
-        // console.log(this.props.match.params.id.split('&')[1]);
-        if(this.props.match.params.id.split('&')[1] == 'normal'){
-            // console.log({
-            //     lessonId:this.props.match.params.id.split('&')[0]
-            // });
-            //请求章节数据
-            Axios({
-                url:`/api/student/examination/getChapterExamScoreDetail`,
-                method:'POST',
-                data:{
-                    id:this.props.match.params.id.split('&')[0]
-                },
-                headers:{
-                    Authorization:localStorage.getItem('userId')
-                }
-            }).then(res=>{
-                // console.log(res);
-                                //初始化题目
-                                if(res.data.code == 500){
-                                    alert(res.data.msg);
-                                    window.location.hash = '/Mine';
-                                }
-                                else{               
-                                    this.setState({
-                                        data_list:JSON.parse(res.data.data.question_list),
-                                        len:JSON.parse(res.data.data.question_list).length
-                                    },()=>{
-                                        let question_list = [];
-                                        // console.log(this.state.data_list);
-                                        this.state.data_list.map(val=>{
-                                            val.question_array.map(val1=>{
-                                                // val1.isAuswered = false;
-                                                val1.selectList.map(val2=>{
-                                                    val2.checked = false;
-                                                })
-                                                if(val1.answer_right){
-                                                    eval(val1.answer_right).map(val3=>{
-                                                        val1.selectList.map(val2=>{
-                                                            if(val3 == val2.select_id){
-                                                                console.log(val2,val3);
-                                                                 val2.checked = true;
-                                                            }
-                                                        })
-                                                    })
-                                                    console.log(this.state.data_list);
-                                                }
-                                                question_list.push(val1);
-                                            })
-                                        })
-                                        this.setState({
-                                            data:question_list
-                                        },()=>{
-                                            // console.log(this.state.data_list);
-                                        });
-                                    })
-                                }
-            });
-        }else if(this.props.match.params.id.split('&')[1] == 'final'){
-            //请求期末数据
-            // console.log({
-            //     id:this.props.match.params.id.split('&')[0].split('$')[1],
-            //     page_id:this.props.match.params.id.split('&')[0].split('$')[0]
-            // });
-            Axios({
-                url:'/api/student/examination/getFinalExamScoreDetail',
-                method:'POST',
-                data:{
-                    id:this.props.match.params.id.split('&')[0]
-                },
-                headers:{
-                    Authorization:localStorage.getItem('userId')
-                }
-            }).then(res=>{
-                //初始化题目
-                if(res.data.code == 500){
-                    alert(res.data.msg);
-                    window.location.hash = '/Mine';
-                }
-                else{
-                    // console.log(res);
-                    this.setState({
-                        data_list:JSON.parse(res.data.data.question_list),
-                        len:JSON.parse(res.data.data.question_list).length
-                    },()=>{
-                        let question_list = [];
-                        // console.log(this.state.data_list);
-                        this.state.data_list.map(val=>{
-                            val.question_array.map(val1=>{
-                                console.log(val1);
-                                if(val1.answer_right){
-                                    eval(val1.answer_right).map(val3=>{
-                                       val1.selectList.map(val2=>{
-                                            val2.checked = false;
-                                            if(val3 == val2.select_id){
-                                                 val2.checked = true;
-                                            }
-                                        })
-                                    })
-                                }
-                                question_list.push(val1);
-                            })
+        window.addEventListener('storage',()=>{
+            console.log(1);
+            this.componentDidMount();
+        })
+        let list = JSON.parse(localStorage.getItem('result')).questionList;
+        this.setState({
+            data_list:list
+        },()=>{
+                let question_list = [];
+                // console.log(this.state.data_list);
+                this.state.data_list.map(val=>{
+                    val.question_array.map(val1=>{
+                        // val1.isAuswered = false;
+                        val1.selectList.map(val2=>{
+                            val2.checked = false;
                         })
-                        this.setState({
-                            data:question_list
-                        },()=>{
+                        if(val1.answer_right){
+                            eval(val1.answer_right).map(val3=>{
+                                val1.selectList.map(val2=>{
+                                    if(val3 == val2.select_id){
+                                        console.log(val2,val3);
+                                         val2.checked = true;
+                                    }
+                                })
+                            })
                             console.log(this.state.data_list);
-                        });
+                        }
+                        question_list.push(val1);
                     })
-                }
+                })
+                this.setState({
+                    data:question_list
+                },()=>{
+                    console.log(this.state.data);
+                });
             })
-        }
     }
     render() {
         console.log(this.state.data_list);
@@ -161,7 +86,7 @@ export default class Test extends Component {
                         marginTop:'5%'
                     }}
                 >
-                    <span style={{width:"40%",marginLeft:'5%',fontSize:"15px",color:'#3197EE'}}>
+                    <span style={{width:"40%",marginLeft:'5%',fontSize:"16px",color:'#3197EE'}}>
                         {`${this.state.question_num+1}、【${this.state.questType[this.state.data[this.state.question_num].question_class?this.state.data[this.state.question_num].question_class:'1']}题】`}
                     </span>
                     {/* <span>{`剩余时间:${this.time(localStorage.getItem('time'))}`}</span> */}

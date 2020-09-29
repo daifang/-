@@ -31,11 +31,11 @@ export default class login extends Component {
                     <span>{'学生答题系统'}</span>
                     <span>{'您好,欢迎登录'}</span>
                 </div>
-                <div style={{marginTop:'5%'}}>
+                <div style={{marginTop:'10%'}}>
                     <Input
                         title = '用户名'
                         style = {{
-                            borderBottom:'1px solid gray',
+                            borderBottom:'0.3px solid gray',
                             width:'90%',
                             borderTop:'none',
                             borderLeft:'none',
@@ -44,7 +44,7 @@ export default class login extends Component {
                             marginLeft:'5%',
                             marginTop:'5%',
                             height:'30px',
-                            fontSize:'20px'
+                            fontSize:'20px',
                         }}
                         onChange = {this.onChange}
                         placeholder = {'请输入用户名'}
@@ -55,7 +55,7 @@ export default class login extends Component {
                     <Input
                         title = '密码'
                         style = {{
-                            borderBottom:'1px solid gray',
+                            borderBottom:'0.3px solid gray',
                             width:'90%',
                             borderTop:'none',
                             borderLeft:'none',

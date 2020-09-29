@@ -9,7 +9,6 @@
     font-size: 20px;
     text-indent: 10px;
     border: none;
-    background-color: rgb(247, 247, 247);
     border-radius: 5px;
     margin-top: 5%;
     margin-left: 5%;
@@ -18,18 +17,18 @@
 #tel_txt::placeholder{
     font-size: 20px;
     text-indent: 10px;
-    color: rgb(83, 83, 83);
+    color:rgb(184, 181, 181);
 }
 .ok{
     width: 85%;
     height: 50px;
     margin-left: 7%;
-    border-radius: 10px;
-    background-color: rgb(0, 144, 201);
+    border-radius: 5px;
+    background-color: #2C9EF2;
     color: white;
-    font-size:20px;
+    font-size:17px;
     text-align: center;
-    font-weight: 900;
+    font-weight: 300;
     line-height: 50px;
     position: absolute;
     bottom: 5%;
@@ -37,12 +36,12 @@
 
 #password{
     width: 90%;
-    height: 55px;
+    height: 45px;
     outline: none;
     font-size: 20px;
     text-indent: 10px;
     border: none;
-    background-color: rgb(247, 247, 247);
+    /* background-color: rgb(247, 247, 247); */
     border-radius: 5px;
     margin-top: 5%;
     margin-left: 5%;
@@ -55,19 +54,19 @@
     font-size: 20px;
     text-indent: 10px;
     border: none;
-    background-color: rgb(247, 247, 247);
+    /* background-color: rgb(247, 247, 247); */
     border-radius: 5px;
     margin-top: 5%;
     margin-left: 5%;
     border-bottom: 0.5px rgb(233, 233, 233) solid;
 }
 #password::placeholder{
-    font-size: 20px;
+    font-size: 17px;
     text-indent: 10px;
-    color: rgb(167, 167, 167);
+    color: #D1DAF0;
 }
 #newPassword::placeholder{
-    font-size: 20px;
+    font-size: 17px;
     text-indent: 10px;
-    color: rgb(153, 153, 153);
+    color: #D1DAF0;;
 }

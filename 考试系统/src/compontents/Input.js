@@ -7,7 +7,7 @@ export default class Input extends Component {
     render() {
         return (
             <div style={{display:"flex",flexDirection:"column"}}>
-                <span style={{marginLeft:'5%',fontWeight:'500'}}>
+                <span style={{marginLeft:'5%',fontWeight:'500',fontSize:'15px'}}>
                     {this.props.title}
                 </span>
                 <input 

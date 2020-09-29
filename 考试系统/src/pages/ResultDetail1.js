@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+var i=0;
 export default class ResultDetail1 extends Component {
     constructor(){
         super();
@@ -23,6 +24,14 @@ export default class ResultDetail1 extends Component {
                 data:JSON.parse(localStorage.getItem('result'))
             })
         }
+        window.addEventListener('storage',()=>{
+            console.log(1);
+            this.componentDidMount();
+        })
+    }
+    componentWillUnmount(){
+        window.removeEventListener('storage',()=>{console.log('remove')});
+        i=0
     }
     render() {
         if(this.state.data == null){
@@ -54,7 +63,7 @@ export default class ResultDetail1 extends Component {
                                 alignItems:"flex-start"
                             }}>
                                 <span style={{height:'50%',width:'70%',lineHeight:'300%',textIndent:'20px',fontSize:'18px'}}>{`${(this.state.data.chapter_name?this.state.data.chapter_name:this.state.data.course_name) + " " + (this.state.data.lesson_name? this.state.data.lesson_name:this.state.data.page_name)}`}</span>
-                                <span style={{height:'50%',width:'70%',lineHeight:'300%',textIndent:'20px',fontSize:'14px'}}>{`交卷时间:${this.state.data.hand_in_time?this.state.data.hand_in_time:this.state.data.create_time}`}</span>
+                                <span style={{height:'50%',width:'70%',lineHeight:'300%',textIndent:'20px',fontSize:'14px',color:' rgb(180, 180, 180)'}}>{`交卷时间:${this.state.data.hand_in_time?this.state.data.hand_in_time:this.state.data.create_time}`}</span>
                             </div>
                             <div style = {{
                                 height:'50%',
@@ -65,11 +74,11 @@ export default class ResultDetail1 extends Component {
                                 justifyItems:'center'
                             }}>
                                 <span style ={{display:'flex',width:this.state.type=='final'?'50%':'95%',height:'100%',alignItems:'center'}}>
-                                    <span style={{textIndent:'10px'}}>考试成绩:</span>
-                                    <span style={{fontSize:'25px'}}>{this.state.data.userTotalScore?this.state.data.userTotalScore:this.state.data.user_total_score}分</span>
+                                    <span style={{textIndent:'10px',fontSize:'15px',color:' rgb(180, 180, 180)'}}>考试成绩:</span>
+                                    <span style={{fontSize:'25px',textIndent:'10px'}}>{(this.state.data.userTotalScore!==undefined)?this.state.data.userTotalScore:this.state.data.user_total_score}分</span>
                                 </span>
                                 <span style ={{display:((this.state.type=='final')?'flex':'none'),width:'49%',height:'100%',alignItems:'center'}}>
-                                    <span style={{textIndent:'10px'}}>考试结果:</span>
+                                    <span style={{textIndent:'10px',fontSize:'15px',color:'rgb(180, 180, 180)'}}>考试结果:</span>
                                     <span style={{fontSize:'25px',color:this.state.data.is_pass?'green':'red'}}>{this.state.data.is_pass?'及格':'不及格'}</span>
                                 </span>
                             </div>
@@ -85,6 +94,14 @@ export default class ResultDetail1 extends Component {
                             left:'5%',
                             overflow:'scroll'
                         }}>
+                            <div
+                        style={{
+                            fontSize:"18px",
+                            marginLeft:'4%',
+                            marginTop:'5px'
+                        }}>
+                            答题卡
+                        </div>
                         <ul>      
                             {
                                 //题目信息
@@ -102,27 +119,30 @@ export default class ResultDetail1 extends Component {
                                         style={{
                                                 display:val.question_array.length?'block':'none',
                                                 marginLeft:'4%',
-                                                marginTop:"5%"
+                                                marginTop:"5%",
+                                                fontSize:'15px'
                                         }}> {this.state.questionType[val.question_class]}</div>
-                                       <ul style={{width:'100%',display:'flex'}}>
+                                       <ul style={{width:'100%',display:'flex',flexWrap:'wrap'}}>
                                        {
                                                 val.question_array.map((val1,idx1)=>{
+                                                    i++;
                                                     console.log(val1);
                                                     return(
                                                         <li style={{
-                                                            width:'40px',
-                                                            height:'40px',
-                                                            background:val1.is_answered?(val1.is_right?'#ecfffd url("/d.png") no-repeat':'#ecfffd url("/x.png") no-repeat'):'white',
+                                                            width:'35px',
+                                                            height:'35px',
+                                                            background:val1.is_answered?(val1.is_right?'#ecfffd url("/exam/d.png") no-repeat':'#ecfffd url("/exam/x.png") no-repeat'):'white',
                                                             color:val1.is_answered?'#33a6ff':'black',
                                                             marginTop:'3%',
                                                             marginLeft:'3%',
-                                                            fontSize:'20px',
-                                                            fontWeight:'700',
-                                                            lineHeight:'40px',
+                                                            fontSize:'15px',
+                                                            fontWeight:'500',
+                                                            lineHeight:'35px',
                                                             textAlign:'center',
                                                             borderRadius:'5px',
-                                                            border:val1.is_answered?'none':'0.1px solid gray'
+                                                            border:val1.is_answered?'none':'0.3px solid gray'
                                                         }}
+                                                        className={i}
                                                         id = {this.state.data.id+'&'+this.state.type}
                                                         onTouchEnd = {
                                                             (e)=>{
@@ -130,7 +150,7 @@ export default class ResultDetail1 extends Component {
                                                             }
                                                         }
                                                         >
-                                                            {idx1+1}
+                                                            {i}
                                                         </li>
                                                     )
                                                 })
@@ -149,6 +169,7 @@ export default class ResultDetail1 extends Component {
     }
     goTo = (e)=>{
         // console.log(e.target.name);
-        window.location.hash = '/testdetail/'+e.target.id;
+        localStorage.setItem('quest_num',e.target.classList[0]);
+        window.location.hash = '/testdetail/';
     }
 }

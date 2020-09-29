@@ -5,7 +5,7 @@
     background-color: rgb(255, 255, 255);
     align-items: flex-end;
     justify-content: space-around;
-    border-bottom: 1px rgb(180, 180, 180) solid;
+    border-bottom: 1px rgb(226, 226, 226) solid;
 }
 #header_result>div{
     width: 100%;
@@ -15,10 +15,10 @@
     text-align: center;
 }
 #blue_line{
-    height: 3px;
-    width: 15%;
+    height: 1px;
+    width: 10%;
     background-color: #33a6ff;
-    left: 17%;
+    left: 20%;
     border-radius: 20px;
     margin-top: 65px;
     position: absolute;
@@ -47,8 +47,9 @@
 .sec_list::before{
     content: "●";
     color: #33a6ff;
-    font-size: 15px;
+    font-size: 7px;
     padding-right: 10px;
+    line-height: 10px;
 }
 input[type="radio"]:checked + .radio-label:before {
     background-color: #3197EE;
@@ -80,8 +81,8 @@ input[type="radio"] + .radio-label:before {
     border-radius: 100%;
     border: 1px solid #b4b4b4;
     display: inline-block;
-    width: 25px;
-    height: 25px;
+    width: 15px;
+    height: 15px;
     margin-top: 5.3%;
     position: relative;
     margin-right: 0.5rem;
@@ -90,8 +91,8 @@ input[type="radio"] + .radio-label:before {
   }
 
   input[type="checkbox"] {
-    width: 25px;
-    height: 25px;
+    width: 15px;
+    height: 15px;
     display: inline-block;
     text-align: center;
     vertical-align: middle;

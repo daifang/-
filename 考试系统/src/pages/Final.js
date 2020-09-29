@@ -90,23 +90,28 @@ export default class Final extends Component {
             )
         }else{
             return(
-                <div style={{width:'100%',height:'30%',textAlign:'center',fontSize:'25px',marginTop:'30%'}} className="animated slideInRight">当前没有考试</div>
+                <div style={{width:'100%',height:'30%',fontSize:'25px',marginTop:'30%'}} className="animated slideInRight">
+                    <img src='/exam/none.png' style={{
+                        transform:'scale(0.9)',
+                        position:'absolute',
+                        top:'0%',
+                        left:'-15%'
+                    }}/>
+                </div>
             )
         }
     }
     goToTest = (e)=>{
         localStorage.setItem('time',this.state.data.answer_time*60);
         let test_time = this.state.data.answer_time*60000;//分钟
+        localStorage.setItem('examTime',test_time);
         let date = e.target.id.split(' ')[0].split('-').concat(e.target.id.split(' ')[1].split(':'));//考试时间
         console.log(date);
         date.map(val=>{
             val = val*1;
         })
         let create_sec = (Date.UTC(date[0],date[1],date[2],date[3],date[4],date[5]));//创造时间
-        let now_time = Date.UTC(new Date().getFullYear(),new Date().getMonth()+1,new Date().getDate(),new Date().getHours(),new Date().getMinutes(),new Date().getSeconds());
-        let has_time = (now_time)  - Number.parseInt(create_sec);//毫秒
-        let time = test_time - has_time;
-        localStorage.setItem('time',time);
+        localStorage.setItem('create_time',create_sec);
         localStorage.setItem('finalTest',JSON.stringify(this.state.data));
         if(localStorage.getItem('testTime') != null){
             localStorage.setItem('testTime',localStorage.getItem('testTime'));

@@ -7,17 +7,17 @@
 }
 .class_content{
     width: 85%;
-    height: 60px;
+    height: auto;
     margin-top: 5px;
     margin-left: 5%;
-    box-shadow: 1px 4px 0 0 #E7E7E7;
+    box-shadow: 2px 2px 0 0 #E7E7E7;
     border-color: rgb(160, 158, 158);
-    border-top-right-radius: 7px;
-    border-bottom-right-radius: 7px;
+    border-radius: 4px;
     border-left: 7px solid #33A6FF;
     border-top: 1px solid #E7E7E7;
     line-height: 45px;
     font-size: 25px;
+    margin-bottom: 10px;
 }
 .con_p{
     margin-left: 20px;

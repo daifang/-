@@ -12,7 +12,9 @@ export default class Result extends Component {
             data : [],
             type:'normal',
             pageNum:0,
-            pageSize:6
+            pageSize:6,
+            base64:null
+
         }
     }
     componentDidMount(){
@@ -63,13 +65,21 @@ export default class Result extends Component {
     render() {
         return (
             <div className = "animated slideInRight" style={{height:'100%'}}>
-                <div id = 'blue_line'></div>    
+                 <img 
+                    src = {this.state.base64}
+                    style={{position:"absolute",width:'100%',height:'100%',display:this.state.base64?'block':'none',zIndex:'100'}}
+
+                />
+                <div id = 'blue_line' style={{left:'20%'}}></div>    
                 <div id = 'header_result'>
                     <div
                         id = 'normal'
                         className = 'topMenu selected'
                         onTouchEnd = {(e)=>{
                             this.changePage(e,0);
+                        }}
+                        style={{
+                            fontSize:'15px'
                         }}
                     >
                         章节考试成绩
@@ -80,11 +90,14 @@ export default class Result extends Component {
                         onTouchEnd = {(e)=>{
                             this.changePage(e,1);
                         }}
+                        style={{
+                            fontSize:'15px'
+                        }}
                     >
                         期末考试成绩
                     </div>
                 </div>
-                <div id = 'result_list'>
+                <div id = 'result_list' style={{height:'80%'}}>
                     <ul 
                         style={{
                             height:'auto',
@@ -99,8 +112,8 @@ export default class Result extends Component {
                                 return(
                                     <li 
                                         style = {{
-                                            height:'90px',
-                                            borderBottom:'1px gray solid'
+                                            height:'auto',
+                                            borderBottom:'0.1px rgb(226, 226, 226) solid'
                                         }}
                                         id = {val?val.id:'none'}
                                         key = {val?val.id:'none'}
@@ -128,37 +141,39 @@ export default class Result extends Component {
                                         <span
                                             style={{
                                                 fontSize:'20px',
-                                                height:'50%',
-                                                lineHeight:'45px',
-                                                textIndent:'10px'
+                                                height:'auto',
+                                                lineHeight:'30px',
+                                                textIndent:'10px',
+                                                overflowWrap:'break-word'
                                             }}
                                             id = {val?val.id:'none'}
                                         >{
-                                            val?(val.lesson_name + val.chapter_name?'所属章节:' + val.lesson_name:val.course_name+val.page_name):'当前没有成绩'
+                                            val?(val.lesson_name + val.chapter_name? val.lesson_name:val.course_name+val.page_name):'当前没有成绩'
                                         }</span>
                                         <span
                                             style={{
-                                                fontSize:'15px',
+                                                fontSize:'14px',
                                                 height:'50%',
-                                                lineHeight:'45px',
-                                                textIndent:'10px'
+                                                lineHeight:'30px',
+                                                textIndent:'10px',
+                                                color:'gray'
                                             }}
                                             id = {val?val.id:'none'}
                                         >{
-                                            val?val.chapter_name?val.chapter_name:"考试时间: " + val.hand_in_time:''
+                                            val?val.chapter_name?'所属章节:' +val.chapter_name:"考试时间: " + val.hand_in_time:''
                                             }</span>
                                         </span>
                                         <span
                                         style={{
                                             width:'20%',
-                                            lineHeight:'90px',
+                                            lineHeight:'60px',
                                             textIndent:'8px',
-                                            fontSize:'30px',
+                                            fontSize:'25px',
                                             color:val?val.is_pass?'#33a6ff':'gray':'gray'
                                         }}
                                         id = {val?val.id:'none'}
                                     >{
-                                        val?val.score:'∞'
+                                        (val?val.score:'∞')+"分"
                                     }</span>
                                 </div>
                             </li>
@@ -168,11 +183,21 @@ export default class Result extends Component {
                 </div>
                 <div 
                     id = 'result_foot' 
+                    style = {{
+                        fontSize:'17px',
+                        paddingLeft:'35%'
+                    }}
                     onTouchEnd = {(e)=>{
                         this.getDetail(e);
                     }}
                 >
-                    成绩详情
+                    <img src='/exam/统计.png' style={{
+                        transform:'scale(0.6)',
+                        float:'left',
+                        
+                    }}></img>
+                    <span
+                    style={{display:'block',float:'left',marginTop:'2%'}}>成绩统计</span>
                 </div>
             </div>
         )
@@ -193,15 +218,15 @@ export default class Result extends Component {
             console.log('清空并请求');
             this.componentDidMount();
         });
-        //改变样式 17% -> 68%  滑动
+        //改变样式 20% -> 70%  滑动
         let line = document.getElementById('blue_line');
         let Menu = document.getElementsByClassName('topMenu');
         if(num1 == 0){
-            line.style.left = '17%';
+            line.style.left = '20%';
             Menu[0].classList.add('selected');
             Menu[1].classList.remove('selected');
         }else if(num1 == 1){
-            line.style.left = '68%';
+            line.style.left = '70%';
             Menu[1].classList.add('selected');
             Menu[0].classList.remove('selected');
         }
@@ -223,7 +248,18 @@ export default class Result extends Component {
             },
             method:'POST'
         }).then(res=>{
-            console.log(res);
+            if(res.data.status == 500){
+                alert('获取失败');
+            }else{
+                this.setState({
+                    base64:`data:image/png;base64,${res.data.data.base64}`
+                })
+            }
+        }).catch(e=>{
+            if(e){
+                alert('出了些错误,可能未分组');
+            }
         })
     }
+
 }

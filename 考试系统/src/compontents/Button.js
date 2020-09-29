@@ -27,7 +27,10 @@ export default class Button extends Component {
                             this.goDetail(this.props.url,e);
                         }}
                 >
-                   {this.props.title}
+                   <span
+                   style={{
+                       lineHeight:'40px'
+                   }}>{this.props.title}</span>
                 </div>
             </div>
         )

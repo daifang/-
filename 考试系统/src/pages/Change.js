@@ -41,7 +41,7 @@ export default class Change extends Component {
                     <input placeholder = {tel} id = 'tel_txt' onChange = {(e)=>{this.setState({
                         tel:e.target.value
                     })}}/>
-                    <div onClick = {()=>{this.post(`/api/student/${this.state.title[this.state.op].post}`)}} className = 'ok'>确认</div>
+                    <div onClick = {()=>{this.post(`/api/student/${this.state.title[this.state.op].post}`)}} className = 'ok'>提交</div>
                 </div>
             )
         }else if(this.state.op == 'password'){
@@ -49,7 +49,7 @@ export default class Change extends Component {
             return (
                 <div style = {{height:'100%'}} className="animated slideInRight">
                     <input 
-                        placeholder = {'请填写新密码'} 
+                        placeholder = {'请输入新密码'} 
                         id = 'password' 
                         type = 'password'
                         onChange = {(e)=>{this.setState({
@@ -57,7 +57,7 @@ export default class Change extends Component {
                         })}}
                     />
                     <input 
-                        placeholder = '请确认新密码' 
+                        placeholder = '请重复新密码' 
                         id = 'newPassword' 
                         type = 'password'
                         onChange = {(e)=>{this.setState({
@@ -74,7 +74,7 @@ export default class Change extends Component {
                         } 
                         className = 'ok'
                     >
-                        确认
+                        提交
                     </div>
                 </div>
             )

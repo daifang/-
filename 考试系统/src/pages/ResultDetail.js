@@ -1,5 +1,6 @@
 import Axios from 'axios';
 import React, { Component } from 'react';
+var i=0;
 
 export default class ResultDetail extends Component {
     constructor(){
@@ -11,7 +12,7 @@ export default class ResultDetail extends Component {
                 }
             },
             type:'normal',
-            question_list:[{question_array:[{is_answered:1,is_right:1}]}],
+            question_list:[],
             api:{
                 normal:'Chapter',
                 final:'Final'
@@ -52,7 +53,13 @@ export default class ResultDetail extends Component {
             }
         })
     }
+    componentWillUnmount(){
+        i=0;
+    }
     render() {
+        if(this.state.question_list.length == 0){
+            return(<div>加载中</div>)
+        }else
         return (
             <div 
                 style={{backgroundColor:'rgb(236, 236, 236)',height:'100%',width:'100%'}} 
@@ -78,8 +85,8 @@ export default class ResultDetail extends Component {
                             flexDirection:'column',
                             alignItems:"flex-start"
                         }}>
-                            <span style={{height:'50%',width:'70%',lineHeight:'300%',textIndent:'20px',fontSize:'20px'}}>{`${(this.state.data.data.chapter_name?this.state.data.data.chapter_name:this.state.data.data.course_name) + " " + (this.state.data.data.lesson_name? this.state.data.data.lesson_name:this.state.data.data.page_name)}`}</span>
-                            <span style={{height:'50%',width:'70%',lineHeight:'300%',textIndent:'20px',fontSize:'14px'}}>{`交卷时间:${this.state.data.data.hand_in_time?this.state.data.data.hand_in_time:'无'}`}</span>
+                            <span style={{height:'auto',width:'90%',fontSize:'18px',overflowWrap:'break-word',marginLeft:'5%'}}>{`${(this.state.data.data.chapter_name?this.state.data.data.chapter_name:this.state.data.data.course_name) + " " + (this.state.data.data.lesson_name? this.state.data.data.lesson_name:this.state.data.data.page_name)}`}</span>
+                            <span style={{height:'50%',width:'70%',lineHeight:'300%',textIndent:'20px',fontSize:'14px',color:'rgb(180, 180, 180)',position:'absolute',top:'30%'}}>{`交卷时间:${this.state.data.data.hand_in_time?this.state.data.data.hand_in_time:'无'}`}</span>
                         </div>
                         <div style = {{
                             height:'50%',
@@ -90,12 +97,12 @@ export default class ResultDetail extends Component {
                             justifyItems:'center'
                         }}>
                             <span style ={{display:'flex',width:this.state.type=='final'?'50%':'95%',height:'100%',alignItems:'center'}}>
-                                <span style={{textIndent:'15px',fontSize:'13px'}}>考试成绩:</span>
-                                <span style={{fontSize:'30px'}}>{this.state.data.data.score?this.state.data.data.score:'0'}分</span>
+                                <span style={{textIndent:'10px',fontSize:'15px',color:'rgb(180, 180, 180)'}}>考试成绩:</span>
+                                <span style={{fontSize:'25px',marginLeft:'10px',lineHeight:'30px'}}>{this.state.data.data.score?this.state.data.data.score:'0'}分</span>
                             </span>
                             <span style ={{display:this.state.type=='final'?'flex':'none',width:'60%',height:'100%',alignItems:'center'}}>
-                                <span style={{textIndent:'10px',fontSize:'13px'}}>考试结果:</span>
-                                <span style={{fontSize:'30px',color:this.state.data.data.is_pass?'green':'red'}}>{this.state.data.data.is_pass?'及格':'不及格'}</span>
+                                <span style={{textIndent:'10px',fontSize:'15px'}}>考试结果:</span>
+                                <span style={{fontSize:'25px',color:this.state.data.data.is_pass?'green':'red'}}>{this.state.data.data.is_pass?'及格':'不及格'}</span>
                             </span>
                         </div>
                 </div>
@@ -110,12 +117,19 @@ export default class ResultDetail extends Component {
                         left:'5%',
                         overflow:'scroll'
                     }}>
+                        <div
+                        style={{
+                            fontSize:"18px",
+                            marginLeft:'4%',
+                            marginTop:'5px'
+                        }}>
+                            答题卡
+                        </div>
                     <ul>      
                         {
                             //题目信息
                             this.state.question_list.map((val,idx)=>{
                                 // console.log(val);
-                                let i = 0;
                                 return(
                                     <li 
                                         id = {val.question_class}
@@ -125,35 +139,37 @@ export default class ResultDetail extends Component {
                                                 display:val.question_array.length?'block':'none',
                                                 marginLeft:'4%',
                                                 marginTop:"5%",
-                                                fontSize:'13px'
+                                                fontSize:'15px'
                                         }}> 
                                             {this.state.questionType[val.question_class]}
                                         </div>
-                                    <ul style={{width:'100%',display:'flex'}}>
+                                    <ul style={{width:'100%',display:'flex',flexWrap:'wrap'}}>
                                     {
                                             val.question_array.map((val1,idx1)=>{
+                                                i++;
                                                 return(
                                                     <li style={{
-                                                        width:'40px',
-                                                        height:'40px',
-                                                        background:val1.is_answered?(val1.is_right?'#ecfffd url("/d.png") no-repeat':'#ecfffd url("/x.png") no-repeat'):'white',
+                                                        width:'35px',
+                                                        height:'35px',
+                                                        background:val1.is_answered?(val1.is_right?'#ecfffd url("/exam/d.png") no-repeat':'#ecfffd url("/exam/x.png") no-repeat'):'white',
                                                         color:val1.is_answered?'#33a6ff':'black',
                                                         marginTop:'3%',
                                                         marginLeft:'3%',
-                                                        fontSize:'20px',
-                                                        fontWeight:'700',
-                                                        lineHeight:'40px',
+                                                        fontSize:'15px',
+                                                        fontWeight:'500',
+                                                        lineHeight:'35px',
                                                         textAlign:'center',
                                                         borderRadius:'5px',
-                                                        border:val1.is_answered?'none':'0.5px solid gray'
+                                                        border:val1.is_answered?'none':'0.3px solid gray'
                                                     }}
+                                                    className={i}
                                                     id = {this.state.data.data.id+'&'+this.state.type}
                                                     onTouchEnd = {(e)=>{
                                                         localStorage.setItem('idx',idx1);
                                                         this.goTo(e);
                                                     }}
                                                     >
-                                                        {idx1+1}
+                                                        {i}
                                                     </li>
                                                 )
                                             })
@@ -172,6 +188,7 @@ export default class ResultDetail extends Component {
     }
     goTo = (e)=>{
         // console.log(e.target.name);
+        localStorage.setItem('quest_num',e.target.classList[0]);
         window.location.hash = '/testdetail/'+e.target.id;
     }
 }

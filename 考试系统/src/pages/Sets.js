@@ -5,7 +5,8 @@ export default class Sets extends Component {
     constructor(){
         super();
         this.state = {
-            option : ['1','2','3']
+            option : ['1','2','3'],
+            id:JSON.parse(localStorage.getItem('userInfo')).course_id
         }
     }
     componentDidMount(){
@@ -31,14 +32,22 @@ export default class Sets extends Component {
     render() {
         return (
             <div className = 'slideInRight animated'>
+                {/* <div style={{
+                    fontSize:'20px',
+                    marginTop:'10px',
+                    marginLeft:'45%',
+                    paddingBottom:'25px'
+                }}>
+                    设置
+                </div> */}
                 <div id = 'sets' >
                     <div onClick = {()=>{this.goTo('/change/tel')}}>
-                        <span style={{textIndent:'10px',display:'block',float:'left'}}>修改手机号</span>
-                        <img src = '/right.png'/>
+                    <span style={{textIndent:'10px',display:'block',float:'left',fontSize:'17px'}}>修改手机号</span>
+                        <img src = '/exam/right.png'/>
                     </div>
                     <div onClick = {()=>{this.goTo('/change/password')}}>
-                        <span style={{textIndent:'10px',display:'block',float:'left'}}>修改登录密码</span>
-                        <img src = '/right.png'/>
+                        <span style={{textIndent:'10px',display:'block',float:'left',fontSize:'17px'}}>修改登录密码</span>
+                        <img src = '/exam/right.png'/>
                     </div>
                     <div>
                         <select 
@@ -46,7 +55,7 @@ export default class Sets extends Component {
                                 this.changeCourse(e,'/api/student/studentCourseSelectRecord/changeCourse');
                             }}
                             defaultValue = '切换课程'
-                            style={{textIndent:'10px'}}
+                            style={{textIndent:'10px',fontSize:'17px'}}
                         >
                             <option
                                 value = '切换课程' 
@@ -64,6 +73,7 @@ export default class Sets extends Component {
                                             id = {val.course_id}
                                             style={{textAlign:"center",width:'100%'}}
                                             key = {val.course_id}
+                                            selected = {(this.state.id == val.course_id)?true:false}
                                         >
                                             {val.course_name}
                                         </option>
