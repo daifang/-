@@ -117,11 +117,9 @@ export default class Test extends Component {
                                     <input 
                                         id={val.select_id} 
                                         name={idx} 
-                                        class="check1" 
                                         checked = {val.checked} 
                                         type="radio" 
-                                        value={val.select_content}
-
+                                        value={val.select_content} 
                                     />
                                     <label for={val.select_id} class="radio-label" style={{display:'flex',alignItems:'center'}}>
                                         <span style={{width:'10%',marginTop:'5%',color:'#0076ce',fontSize:"15px"}}>{val.select_name}、</span>
@@ -132,7 +130,7 @@ export default class Test extends Component {
                             else if(this.state.data[this.state.question_num].question_class == 2)
                             return(
                                 <li>
-                                    <input id={val.select_id} class="check1" type="checkbox"  name={idx} value={val.select_content} checked = {val.checked}/>
+                                    <input id={val.select_id} type="checkbox"  name={idx} value={val.select_content} checked = {val.checked}/>
                                     <label for={val.select_id} class="radio-label" >
                                         <span style={{width:'10%',color:'#0076ce',position:'relative',top:'15px',fontSize:'15px'}}>{val.select_name}、</span>
                                         <span style={{width:"70%",fontSize:'15px',position:'relative',top:'15px',overflowWrap:'break-word'}}>{val.select_content}</span> 
@@ -142,7 +140,7 @@ export default class Test extends Component {
                             else if(this.state.data[this.state.question_num].question_class == 3)
                             return(
                                 <li>
-                                    <input id={val.select_id} class="check1" type="radio" name={idx} value={val.select_content} checked = {val.checked}/>
+                                    <input id={val.select_id} type="radio" name={idx} value={val.select_content} checked = {val.checked}/>
                                     <label for={val.select_id} class="radio-label" style={{display:'flex',alignItems:'center'}}>
                                         <span style={{width:'10%',marginTop:'5%',color:'#0076ce',fontSize:'15px'}}>{val.select_name}、</span>
                                         <span style={{width:"70%",marginTop:'5%',fontSize:'15px',overflowWrap:'break-word'}}>{val.select_content}</span> 
@@ -248,7 +246,6 @@ export default class Test extends Component {
         let j = 0,str = '';
         brr.map(val=>{
             eval(arr).map(val1=>{
-                
                 if(val1 == val.select_id){
                     // console.log(val,val1);
                     str += ' '+val.select_name
