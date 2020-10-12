@@ -9,10 +9,19 @@ html,body{
     margin: 0 auto;
     font: 62.5%;
     scrollbar-width: none;
-    overflow: hidden;
 }
 ::-webkit-scrollbar{
     display: none;
+}
+@media screen and (max-width: 1100px){
+    html,body{
+        overflow: hidden;
+    }
+}
+@media screen and (min-width: 1100px){
+    html,body{
+        overflow: scroll;
+    }
 }
 #sign_bg{
     margin-left: 0;
