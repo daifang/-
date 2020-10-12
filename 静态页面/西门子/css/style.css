@@ -56,15 +56,15 @@ html,body{
     background-color: #ffffff;
     margin-top: 1rem;
     display: flex;
+    overflow: hidden;
 }
 .input>input{
-    height: 80%;
+    height: 100%;
     width: 83%;
     outline: none;
     border: none;
     font-size: 1rem;
     text-indent: 1rem;
-    margin-top: 1%;
 }
 .input>select{
     height: 95%;
