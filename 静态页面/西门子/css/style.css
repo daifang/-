@@ -58,12 +58,13 @@ html,body{
     display: flex;
 }
 .input>input{
-    height: 90%;
+    height: 80%;
     width: 83%;
     outline: none;
     border: none;
     font-size: 1rem;
     text-indent: 1rem;
+    margin-top: 1%;
 }
 .input>select{
     height: 95%;
