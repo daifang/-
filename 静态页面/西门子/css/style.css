@@ -1,4 +1,9 @@
 /* 注册页 */
+select{
+    appearance:none;  
+    -moz-appearance:none;  
+    -webkit-appearance:none;
+}
 html,body{
     width: 100%;
     margin: 0 auto;
@@ -67,7 +72,7 @@ html,body{
     border: none;
     font-size: 1rem;
     text-indent: 1rem;
-    appearance: none;
+    /* appearance: none; */
     background: url(../img/down.png) no-repeat;
     background-position: 95% 50%;
     background-size: 1.5rem;
@@ -138,7 +143,7 @@ html,body{
     border: none;
     font-size: 1rem;
     text-indent: 1rem;
-    appearance: none;
+    /* appearance: none; */
     background: url(../img/down.png) no-repeat;
     background-position: 100% 50%;
     background-size:2rem;
