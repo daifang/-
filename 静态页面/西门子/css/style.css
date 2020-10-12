@@ -1,0 +1,171 @@
+/* 注册页 */
+html,body{
+    width: 100%;
+    margin: 0 auto;
+    font: 62.5%;
+    scrollbar-width: none;
+}
+::-webkit-scrollbar{
+    display: none;
+}
+@media screen and (max-width: 1100px){
+    html,body{
+        overflow: hidden;
+    }
+}
+@media screen and (min-width: 1100px){
+    html,body{
+        overflow: scroll;
+    }
+}
+#sign_bg{
+    margin-left: 0;
+    width: 100%;
+    height: 100%;
+}
+#div1{
+    width: 90%;
+    left: 5%;
+    height: 30rem;
+    position: absolute;
+    top: 15%;
+    display: flex;
+    flex-direction: column;
+}
+#title{
+    font-size: 1.1rem;
+    text-align: center;
+    color: #ffb900;
+    display: block;
+    height: 3rem;
+}
+#title>span{
+    border-bottom: 2px #ffb900 solid;
+    padding-bottom: 5px;
+    display: inline-block;
+}
+.input{
+    width: 85%;
+    margin-left: 7.5%;
+    height: 3rem;
+    background-color: #ffffff;
+    margin-top: 1rem;
+    display: flex;
+}
+.input>input{
+    height: 95%;
+    width: 83%;
+    outline: none;
+    border: none;
+    font-size: 1rem;
+    text-indent: 1rem;
+}
+.input>select{
+    height: 95%;
+    width: 83%;
+    outline: none;
+    border: none;
+    font-size: 1rem;
+    text-indent: 1rem;
+    appearance: none;
+    background: url(../img/down.png) no-repeat;
+    background-position: 95% 50%;
+    background-size: 1.5rem;
+    font-weight: 600;
+}
+.input>input::placeholder{
+    color: black;
+    font-weight: 600;
+}
+.input>img{
+    transform: scale(0.6);
+}
+.bottom{
+    width: 85%;
+    margin-left: 7.5%;
+    background-color: #ffb900;
+    text-align: center;
+    font-size: 1.2rem;
+    height: 2.8rem;
+    margin-top: 2rem;
+    color: white;
+    line-height: 2.8rem;
+}
+.br{
+    height: 60%;
+    width: 1.5px;
+    background-color: rgb(218, 218, 218);
+    margin-top: 3%;
+}
+#sign_success{
+    position: absolute;
+    top: 25%;
+    width: 80%;
+    left: 10%;
+}
+#div2{
+    width: 30%;
+    left: 65%;
+    height: 30rem;
+    position: absolute;
+    top: 30%;
+    display: flex;
+    flex-direction: column;
+}
+#sign_bg_pc{
+    width: 100%;
+}
+.input_pc{
+    width: 85%;
+    margin-left: 7.5%;
+    height: 3.5rem;
+    background-color: #ffffff;
+    margin-top: 1rem;
+    display: flex;
+}
+.input_pc>input{
+    height: 95%;
+    width: 83%;
+    outline: none;
+    border: none;
+    font-size: 1rem;
+    text-indent: 1rem;
+}
+.input_pc>select{
+    height: 95%;
+    width: 83%;
+    outline: none;
+    border: none;
+    font-size: 1rem;
+    text-indent: 1rem;
+    appearance: none;
+    background: url(../img/down.png) no-repeat;
+    background-position: 100% 50%;
+    background-size:2rem;
+    font-weight: 600;
+}
+.input_pc>input::placeholder{
+    color: black;
+    font-weight: 600;
+}
+.input_pc>img{
+    transform: scale(0.6);
+}
+.bottom_pc{
+    width: 85%;
+    margin-left: 7.5%;
+    background-color: #ffb900;
+    text-align: center;
+    font-size: 1.2rem;
+    height: 3rem;
+    margin-top: 2rem;
+    color: white;
+    line-height: 3rem;
+}
+#success_msg{
+    position: absolute;
+    top: 25%;
+    left: 33%;
+    width: 30%;
+
+}
