@@ -58,7 +58,7 @@ html,body{
     display: flex;
 }
 .input>input{
-    height: 95%;
+    height: 90%;
     width: 83%;
     outline: none;
     border: none;
