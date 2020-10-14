@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>问卷调查</title>
+</head>
+<body>
+    <!-- 背景 -->
+    <img src="./img/exam_bg_pc.jpg" id="sign_bg_pc"/>
+    <div id="div3">
+        <!-- 第一题 -->
+        <div>
+            <span style="font-size: 16px;">您如何预测2021年贵司的业务增长？</span><span style="font-size: 10px;">(单选)</span>
+            <p style="font-size: 10px;margin-top: 0px;">How do you forecast your business growth in 2021?(Single choice)</p>
+            <p>
+                <input type="radio" name="check" value="A" id="A"/>
+                <span class="check_items">A、</span>
+                <label for="A">下降 (decrease)</label>     
+            </p>
+            <p>
+                <input type="radio" name="check" value="B" id="B"/>
+                <span class="check_items">B、</span>
+                <label for="B">略有下降 (slightly decrease)</label> 
+            </p>
+            <p>
+                <input type="radio" name="check" value="C" id="C"/>
+                <span class="check_items">C、</span>
+                <label for="C">持平 (keep flat)</label>    
+            </p>
+            <p>
+                <input type="radio" name="check" value="D" id="D"/>
+                <span class="check_items">D、</span>
+                <label for="D">略有增长 (slightly increase)</label> 
+            </p>
+            <p>
+                <input type="radio" name="check" value="E" id="E"/>
+                <span class="check_items">E、</span>
+                <label for="E">增长 (increase)</label>    
+            </p>
+        </div>
+        <!-- 第二题 -->
+        <div>
+            <span style="font-size: 16px;">2021年，对贵司业务最具挑战的课题是什么？</span>
+            <p style="font-size: 10px;margin-top: 0px;">What is the most challenging topic for your business in 2021？</p>
+            <div id="edit_pc" contenteditable="true" contextmenu="true"></div>
+        </div>
+        <!-- 继续 -->
+        <div class="bottom_exam_pc">
+            继&nbsp;&nbsp; 续
+        </div>
+    </div>
+</body>
+</html>

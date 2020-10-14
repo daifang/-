@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>title</title>
+    <style>
+        body,html{
+            width: 100%;
+            height: 100%;
+            margin:0 auto;
+            font-size: 62.5%;
+            background-color: #f9f9f9;
+        }
+        #header{
+            width: 100%;
+            height: 5%;
+            background-color: #f9f9f9;
+        }
+        #header>span{
+            display: inline-block;
+            width: auto;
+            height: 65%;
+            margin-top: 3%;
+            margin-left: 25%;
+            font-size: 1.3rem;
+        }
+        .unActive{
+            color: #666666;
+        }
+        .active{
+            border-bottom: 1.5px solid #0076ce;
+            color: #0076ce;
+        }
+        .hidden{
+            display: none;
+        }
+        .show{
+            display: block;
+        }
+        #one{
+            width: 100%;
+            position: absolute;
+            top: 6%;
+            height: 80%;
+        }
+        #two{
+            width: 100%;
+            position: absolute;
+            top: 6%;
+            height: 80%;
+        }
+        .items{
+            width: 100%;
+            min-height: 11rem;
+            border-radius: 2rem;
+            background-color: white;
+            height: auto;
+        }
+        input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+            text-align: center;
+            vertical-align: middle;
+            line-height: 18px;
+            margin-right: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        input[type="checkbox"]::before {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: #fff;
+            width: 100%;
+            height: 100%;
+            border: 0.2rem solid #999999;
+            border-radius: 4px;
+        }
+        
+        input[type="checkbox"]:checked::before {
+            content: "✓";
+            background-color: #0076ce;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 90%;
+            height: 90%;
+            border: 1px solid #0076ce;
+            border-radius:4px;
+            color: #ffffff;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .checkbox{
+            width: 10%;
+            height: 35%;
+            float: left;
+            margin-top: 3.5%;
+            margin-left: 5%;
+        }
+        .create{
+            width: 15%;
+            height: 2rem;
+            position: relative;
+            float: left;
+            border:1px solid  #0076ce;
+            border-radius: 8px;
+            color: #0076ce;
+            line-height: 2rem;
+            text-align: center;
+            left: -5%;
+            top:3rem;
+        }
+        .more{
+            width: 89%;
+            float: left;
+            margin-left: 5%;
+            line-height: 2rem;
+        }
+        .br{
+            width: 0.5rem;
+            height: 1rem;
+            background-color: #0076ce;
+            display: inline-block;
+        }
+        .hb{
+            width: 100%;
+            height: 0.5px;
+            background-color: #999999;
+            margin-top: 1rem;
+        }
+        .title{
+            margin-top: 0.5rem;
+            font-size: 1.3rem;
+            color: #999999;
+
+        }
+        .content{
+            margin-top: 0.5rem;
+        }
+        .clearfloat{
+            clear:both;
+            height:0;
+            font-size:1px;
+            line-height:0px;
+        }
+        .button{
+            position: absolute;
+            bottom: 0rem;
+            height: 10%;
+            width: 100%;
+            align-items: center;
+            justify-content: space-around;
+            background-color: #66666600;
+        }
+        .button_1{
+            width: 40%;
+            text-align: center;
+            line-height: 3.5rem;
+            height: 3.5rem;
+            font-size: 1.4rem;
+            color: #0076ce;
+            border: 0.5px solid #0076ce;
+            border-radius: 0.5rem;
+        }
+        .button_2{
+            width: 45%;
+            text-align: center;
+            line-height: 4rem;
+            height: 4rem;
+            font-size: 1.4rem;
+            color: white;
+            background-color: #0076ce;
+            border-radius: 0.5rem;
+            
+        }
+    </style>
+</head>
+<body>
+    <!-- 切换栏 -->
+    <div id="header">
+        <span class="active" id="online">线上活动</span>
+        <span id="outline">线下活动</span>
+    </div>
+    <!-- 内容 -->
+    <div id="one">
+        <div class="items">
+            <img style="display: block;margin-left: 2rem;margin-top: 1.5rem;float: left;" src="./img/img.jpg" width="80"/>
+            <div style="display:flex;flex-direction: column;width: 55%;color:#666666;margin-left: 1rem;height: auto;margin-top: 1.5rem;float: left;">
+                <span style="width: 100%;font-size: 1.4rem;color:#666666;height: 5rem;line-height: 2.5rem;">后疫情时期，高等教育面临数字化转型新课题线上研讨会</span>
+                <span style="opacity: 0;">活动时间：2020-09-09 07:00</span>
+                <span>活动时间：2020-09-09 07:00</span>
+            </div>  
+            <div class="checkbox">
+                <input autocomplate="off" class="checkbox_input" type="checkbox" name="" id="">
+            </div>
+            <div class="create">生成海报</div>
+            <div class="more">
+                <div class="hb"></div>
+                <div class="title hidden open">
+                    <div class="br"></div>
+                    <span>活动简介</span>
+                </div>
+                <div class="content hidden open">
+                    近年来,随着“人工智能”深入应用到各行各业，未来企业工作环境也将进入AI时代，企业的工作场景也将更加灵活和多样性，台式机电脑作为一台智能终端，不仅需要高性能配置，而且需要具有智能化系统，同时根据不同行业场景特点，寻找到合适的桌面终端设备。 
+本次研讨会将为大家深度解析戴尔全新智能商用台式机产品，包括
+OptiPlex3000/5000/7000系列，以及专为中国用户设计的成铭3991系列产品。此次新品性能得到全面提升，它搭载了Dell Optimizer智能调优软件，同时采用全新机箱设计／高度集成模块化设计／免工具设计，立足教育、互联网、制造业、医疗行业的应用场景，真正满足客户对创新产品的渴望,轻松解决了客户的三大诉求——随时随地就绪、沉浸式工作体验，协同工作需求。戴尔科技集团将为您提供现代化的技术、产品和解决方案，为企业在“人工智能”时代提供助力。
+                </div>
+                <p style="margin-top: 1rem;text-align: center;">
+                    <span style="width: auto;display: inline-block;" id="open">查看更多</span>
+                    <img src="./img/top.jpg" width="10" style="transform: rotate(180deg);" class="open"/>
+                </p>
+            </div>
+            <div class="clearfloat"></div>
+        </div>
+    </div>
+    <div id="two" class="hidden">
+        <div class="items">
+            <img style="display: block;margin-left: 2rem;margin-top: 1.5rem;float: left;" src="./img/img.jpg" width="80"/>
+            <div style="display:flex;flex-direction: column;width: 55%;color:#666666;margin-left: 1rem;height: auto;margin-top: 1.5rem;float: left;">
+                <span style="width: 100%;font-size: 1.4rem;color:#666666;height: 5rem;line-height: 2.5rem;">后疫情时期，高等教育面临数字化转型新课题线上研讨会</span>
+                <span>活动时间：2020-09-09 07:00</span>
+                <span>活动地点：北京</span>
+            </div>  
+            <div class="checkbox">
+                <input autocomplate="off" class="checkbox_input" type="checkbox" name="" id="">
+            </div>
+            <div class="create">生成海报</div>
+            <div class="more">
+                <div class="hb"></div>
+                <div class="title hidden open">
+                    <div class="br"></div>
+                    <span>活动简介</span>
+                </div>
+                <div class="content hidden open">
+                    近年来,随着“人工智能”深入应用到各行各业，未来企业工作环境也将进入AI时代，企业的工作场景也将更加灵活和多样性，台式机电脑作为一台智能终端，不仅需要高性能配置，而且需要具有智能化系统，同时根据不同行业场景特点，寻找到合适的桌面终端设备。 
+本次研讨会将为大家深度解析戴尔全新智能商用台式机产品，包括
+OptiPlex3000/5000/7000系列，以及专为中国用户设计的成铭3991系列产品。此次新品性能得到全面提升，它搭载了Dell Optimizer智能调优软件，同时采用全新机箱设计／高度集成模块化设计／免工具设计，立足教育、互联网、制造业、医疗行业的应用场景，真正满足客户对创新产品的渴望,轻松解决了客户的三大诉求——随时随地就绪、沉浸式工作体验，协同工作需求。戴尔科技集团将为您提供现代化的技术、产品和解决方案，为企业在“人工智能”时代提供助力。
+                </div>
+                <p style="margin-top: 1rem;text-align: center;">
+                    <span style="width: auto;display: inline-block;" id="open">查看更多</span>
+                    <img src="./img/top.jpg" width="10" style="transform: rotate(180deg);" class="open"/>
+                </p>
+            </div>
+            <div class="clearfloat"></div>
+        </div>
+    </div>
+    <!-- 按钮 -->
+    <div class="button" style="background-color: white;align-items: center;display: flex;">
+        <div class="button_1 button_style" id="back">返回上一页</div>
+        <div class="button_2 button_style" id="yes">确认</div>
+    </div>
+    <script>
+        window.onload = ()=>{
+            let online = document.getElementById('online');
+            let outline = document.getElementById('outline');
+            let one = document.getElementById('one');
+            let two = document.getElementById('two');
+            let open = document.getElementById('open');
+            online.addEventListener('click',(e)=>{
+                one.classList.add('show');
+                two.classList.remove('show');
+                two.classList.add('hidden');
+                online.classList.add('active');
+                outline.classList.remove('active');
+            });
+            outline.addEventListener('click',(e)=>{
+                two.classList.add('show');
+                one.classList.remove('show');
+                one.classList.add('hidden');
+                outline.classList.add('active');
+                online.classList.remove('active');
+            });
+            open.addEventListener('click',(e)=>{
+                console.log(e.target.innerHTML);
+                if(e.target.innerHTML == '查看更多'){
+                    //展开
+                    document.getElementsByClassName('open')[0].classList.remove('hidden');
+                    document.getElementsByClassName('open')[1].classList.remove('hidden');
+                    document.getElementsByClassName('open')[0].classList.add('show');
+                    document.getElementsByClassName('open')[1].classList.add('show');
+                    //改变文字和图片指向
+                    e.target.innerHTML = '收起';
+                    document.getElementsByClassName('open')[2].style.transform = '';
+                }else{
+                    //合并
+                    document.getElementsByClassName('open')[0].classList.remove('show');
+                    document.getElementsByClassName('open')[1].classList.remove('show');
+                    document.getElementsByClassName('open')[0].classList.add('hidden');
+                    document.getElementsByClassName('open')[1].classList.add('hidden');
+                    //改变文字和图片指向
+                    e.target.innerHTML = '查看更多';
+                    document.getElementsByClassName('open')[2].style.transform = 'rotate(180deg)';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

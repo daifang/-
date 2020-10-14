@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>问卷调查</title>
+    <style>
+        body,html{
+            overflow: scroll;
+            font-size: 62.5%;
+        }
+        .check{
+            vertical-align:top;
+            height:2rem;
+            margin-top:0;
+        }
+        .text{
+            vertical-align:text-top;
+            height:2rem;
+            margin-top:0;
+        }
+    </style>
+</head>
+<body>
+    <img src="./img/exam_bg.jpg" id="exam_bg"/>
+    <img src="./img/logo.png" id="logo" width="100"/>
+    <div id="div4">
+        <div id="title1">
+            <span>问卷调查</span>
+       </div>
+               <!-- 第一题 -->
+               <div style="padding-left: 15%;padding-top: 5%;width: 75%;">
+                <span style="font-size: 1.4rem;font-weight: 600;">您如何预测2021年贵司的业务增长？</span><span style="font-size: 10px;">(单选)</span>
+                <p style="font-size: 0.8rem;margin-top: 0px;">How do you forecast your business growth in 2021?(Single choice)</p>
+                <p style="font-size: 1.3rem;height: 2rem;">
+                    <input class="check" style="vertical-align:top;height:2rem;margin-top:0;" type="radio" name="check" value="A" id="A"/>
+                    <span  class="check_items text">A、</span>
+                    <label class="text" for="A">下降 (decrease)</label>     
+                </p>
+                <p style="font-size: 1.3rem;height: 2rem;">
+                    <input class="check" type="radio" name="check" value="B" id="B"/>
+                    <span class="check_items text">B、</span>
+                    <label class="text" for="B">略有下降 (slightly decrease)</label> 
+                </p>
+                <p style="font-size: 1.3rem;height: 2rem;">
+                    <input class="check" type="radio" name="check" value="C" id="C"/>
+                    <span class="check_items text">C、</span>
+                    <label class="text" for="C">持平 (keep flat)</label>    
+                </p>
+                <p style="font-size: 1.3rem;height: 2rem;">
+                    <input class="check" type="radio" name="check" value="D" id="D"/>
+                    <span class="check_items text">D、</span>
+                    <label class="text" for="D">略有增长 (slightly increase)</label> 
+                </p>
+                <p style="font-size: 1.3rem;height: 2rem;">
+                    <input class="check" type="radio" name="check" value="E" id="E"/>
+                    <span class="check_items text">E、</span>
+                    <label class="text" for="E">增长 (increase)</label>
+                </p>
+            </div>
+            <!-- 第二题 -->
+            <div style="padding-left: 15%;width: 75%;">
+                <span style="font-size: 1.4rem;font-weight: 600;">2021年，对贵司业务最具挑战的课题是什么？</span>
+                <p style="font-size: 0.8rem;margin-top: 0px;">What is the most challenging topic for your business in 2021？</p>
+                <textarea id="edit" contenteditable="true" contextmenu="true"></textarea>
+            </div>
+            <!-- 继续 -->
+            <div class="bottom_exam_pc" style="margin-left: 15%;width: 70%;">
+                继&nbsp;&nbsp; 续
+            </div>
+    </div>
+</body>
+</html>
