@@ -20,7 +20,7 @@
         - ### TestDetail1.js : 错题(从Test跳转，考完试)
         - ###  Section.js : 看完视频，点击按钮考试页
         - ### Sets.js : 设置
-        - ### Test.js : 考试页
+        - ### Test.js : 考试页（最烂的一页）
     - App.js : 哈希地址的配置
     - index.js : 页面输出文件，不用改
     - serviceWorker.js/setupTests.js : 配置文件
