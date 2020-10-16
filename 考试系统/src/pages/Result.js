@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../css/result.css';
 import Axios from 'axios';
+//查询成绩页
 export default class Result extends Component {
     constructor(){
         super();
@@ -20,6 +21,7 @@ export default class Result extends Component {
     componentDidMount(){
         this.load();
         document.getElementById('result_list').addEventListener('scroll',(e)=>{
+            //监听滚动条，如果滚动条到底，加载数据
             let isLoad = this.isBottom(e);
             if(isLoad){
                 this.setState({
@@ -27,7 +29,6 @@ export default class Result extends Component {
                 },()=>{
                     this.load();
                 })
-                
             }
             else
                 return false;
@@ -57,6 +58,7 @@ export default class Result extends Component {
                 // console.log('data');
                 // console.log(res);
                 this.setState({
+                    //拼合新旧数据
                     data:this.state.data.concat(res.data.data)
                 })
             };

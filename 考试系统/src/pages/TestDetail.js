@@ -1,5 +1,6 @@
 import Axios from 'axios';
 import React, { Component } from 'react';
+//从ResultDetail进入的题目回顾
 export default class Test extends Component {
     constructor(){
         super();

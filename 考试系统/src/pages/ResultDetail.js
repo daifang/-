@@ -1,7 +1,7 @@
 import Axios from 'axios';
 import React, { Component } from 'react';
 var i=0;
-
+//成绩查询进入的详情
 export default class ResultDetail extends Component {
     constructor(){
         super();

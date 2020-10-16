@@ -1,5 +1,6 @@
 import Axios from 'axios';
 import React, { Component } from 'react';
+//考试页，通过路由参数判断考试类型
 export default class Test extends Component {
     constructor(){
         super();

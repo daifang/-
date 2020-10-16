@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+//输入框组件
 export default class Input extends Component {
     constructor(){
         super();   

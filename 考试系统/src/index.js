@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './css/index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-
+//渲染App
 ReactDOM.render(
   <React.StrictMode>
     <App />

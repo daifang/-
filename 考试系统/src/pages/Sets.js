@@ -1,6 +1,7 @@
 import Axios from 'axios';
 import React, { Component } from 'react'
 import '../css/sets.css';
+//设置页
 export default class Sets extends Component {
     constructor(){
         super();

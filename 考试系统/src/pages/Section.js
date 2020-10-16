@@ -1,6 +1,6 @@
 import Axios from 'axios';
 import React, { Component } from 'react';
-
+//章节测试页，有看完视频显示按钮的页
 export default class Section extends Component {
     constructor(){
         super();

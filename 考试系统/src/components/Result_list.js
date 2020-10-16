@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Axios from 'axios'
+import Axios from 'axios';
+//没用
 export default class Result_list extends Component {
     constructor(){
         super();

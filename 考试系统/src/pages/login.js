@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Input from '../components/Input';
 import '../css/login.css';
 import Button from '../components/Button';
+//登录
 export default class login extends Component {
     constructor(){
         super();

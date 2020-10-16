@@ -1,6 +1,6 @@
 import Axios from 'axios';
 import React, { Component } from 'react'
-
+//消息页，这个功能还没上
 export default class Msg extends Component {
 
     constructor(){

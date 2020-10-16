@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 var i=0;
+//考完试进入的成绩详情页
 export default class ResultDetail1 extends Component {
     constructor(){
         super();

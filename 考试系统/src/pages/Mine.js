@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../css/Mine.css';
 import axios from 'axios';
-
+//首页
 export default class Mine extends Component {
     constructor(){
         super();

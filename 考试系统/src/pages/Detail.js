@@ -1,6 +1,7 @@
 import Axios from 'axios';
 import React, { Component } from 'react';
 import '../css/details.css';
+//个人信息页
 export default class Detail extends Component {
     constructor(){
         super();

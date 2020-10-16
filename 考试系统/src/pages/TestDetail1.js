@@ -1,5 +1,6 @@
 
 import React, { Component } from 'react';
+//从ResultDetail1进入的题目回顾
 export default class Test extends Component {
     constructor(){
         super();

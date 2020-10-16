@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+//按钮组件
 export default class Button extends Component {
     constructor(){
         super();

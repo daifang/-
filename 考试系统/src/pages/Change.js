@@ -1,6 +1,7 @@
 import Axios from 'axios';
 import React, { Component } from 'react';
 import '../css/change.css';
+//修改信息
 export default class Change extends Component {
     constructor(){
         super();

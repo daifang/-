@@ -17,7 +17,7 @@ import Test from './pages/Test';
 import TestDetail from './pages/TestDetail';
 import ResultDetail1 from './pages/ResultDetail1';
 import TestDetail1 from './pages/TestDetail1';
-
+//这个是  路由的配置页，哈希地址， # 后的地址
 function App() {
   return (
     <div className="App">
