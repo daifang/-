@@ -37,7 +37,7 @@ export default class ResultDetail extends Component {
                 localStorage.setItem('userId','');
                 window.location.hash = '/';
             }else{
-                console.log(res.data);
+                // console.log(res.data);
                 this.setState({
                     data:res.data
                 },()=>{

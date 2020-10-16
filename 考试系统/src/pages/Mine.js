@@ -18,7 +18,7 @@ export default class Mine extends Component {
                 Authorization:localStorage.getItem('userId')
             }
         }).then(res=>{
-            console.log(res);
+            // console.log(res);
             if(res.data.status == 40301){
                 alert('登录状态已过期,请重新登录');
                 localStorage.setItem('userId','');

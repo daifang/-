@@ -13,7 +13,7 @@ export default class ResultDetail1 extends Component {
             },
             questionType:['','单选题','多选题','判断题']
         }
-        console.log(this.state.data);
+        // console.log(this.state.data);
     }
     componentDidMount(){
         document.title = '考试成绩结果';
@@ -25,12 +25,14 @@ export default class ResultDetail1 extends Component {
             })
         }
         window.addEventListener('storage',()=>{
-            console.log(1);
+            // console.log(1);
             this.componentDidMount();
         })
     }
     componentWillUnmount(){
-        window.removeEventListener('storage',()=>{console.log('remove')});
+        window.removeEventListener('storage',()=>{
+            // console.log('remove')
+        });
         i=0
     }
     render() {
@@ -126,7 +128,7 @@ export default class ResultDetail1 extends Component {
                                        {
                                                 val.question_array.map((val1,idx1)=>{
                                                     i++;
-                                                    console.log(val1);
+                                                    // console.log(val1);
                                                     return(
                                                         <li style={{
                                                             width:'35px',

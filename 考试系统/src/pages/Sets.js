@@ -18,7 +18,7 @@ export default class Sets extends Component {
                 Authorization:localStorage.getItem('userId')
             }
         }).then(res=>{
-            console.log(res);
+            // console.log(res);
             if(res.data.status == 40301){
                 localStorage.setItem('userId','');
                 window.location.hash = '/';
@@ -27,7 +27,9 @@ export default class Sets extends Component {
                     option:res.data.data
                 })
             }
-        }).catch((e)=>console.log(e));
+        }).catch((e)=>
+            console.log(e)
+        );
     }
     render() {
         return (

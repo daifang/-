@@ -26,7 +26,7 @@ export default class Section extends Component {
                 localStorage.setItem('userId','');
                 window.location.hash = '/';
             }else{
-                console.log(res);
+                // console.log(res);
                 this.setState({
                     data_chapter:res.data.data
                 },()=>{
@@ -48,7 +48,7 @@ export default class Section extends Component {
                             this.setState({
                                 data:arr
                             },()=>{
-                                console.log(this.state.data);
+                                // console.log(this.state.data);
                             })
                         })
                     })
@@ -88,7 +88,7 @@ export default class Section extends Component {
                                     {
                                         //二级列表
                                         val.lesson_list.map(val1=>{
-                                            console.log(val1)
+                                            // console.log(val1)
                                             return(
                                                 <li 
                                                     className="sec_list"
@@ -151,7 +151,7 @@ export default class Section extends Component {
             let test_time = e.target.classList[0]*60000;
             localStorage.setItem('examTime',test_time);
             let date = (e.target.classList[1]+"").split('-').concat((e.target.classList[2]+"").split(':'));//考试时间
-            console.log(date);
+            // console.log(date);
             date.map(val=>{
                 val = val*1;
             })

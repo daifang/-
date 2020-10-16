@@ -22,7 +22,7 @@ export default class Final extends Component {
             this.setState({
                 courseId : res.data.course_id
             },()=>{
-                console.log(this.state.courseId)
+                // console.log(this.state.courseId)
                 Axios({
                     method:'post',
                     data: {

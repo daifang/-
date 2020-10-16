@@ -71,17 +71,17 @@ export default class Test extends Component {
                                                     eval(val1.answer_right).map(val3=>{
                                                         val1.selectList.map(val2=>{
                                                             if(val3 == val2.select_id){
-                                                                console.log(val2,val3);
+                                                                // console.log(val2,val3);
                                                                  val2.checked = true;
                                                             }
                                                         })
                                                         if(val1.user_answer){
-                                                            console.log('user');
+                                                            // console.log('user');
                                                             val1.user_answer.map(val4=>{
                                                                 if(val4 != val3){
                                                                     val1.selectList.map(val5=>{
                                                                         if(val4 == val5.select_id){
-                                                                            console.log('error');
+                                                                            // console.log('error');
                                                                             val5.error = true;
                                                                         }
                                                                     })        
@@ -90,12 +90,12 @@ export default class Test extends Component {
                                                         }
 
                                                     })
-                                                    console.log(this.state.data_list);
+                                                    // console.log(this.state.data_list);
                                                 }
                                                 }else{
                                                     //多选
                                     if(val1.answer_right){
-                                        console.log('right');
+                                        // console.log('right');
                                         eval(val1.answer_right).map(val3=>{
                                            val1.selectList.map(val2=>{
                                                 // val2.checked = false;
@@ -104,7 +104,7 @@ export default class Test extends Component {
                                                 }
                                             })
                                             if(val1.user_answer){
-                                                console.log('user');
+                                                // console.log('user');
                                                 val1.user_answer.map(val4=>{
                                                     if(val1.answer_right.indexOf(val4) == -1){
                                                         //未找到
@@ -171,17 +171,17 @@ export default class Test extends Component {
                                     eval(val1.answer_right).map(val3=>{
                                         val1.selectList.map(val2=>{
                                             if(val3 == val2.select_id){
-                                                console.log(val2,val3);
+                                                // console.log(val2,val3);
                                                  val2.checked = true;
                                             }
                                         })
                                         if(val1.user_answer){
-                                            console.log('user');
+                                            // console.log('user');
                                             val1.user_answer.map(val4=>{
                                                 if(val4 != val3){
                                                     val1.selectList.map(val5=>{
                                                         if(val4 == val5.select_id){
-                                                            console.log('error');
+                                                            // console.log('error');
                                                             val5.error = true;
                                                         }
                                                     })        
@@ -190,12 +190,12 @@ export default class Test extends Component {
                                         }
 
                                     })
-                                    console.log(this.state.data_list);
+                                    // console.log(this.state.data_list);
                                 }
                                 }else{
                                     //多选
                                     if(val1.answer_right){
-                                        console.log('right');
+                                        // console.log('right');
                                         eval(val1.answer_right).map(val3=>{
                                            val1.selectList.map(val2=>{
                                                 // val2.checked = false;
@@ -204,7 +204,7 @@ export default class Test extends Component {
                                                 }
                                             })
                                             if(val1.user_answer){
-                                                console.log('user');
+                                                // console.log('user');
                                                 val1.user_answer.map(val4=>{
                                                     if(val1.answer_right.indexOf(val4) == -1){
                                                         //未找到
@@ -226,7 +226,7 @@ export default class Test extends Component {
                         this.setState({
                             data:question_list
                         },()=>{
-                            console.log(this.state.data_list);
+                            // console.log(this.state.data_list);
                         });
                     })
                 }
@@ -234,7 +234,7 @@ export default class Test extends Component {
         }
     }
     render() {
-        console.log(this.state.data_list);
+        // console.log(this.state.data_list);
         if(this.state.data.length > 0)
         return(
             <div style = {{display:'flex',flexDirection:'column',height:'100%'}}>

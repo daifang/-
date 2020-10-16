@@ -17,7 +17,7 @@ export default class Detail extends Component {
             },
             url:'/api/student/studentInformation/getStudentInformation'
         }).then(res=>{
-            console.log(res);
+            // console.log(res);
             this.setState({
                 data:res.data
             })

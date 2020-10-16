@@ -23,7 +23,7 @@ export default class Msg extends Component {
             },
             url:'/api/student/studentInformation/getMsgList'
         }).then(res=>{
-            console.log(res);
+            // console.log(res);
         })
     }
     render() {

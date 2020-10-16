@@ -23,7 +23,7 @@ export default class Final extends Component {
             },
             url:'/api/student/examination/getFinalExamSimpleInfo'
         }).then((response) => {
-            console.log(response);
+            // console.log(response);
             if(response.data.status == 40301){
                 alert('登录过期,重新登陆');
                 localStorage.setItem('userId','');
@@ -106,7 +106,7 @@ export default class Final extends Component {
         let test_time = this.state.data.answer_time*60000;//分钟
         localStorage.setItem('examTime',test_time);
         let date = e.target.id.split(' ')[0].split('-').concat(e.target.id.split(' ')[1].split(':'));//考试时间
-        console.log(date);
+        // console.log(date);
         date.map(val=>{
             val = val*1;
         })

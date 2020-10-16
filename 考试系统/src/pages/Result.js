@@ -34,7 +34,7 @@ export default class Result extends Component {
         })
     }
     load = ()=>{
-        console.log('加载');
+        // console.log('加载');
         //加载
         Axios({
             url:'/api/student/examination/'+this.state.pageType[this.state.type],
@@ -55,7 +55,7 @@ export default class Result extends Component {
             }else{
                 //拼接数据
                 // console.log('data');
-                console.log(res);
+                // console.log(res);
                 this.setState({
                     data:this.state.data.concat(res.data.data)
                 })
@@ -215,7 +215,7 @@ export default class Result extends Component {
             type:e.target.id,
             data:[]
         },()=>{
-            console.log('清空并请求');
+            // console.log('清空并请求');
             this.componentDidMount();
         });
         //改变样式 20% -> 70%  滑动
@@ -233,8 +233,8 @@ export default class Result extends Component {
     }
 
     goTo = (e,url)=>{
-        console.log(url);
-        console.log(e.target);
+        // console.log(url);
+        // console.log(e.target);
         window.location.hash = url + e.target.id + "&" + this.state.type;
     }
     getDetail = (e)=>{

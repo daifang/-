@@ -68,7 +68,7 @@ export default class Test extends Component {
                         window.location.hash = '/Mine';
                     }
                     else{
-                        console.log(res);
+                        // console.log(res);
                         localStorage.setItem('test',JSON.stringify(res.data.data));
                         this.setState({
                             data_list:res.data.data.questionList,
@@ -116,7 +116,7 @@ export default class Test extends Component {
                         window.location.hash = '/Mine'
                     }
                     else{
-                        console.log(res.data);
+                        // console.log(res.data);
                         localStorage.setItem('test',JSON.stringify(res.data.data));
                         this.setState({
                             data_list:res.data.data.questionList,
@@ -139,7 +139,7 @@ export default class Test extends Component {
                             this.setState({
                                 data:question_list
                             },()=>{
-                                console.log(this.state.hand_data);
+                                // console.log(this.state.hand_data);
                             });
                         })
                     }
@@ -178,7 +178,7 @@ export default class Test extends Component {
         this.state.timer&&clearInterval(this.state.timer)
     }
     render() {
-        console.log(this.state.data);
+        // console.log(this.state.data);
         if(this.state.data.length > 0)
         return(
             <div style = {{display:'flex',flexDirection:'column',height:'100%'}}>
@@ -444,7 +444,7 @@ export default class Test extends Component {
         this.setState({
             question_num:this.state.question_num +1 == this.state.data.length?this.state.question_num:this.state.question_num + 1
         })
-        console.log(this.state.question_num);
+        // console.log(this.state.question_num);
         if(this.state.question_num+1 == this.state.data.length){
             let yes = window.confirm('是否要交卷');
             if(yes == true){
@@ -461,7 +461,7 @@ export default class Test extends Component {
         })
     }
     hand = (e)=>{
-        console.log('交卷');
+        // console.log('交卷');
         document.getElementById('card').style.display = 'block';
         document.getElementById('select_list').style.display = 'none';
         let arr_xz=[],
@@ -481,7 +481,7 @@ export default class Test extends Component {
                 }
             })
         this.state.questionList = q_list;
-        console.log(this.state.questionList)
+        // console.log(this.state.questionList)
     }
     handler = (e,num)=>{
         // console.log(e.target.checked);
@@ -550,7 +550,7 @@ export default class Test extends Component {
     }
     change_nr=(q)=>{
         if(this.state.type == 'final'){
-            console.log('期末交卷');
+            // console.log('期末交卷');
             let arr_xz=[],
             arr_dx=[],
             arr_pd=[],
@@ -595,7 +595,7 @@ export default class Test extends Component {
                         Authorization:localStorage.getItem('userId')
                     }
                 }).then((res)=>{
-                    console.log(res);
+                    // console.log(res);
                     if(res.data.code == 0){
                         alert("提交成功！");
                         let str = JSON.stringify(res.data.data);
@@ -636,7 +636,7 @@ export default class Test extends Component {
                             Authorization:localStorage.getItem('userId')
                         }
                     }).then((res)=>{
-                        console.log(res);
+                        // console.log(res);
                         if(res.data.code == 0){
                             alert("提交成功！");
                             let str = JSON.stringify(res.data.data);
@@ -678,7 +678,7 @@ export default class Test extends Component {
                             Authorization:localStorage.getItem('userId')
                         }
                     }).then((res)=>{
-                        console.log(res);
+                        // console.log(res);
                         if(res.data.code == 0){
                             alert("提交成功！");
                             let str = JSON.stringify(res.data.data);
@@ -688,7 +688,7 @@ export default class Test extends Component {
                             // window.location.hash = '/resultDetail/';
                             return true;
                         }else{
-                            console.log(res);
+                            // console.log(res);
                             alert(res.data.msg);
                             // window.location.hash = '/';
                             return false;
@@ -716,7 +716,7 @@ export default class Test extends Component {
             temp2 = JSON.parse(localStorage.getItem('id')),
             temp3 = Number.parseInt(localStorage.getItem("testTime")/60),
             temp4 = JSON.parse(localStorage.getItem("test"))
-            console.log(temp3);
+            // console.log(temp3);
             this.state.data.map(val=>{
                 switch(val.question_class){
                     case 1:arr_xz.push(val)
@@ -754,7 +754,7 @@ export default class Test extends Component {
                         Authorization:localStorage.getItem('userId')
                     }
                 }).then((res)=>{
-                    console.log(res);
+                    // console.log(res);
                     if(res.data.code == 0){
                         alert("提交成功！");
                         localStorage.setItem('type','normal');
@@ -798,7 +798,7 @@ export default class Test extends Component {
                         Authorization:localStorage.getItem('userId')
                     }
                 }).then((res)=>{
-                    console.log(res);
+                    // console.log(res);
                     if(res.data.code == 0){
                         alert("提交成功！");
                         let str = JSON.stringify(res.data.data);
@@ -843,7 +843,7 @@ export default class Test extends Component {
                             Authorization:localStorage.getItem('userId')
                         }
                     }).then((res)=>{
-                        console.log(res);
+                        // console.log(res);
                         if(res.data.code == 0){
                             alert("提交成功！");
                             let str = JSON.stringify(res.data.data);
