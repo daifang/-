@@ -165,7 +165,7 @@ export default class Result extends Component {
                                         </span>
                                         <span
                                         style={{
-                                            width:'20%',
+                                            width:'30%',
                                             lineHeight:'60px',
                                             textIndent:'8px',
                                             fontSize:'25px',

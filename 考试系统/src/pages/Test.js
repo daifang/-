@@ -602,11 +602,9 @@ export default class Test extends Component {
                         localStorage.setItem('result',str);
                         localStorage.setItem('type','final');
                         localStorage.removeItem('time');
-                        window.location.hash = '/resultDetail/';
                         return true;
                     }else{
                         alert(res.data.msg);
-                        window.location.hash = '/';
                         return false;
                     }
                 }).then(msg=>{
@@ -645,11 +643,11 @@ export default class Test extends Component {
                             localStorage.setItem('type','final');
                             localStorage.setItem('result',str);
                             localStorage.removeItem('time');
-                            window.location.hash = '/resultDetail/';
+                            // window.location.hash = '/resultDetail/';
                             return true;
                         }else{
                             alert(res.data.msg);
-                            window.location.hash = '/';
+                            // window.location.hash = '/';
                             return false;
                         }
                     }).then(msg=>{
@@ -687,12 +685,12 @@ export default class Test extends Component {
                             localStorage.setItem('type','final');
                             localStorage.setItem('result',str);
                             localStorage.removeItem('time');
-                            window.location.hash = '/resultDetail/';
+                            // window.location.hash = '/resultDetail/';
                             return true;
                         }else{
                             console.log(res);
                             alert(res.data.msg);
-                            window.location.hash = '/';
+                            // window.location.hash = '/';
                             return false;
                         }
                     }).then(msg=>{
@@ -706,7 +704,6 @@ export default class Test extends Component {
             }
         }else{
             //章节考试
-            console.log('章节交卷');
             let arr_xz=[],
             arr_dx=[],
             arr_pd=[],
@@ -718,7 +715,7 @@ export default class Test extends Component {
             let temp1 = JSON.parse(localStorage.getItem("userInfo")),
             temp2 = JSON.parse(localStorage.getItem('id')),
             temp3 = Number.parseInt(localStorage.getItem("testTime")/60),
-            temp4 = JSON.parse(localStorage.getItem("test"));
+            temp4 = JSON.parse(localStorage.getItem("test"))
             console.log(temp3);
             this.state.data.map(val=>{
                 switch(val.question_class){
@@ -764,11 +761,11 @@ export default class Test extends Component {
                         let str = JSON.stringify(res.data.data);
                         localStorage.setItem('result',str);
                         localStorage.removeItem('time');
-                        window.location.hash = '/resultDetail/';
+                        // window.location.hash = '/resultDetail/';
                         return true;
                     }else{
                         alert(res.data.msg);
-                        window.location.hash = '/';
+                        // window.location.hash = '/';
                         return false;
                     }
                 }).then(msg=>{
@@ -812,7 +809,7 @@ export default class Test extends Component {
                         return true;
                     }else{
                         alert(res.data.msg);
-                        window.location.hash = '/';
+                        // window.location.hash = '/';
                         return false;
                     }
                 }).then(msg=>{
@@ -853,11 +850,11 @@ export default class Test extends Component {
                             localStorage.setItem('type','normal');
                             localStorage.setItem('result',str);
                             localStorage.removeItem('time');
-                            window.location.hash = '/resultDetail/';
+                            // window.location.hash = '/resultDetail/';
                             return true;
                         }else{
                             alert(res.data.msg);
-                            window.location.hash = '/';
+                            // window.location.hash = '/';
                             return false;
                         }
                     }).then(msg=>{

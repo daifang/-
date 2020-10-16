@@ -85,7 +85,7 @@ export default class ResultDetail extends Component {
                             flexDirection:'column',
                             alignItems:"flex-start"
                         }}>
-                            <span style={{height:'auto',width:'90%',fontSize:'18px',overflowWrap:'break-word',marginLeft:'5%'}}>{`${(this.state.data.data.chapter_name?this.state.data.data.chapter_name:this.state.data.data.course_name) + " " + (this.state.data.data.lesson_name? this.state.data.data.lesson_name:this.state.data.data.page_name)}`}</span>
+                            <span style={{height:'auto',width:'90%',fontSize:'18px',overflowWrap:'break-word',marginLeft:'5%',marginTop:'5%'}}>{`${(this.state.data.data.chapter_name?this.state.data.data.chapter_name:this.state.data.data.course_name) + " " + (this.state.data.data.lesson_name? this.state.data.data.lesson_name:this.state.data.data.page_name)}`}</span>
                             <span style={{height:'50%',width:'70%',lineHeight:'300%',textIndent:'20px',fontSize:'14px',color:'rgb(180, 180, 180)',position:'absolute',top:'30%'}}>{`交卷时间:${this.state.data.data.hand_in_time?this.state.data.data.hand_in_time:'无'}`}</span>
                         </div>
                         <div style = {{

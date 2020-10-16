@@ -61,7 +61,7 @@ export default class Section extends Component {
         return (
             <div style={{
                 width:'100%',
-                height:'100%',
+                height:'95%',
                 overflow:'scroll'
             }}
                 className = "animated slideInRight"
@@ -97,9 +97,9 @@ export default class Section extends Component {
                                                         marginLeft:'-15px',
                                                     }}
                                                 >
-                                                    <span style={{display:'block',marginTop:'-5%',marginLeft:'5%',fontSize:'15px',overflowWrap:'break-word',width:'90%'}}>{val1.name}</span>
+                                                    <span style={{display:'block',marginTop:'-5%',marginLeft:'5%',fontSize:'15px',overflowWrap:'break-word',width:'80%'}}>{val1.name}</span>
                                                     <span style={{display:'block',marginLeft:'5%',fontSize:'13px',marginTop:'3%',color:'rgb(163, 163, 163)'}}>
-                                                        {(val1.question_time==undefined?'暂无试题':'答题时间:'+'  '+val1.question_time)+'分钟'}
+                                                        {(val1.question_time==undefined?'暂无试题':'答题时间:'+'  '+val1.question_time+'分钟')}
                                                     </span>
                                                     <div 
                                                         style={{

@@ -62,8 +62,8 @@ export default class ResultDetail1 extends Component {
                                 flexDirection:'column',
                                 alignItems:"flex-start"
                             }}>
-                                <span style={{height:'50%',width:'70%',lineHeight:'300%',textIndent:'20px',fontSize:'18px'}}>{`${(this.state.data.chapter_name?this.state.data.chapter_name:this.state.data.course_name) + " " + (this.state.data.lesson_name? this.state.data.lesson_name:this.state.data.page_name)}`}</span>
-                                <span style={{height:'50%',width:'70%',lineHeight:'300%',textIndent:'20px',fontSize:'14px',color:' rgb(180, 180, 180)'}}>{`交卷时间:${this.state.data.hand_in_time?this.state.data.hand_in_time:this.state.data.create_time}`}</span>
+                                <span style={{height:'50%',width:'90%',fontSize:'18px',overflowWrap:'break-word',marginLeft:'5%',marginTop:'5%'}}>{`${(this.state.data.chapter_name?this.state.data.chapter_name:this.state.data.course_name) + " " + (this.state.data.lesson_name? this.state.data.lesson_name:this.state.data.page_name)}`}</span>
+                                <span style={{height:'50%',width:'70%',lineHeight:'300%',textIndent:'20px',fontSize:'14px',color:' rgb(180, 180, 180)',position:'absolute',top:'30%'}}>{`交卷时间:${this.state.data.hand_in_time?this.state.data.hand_in_time:this.state.data.create_time}`}</span>
                             </div>
                             <div style = {{
                                 height:'50%',

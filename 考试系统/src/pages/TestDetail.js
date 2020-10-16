@@ -47,7 +47,8 @@ export default class Test extends Component {
                     Authorization:localStorage.getItem('userId')
                 }
             }).then(res=>{
-
+                // console.log(res);
+                                //初始化题目
                                 if(res.data.code == 500){
                                     alert(res.data.msg);
                                     window.location.hash = '/Mine';
@@ -65,6 +66,7 @@ export default class Test extends Component {
                                                     val2.checked = false;
                                                 })
                                                 if(val.question_class == 1 || val.question_class == 3){
+                                                    // val1.isAuswered = false;               
                                                 if(val1.answer_right){
                                                     eval(val1.answer_right).map(val3=>{
                                                         val1.selectList.map(val2=>{
@@ -86,12 +88,12 @@ export default class Test extends Component {
                                                                 }
                                                             })
                                                         }
+
                                                     })
                                                     console.log(this.state.data_list);
                                                 }
                                                 }else{
                                                     //多选
-                                                    console.log('多选');
                                     if(val1.answer_right){
                                         console.log('right');
                                         eval(val1.answer_right).map(val3=>{
@@ -101,7 +103,6 @@ export default class Test extends Component {
                                                      val2.checked = true;
                                                 }
                                             })
-                                            console.log(val1);
                                             if(val1.user_answer){
                                                 console.log('user');
                                                 val1.user_answer.map(val4=>{
@@ -117,9 +118,10 @@ export default class Test extends Component {
                                             }
                                         })
                                     }
-                                }
-                               question_list.push(val1);
-                            })
+
+                                                }
+                                                question_list.push(val1);
+                                            })
                                         })
                                         this.setState({
                                             data:question_list
@@ -160,34 +162,37 @@ export default class Test extends Component {
                         // console.log(this.state.data_list);
                         this.state.data_list.map(val=>{
                             val.question_array.map(val1=>{
-                                if(val1.question_class == 1 || val1.question_class == 3){
-                                    console.log(val1);
-                                    if(val1.answer_right){
-                                        console.log('right');
-                                        eval(val1.answer_right).map(val3=>{
-                                           val1.selectList.map(val2=>{
-                                                val2.checked = false;
-                                                if(val3 == val2.select_id){
-                                                     val2.checked = true;
-                                                }
-                                            })
-                                            if(val1.user_answer){
-                                                console.log('user');
-                                                val1.user_answer.map(val4=>{
-                                                    if(val4 != val3){
-                                                        val1.selectList.map(val5=>{
-                                                            if(val4 == val5.select_id){
-                                                                console.log('error');
-                                                                val5.error = true;
-                                                            }
-                                                        })        
-                                                    }
-                                                })
+                                val1.selectList.map(val2=>{
+                                    val2.checked = false;
+                                })
+                                if(val.question_class == 1 || val.question_class == 3){
+                                    // val1.isAuswered = false;               
+                                if(val1.answer_right){
+                                    eval(val1.answer_right).map(val3=>{
+                                        val1.selectList.map(val2=>{
+                                            if(val3 == val2.select_id){
+                                                console.log(val2,val3);
+                                                 val2.checked = true;
                                             }
                                         })
-                                    }
+                                        if(val1.user_answer){
+                                            console.log('user');
+                                            val1.user_answer.map(val4=>{
+                                                if(val4 != val3){
+                                                    val1.selectList.map(val5=>{
+                                                        if(val4 == val5.select_id){
+                                                            console.log('error');
+                                                            val5.error = true;
+                                                        }
+                                                    })        
+                                                }
+                                            })
+                                        }
+
+                                    })
+                                    console.log(this.state.data_list);
                                 }
-                                else{
+                                }else{
                                     //多选
                                     if(val1.answer_right){
                                         console.log('right');
@@ -213,6 +218,7 @@ export default class Test extends Component {
                                             }
                                         })
                                     }
+
                                 }
                                 question_list.push(val1);
                             })
@@ -280,6 +286,7 @@ export default class Test extends Component {
                                         checked = {val.checked} 
                                         type="radio" 
                                         value={val.select_content}
+
                                     />
                                     <label for={val.select_id} class="radio-label" style={{display:'flex',alignItems:'center'}}>
                                         <span style={{width:'10%',marginTop:'5%',color:val.error?'red':'#0076ce',fontSize:"15px"}}>{val.select_name}、</span>
@@ -292,8 +299,8 @@ export default class Test extends Component {
                                 <li>
                                     <input id={val.select_id} class="check1" type="checkbox"  name={idx} value={val.select_content} checked = {val.checked}/>
                                     <label for={val.select_id} class="radio-label" >
-                                        <span style={{width:'10%',color:'#0076ce',position:'relative',top:'15px',fontSize:'15px'}}>{val.select_name}、</span>
-                                        <span style={{width:"70%",fontSize:'15px',position:'relative',top:'15px',overflowWrap:'break-word'}}>{val.select_content}</span> 
+                                        <span style={{width:'10%',color:val.error?'red':'#0076ce',position:'relative',top:'15px',fontSize:'15px'}}>{val.select_name}、</span>
+                                        <span style={{width:"70%",color:val.error?'red':'',fontSize:'15px',position:'relative',top:'15px',overflowWrap:'break-word'}}>{val.select_content}</span> 
                                     </label>
                                 </li>
                             )
@@ -302,8 +309,8 @@ export default class Test extends Component {
                                 <li>
                                     <input id={val.select_id} class="check1" type="radio" name={idx} value={val.select_content} checked = {val.checked}/>
                                     <label for={val.select_id} class="radio-label" style={{display:'flex',alignItems:'center'}}>
-                                        <span style={{width:'10%',marginTop:'5%',color:'#0076ce',fontSize:'15px'}}>{val.select_name}、</span>
-                                        <span style={{width:"70%",marginTop:'5%',fontSize:'15px',overflowWrap:'break-word'}}>{val.select_content}</span> 
+                                        <span style={{width:'10%',marginTop:'5%',color:val.error?'red':'#0076ce',fontSize:'15px'}}>{val.select_name}、</span>
+                                        <span style={{width:"70%",marginTop:'5%',color:val.error?'red':'',fontSize:'15px',overflowWrap:'break-word'}}>{val.select_content}</span> 
                                     </label>
                                 </li>
                             )

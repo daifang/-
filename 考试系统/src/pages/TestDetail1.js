@@ -47,6 +47,8 @@ export default class Test extends Component {
                         val1.selectList.map(val2=>{
                             val2.checked = false;
                         })
+                        if(val.question_class == 1 || val.question_class == 3){
+                            // val1.isAuswered = false;               
                         if(val1.answer_right){
                             eval(val1.answer_right).map(val3=>{
                                 val1.selectList.map(val2=>{
@@ -55,8 +57,50 @@ export default class Test extends Component {
                                          val2.checked = true;
                                     }
                                 })
+                                if(val1.user_answer){
+                                    console.log('user');
+                                    val1.user_answer.map(val4=>{
+                                        if(val4 != val3){
+                                            val1.selectList.map(val5=>{
+                                                if(val4 == val5.select_id){
+                                                    console.log('error');
+                                                    val5.error = true;
+                                                }
+                                            })        
+                                        }
+                                    })
+                                }
+
                             })
                             console.log(this.state.data_list);
+                        }
+                        }else{
+                            //多选
+            if(val1.answer_right){
+                console.log('right');
+                eval(val1.answer_right).map(val3=>{
+                   val1.selectList.map(val2=>{
+                        // val2.checked = false;
+                        if(val3 == val2.select_id){
+                             val2.checked = true;
+                        }
+                    })
+                    if(val1.user_answer){
+                        console.log('user');
+                        val1.user_answer.map(val4=>{
+                            if(val1.answer_right.indexOf(val4) == -1){
+                                //未找到
+                                val1.selectList.map(val5=>{
+                                    if(val4 == val5.select_id){
+                                        val5.error = true;
+                                    }
+                                })
+                            }
+                        })
+                    }
+                })
+            }
+
                         }
                         question_list.push(val1);
                     })
@@ -117,33 +161,35 @@ export default class Test extends Component {
                                     <input 
                                         id={val.select_id} 
                                         name={idx} 
+                                        class="check1" 
                                         checked = {val.checked} 
                                         type="radio" 
-                                        value={val.select_content} 
+                                        value={val.select_content}
+
                                     />
                                     <label for={val.select_id} class="radio-label" style={{display:'flex',alignItems:'center'}}>
-                                        <span style={{width:'10%',marginTop:'5%',color:'#0076ce',fontSize:"15px"}}>{val.select_name}、</span>
-                                        <span style={{width:"70%",marginTop:'5%',fontSize:'15px',overflowWrap:'break-word'}}>{val.select_content}</span> 
+                                        <span style={{width:'10%',marginTop:'5%',color:val.error?'red':'#0076ce',fontSize:"15px"}}>{val.select_name}、</span>
+                                        <span style={{width:"70%",marginTop:'5%',color:val.error?'red':'',fontSize:'15px',overflowWrap:'break-word'}}>{val.select_content}</span> 
                                     </label>
                                 </li>
                             )
                             else if(this.state.data[this.state.question_num].question_class == 2)
                             return(
                                 <li>
-                                    <input id={val.select_id} type="checkbox"  name={idx} value={val.select_content} checked = {val.checked}/>
+                                    <input id={val.select_id} class="check1" type="checkbox"  name={idx} value={val.select_content} checked = {val.checked}/>
                                     <label for={val.select_id} class="radio-label" >
-                                        <span style={{width:'10%',color:'#0076ce',position:'relative',top:'15px',fontSize:'15px'}}>{val.select_name}、</span>
-                                        <span style={{width:"70%",fontSize:'15px',position:'relative',top:'15px',overflowWrap:'break-word'}}>{val.select_content}</span> 
+                                        <span style={{width:'10%',color:val.error?'red':'#0076ce',position:'relative',top:'15px',fontSize:'15px'}}>{val.select_name}、</span>
+                                        <span style={{width:"70%",fontSize:'15px',color:val.error?'red':'',position:'relative',top:'15px',overflowWrap:'break-word'}}>{val.select_content}</span> 
                                     </label>
                                 </li>
                             )
                             else if(this.state.data[this.state.question_num].question_class == 3)
                             return(
                                 <li>
-                                    <input id={val.select_id} type="radio" name={idx} value={val.select_content} checked = {val.checked}/>
+                                    <input id={val.select_id} class="check1" type="radio" name={idx} value={val.select_content} checked = {val.checked}/>
                                     <label for={val.select_id} class="radio-label" style={{display:'flex',alignItems:'center'}}>
-                                        <span style={{width:'10%',marginTop:'5%',color:'#0076ce',fontSize:'15px'}}>{val.select_name}、</span>
-                                        <span style={{width:"70%",marginTop:'5%',fontSize:'15px',overflowWrap:'break-word'}}>{val.select_content}</span> 
+                                        <span style={{width:'10%',marginTop:'5%',color:val.error?'red':'#0076ce',fontSize:'15px'}}>{val.select_name}、</span>
+                                        <span style={{width:"70%",marginTop:'5%',color:val.error?'red':'',fontSize:'15px',overflowWrap:'break-word'}}>{val.select_content}</span> 
                                     </label>
                                 </li>
                             )
@@ -246,6 +292,7 @@ export default class Test extends Component {
         let j = 0,str = '';
         brr.map(val=>{
             eval(arr).map(val1=>{
+                
                 if(val1 == val.select_id){
                     // console.log(val,val1);
                     str += ' '+val.select_name

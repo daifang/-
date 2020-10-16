@@ -40,7 +40,7 @@ export default class Mine extends Component {
                     <div id = "author">
                         <img style={{borderRadius:'100%'}} src = {this.state.imgSrc}/>
                     </div>
-                    <div id = "src" style={{marginTop:'-5%',textAlign:'left'}}>
+                    <div id = "src" style={{marginTop:'-5%',textAlign:'left',marginLeft:'5%'}}>
                         <h3>{this.state.username}</h3>
                         <p style={{marginTop:'-15%',marginLeft:'0%',textAlign:'left'}}>{this.state.userSchool}</p> 
                     </div>

@@ -57,9 +57,9 @@ export default class Final extends Component {
             var temp = this.state.data.map((item,index) => <p key={item.id} id={item.id} className="class_content" onTouchEnd = {(e)=>{this.goTo(e)}}><span className="con_p" id={item.id} style={{fontSize:'18px',overflowWrap:'break-word',display:'block'}}>{item.name}</span></p>)
 
             return (
-                <div className="animated slideInRight">
+                <div className="animated slideInRight" style={{height:'100%'}}>
                     <div id="class_head"></div>
-                    <div id="class_content">
+                    <div id="class_content" style={{overflowY:'scroll'}}>
                         {temp}
                     </div>
                 </div>
