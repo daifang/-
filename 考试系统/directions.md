@@ -1,7 +1,7 @@
 # 说明文档
 - ## *Markdown文件，markdown浏览器查看效果更佳*
 - ### src目录:存放所有组件和页面文件
-    - components: 组件文件，只有俩有用
+    - components: 组件文件
         - ### Input.js : 输入框
         - ### Button.js : 按钮
     - css : css样式
