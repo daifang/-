@@ -1,0 +1,78 @@
+body,html{
+    height: 100%;
+    width: 100%;
+    margin:0 auto ;
+    font-size:62.5%; 
+    font-family: "微软雅黑";
+}
+ul,li{
+    padding:0;
+    margin: 0;
+    list-style: none;
+    font-size: 1.1rem;
+    color:#666666;
+}
+.container{
+    height: 100%;
+    width: 100%;
+    background-color:#f9f9f9;
+    overflow: scroll;
+}
+.idCard_title{
+    height: 3.35rem;
+    line-height: 300%;
+    margin-top: 5%;
+    background-color: white;
+}
+.idCard_title>span{
+    font-size: 1.4rem;
+}
+.idCard_title>img{
+    width: 0.5rem;
+    margin-left: 5%;
+}
+.people_list{
+    width: 95%;
+    margin-left: 2.5%;
+}
+.outer_ul{
+    width: 100%;
+}
+.outer_li{
+    width: 100%;
+}
+.inner_ul{
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+    width: 100%;
+}
+.inner_li{
+    width: 30%;
+    text-align: center;
+}
+.inner_li:first-of-type{
+    padding-left: 2%;
+}
+.inner_li:last-of-type{
+    width: 10%;
+}
+.inner_li>a{
+    text-decoration: none;
+    color: #ff9900;
+}
+.inner_li:nth-of-type(1){
+    width: 15%;
+}
+.inner_li:nth-of-type(2){
+    width: 35%;
+}
+.inner_li:nth-of-type(3){
+    width: 25%;
+}
+.inner_li:nth-of-type(4){
+    width: 15%;
+}
+.inner_li:nth-of-type(5){
+    width: 10%;
+}

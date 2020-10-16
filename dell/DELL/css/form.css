@@ -1,0 +1,230 @@
+body,html{
+    height: 100%;
+    width: 100%;
+    margin:0 auto ;
+    font-size:62.5%; 
+    font-family: "微软雅黑";
+}
+a{
+    text-decoration: none;
+}
+.init{
+    text-align: left;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 120%;
+}
+.second_container{
+    width: 90%;
+    height: 9rem;
+    display: flex;
+    flex-direction: row;
+}
+.third_container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.title{
+    font-size: 1.4rem;
+    margin-top: 1rem;
+    color:#999999 ;
+}
+.third_container>input{
+    height: 3.5rem;
+    width: 97%;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    background-color: #f2f2f4;
+    text-indent: 1rem;
+    margin-top: 0.5rem;
+}
+
+.third_container>select{
+    height: 3.5rem;
+    width: 97%;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    background-color: #f2f2f4;
+    text-indent: 1rem;
+    margin-top: 0.5rem;
+}
+.third_container>input::placeholder{
+    color: #999999;
+    font-size: 1.3rem;
+    text-indent: 1rem;
+}
+.title::before{
+    content: "* ";
+    color: #d75959;
+}
+.error{
+    color: #d22121;
+    margin-left: 1rem;
+    opacity: 1;
+}
+.hidden{
+    opacity: 0;
+}
+.none{
+    display: none;
+}
+.unselected{
+    color: #999999;
+    font-size: 1.3rem;
+    text-indent: 1rem;
+}
+.selected{
+    color: black;
+    font-size: 1.3rem;
+    text-indent: 1rem;
+}
+input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+  }
+input[type="radio"] + .radio-label:before {
+    content: '';
+    background: #f4f4f4;
+    border-radius: 100%;
+    border: 1px solid #b4b4b4;
+    display: inline-block;
+    width: 1.1rem;
+    height: 1.1rem;
+    position: relative;
+    margin-right: 0.5rem;
+    cursor: pointer;
+    text-align: center;
+  }
+input[type="radio"]:checked + .radio-label:before {
+    background-color: #3197EE;
+    box-shadow: inset 0 0 0 0.2rem #f4f4f4;
+  }
+input[type="radio"]:focus + .radio-label:before {
+    outline: none;
+    border-color: #3197EE;
+  }
+input[type="radio"]:disabled + .radio-label:before {
+    box-shadow: inset 0 0 0 4px #f4f4f4;
+    border-color: #b4b4b4;
+    background: #b4b4b4;
+  }
+input[type="radio"] + .radio-label:empty:before {
+    margin-right: 0;
+  }
+.radio-label:nth-of-type(even){
+    margin-left: 10px;
+}
+.foot{
+    height: 25rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.foot_rank_1{
+    width: 90%;
+    margin-left: 1.5%;
+    height: 30%;
+    display: flex;
+    flex-direction: column;
+}
+.foot_rank_1>span{
+    display: block;
+    display: flex;
+    align-items: center;
+    font-size: 1.3rem;
+    margin-left: 5%;
+}
+.foot_rank_2{
+    width: 90%;
+    height: 35%;
+    margin-left: 5%;
+    display: flex;
+}
+.foot_rank_2>span{
+    margin-left: 5px;
+}
+input[type="checkbox"] {
+    width: 10px;
+    height: 10px;
+    position: relative;
+}
+ 
+input[type="checkbox"]::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #fff;
+    width: 100%;
+    height: 100%;
+    border: 0.1rem solid #999999;
+    border-radius: 4px;
+}
+ 
+input[type="checkbox"]:checked::before {
+    content: "✓";
+    background-color: #0076ce;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0.1rem solid #0076ce;
+    border-radius:4px;
+    color: #ffffff;
+    font-size: 0.7rem;
+    text-align: center;
+    line-height: 1rem;
+}
+.button{
+    width: 100%;
+    height: 30%;
+    display:flex;
+    
+}
+.button_1{
+    color: #0076ce;
+    border: 1px solid #0076ce;
+    margin-left: 5%;
+}
+.button_2{
+    color: white;
+    background-color: #0076ce;
+    margin-left: 3%;
+}
+.button_style{
+    width: 43%;
+    height: 55%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    border-radius: 5px;
+}
+.success{
+    width: 100%;
+    height: 120%;
+    background-color:rgba(50,50,50,0.8);
+    position: absolute;
+    top: 0;
+    z-index: 2;
+}
+.msg{
+    border-radius: 10px;
+    width: 75%;
+    height: 45%;
+    display: flex;
+    flex-direction: column;
+    position:  fixed;
+    background-color: #f5fafd;
+    opacity: 2;
+    top: 10%;
+    left: 12%;
+}

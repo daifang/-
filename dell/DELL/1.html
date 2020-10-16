@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body,html{
+            height: 100%;
+            width: 100%;
+
+        }
+input[type="checkbox"] {
+    width: 12px;
+    height: 12px;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 11px;
+    margin-right: 10px;
+    position: relative;
+}
+
+input[type="checkbox"]::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #fff;
+    width: 12px;
+    height: 12px;
+    border: 0.2rem solid #999999;
+    border-radius: 4px;
+}
+
+input[type="checkbox"]:checked::before {
+    content: "✓";
+    background-color: #0076ce;
+    position: absolute;
+    top: 0;
+    left: -10%;
+    width: 12px;
+    height: 12px;
+    border: 1px solid #0076ce;
+    border-radius:4px;
+    color: #ffffff;
+    font-size: 10px;
+    font-weight: bold;
+}
+    </style>
+</head>
+<body>
+    
+<div id="showemail" style="display: block;flex-direction: column;width: 75%;height: 10rem;left: 12.5%;position: absolute;top: 15rem;z-index: 1000;background-color: white;border-radius: 1rem">
+    <div style="height: 60%;width: 100%;display: flex;align-items: center;font-size: 1.4rem;margin-left: 10%">
+        <input id="email" type="checkbox" checked="checked" name="is_email" value="1"/>
+        <label for="email">
+            <span style="display: block;color: #999999;font-size: 1.3rem">保存时，</span>
+            <span style="display: block;color: #999999;font-size: 1.3rem">同时将海报发送至我的邮箱</span>
+        </label>
+    </div>
+    <div style="display: flex;flex-direction: row;width: 90%;height: 3rem;margin-left: 5%">
+        <div style="border: 1px solid #0076ce;width: 100%;border-radius: 0.5rem;color: #0076ce;font-size: 1.3rem;line-height: 3rem;text-align: center" onclick="closeemail()">关闭</div>
+        <div style="background-color: #0076ce;width: 100%;border-radius: 0.5rem;margin-left: 2%;color: white;font-size: 1.3rem;line-height: 3rem;text-align: center" onclick="save()">确认</div>
+    </div>
+</div>
+</body>
+</html>
