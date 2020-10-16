@@ -16,8 +16,8 @@
         - ### Result.js : 成绩查询
         - ### ResultDetail.js : 错题(从TestDetail跳转)
         - ### ResultDetail1.js : 错题(从TestDetail1跳转)
-        - ### TestDetail.js : 错题(从Result跳转，查询成绩)
-        - ### TestDetail1.js : 错题(从Test跳转，考完试)
+        - ### TestDetail.js : 成绩页(从Result跳转，查询成绩)
+        - ### TestDetail1.js : 成绩页(从Test跳转，考完试)
         - ###  Section.js : 看完视频，点击按钮考试页
         - ### Sets.js : 设置
         - ### Test.js : 考试页（最烂的一页）
