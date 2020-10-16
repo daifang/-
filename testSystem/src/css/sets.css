@@ -1,0 +1,48 @@
+#sets{
+    height: 200px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+#sets>div{
+    height: 55px;
+    margin-left: 2.5%;
+    width: 95%;
+    line-height: 45px;
+    /* background-color: rgb(250, 250, 250); */
+    font-size:20px ;
+    border-bottom: 0.5px rgb(231, 231, 231) solid;
+}
+#sets>div>select{
+    width:100%;
+    height: 80%;
+    font-size:20px ;
+    outline: none;
+    border: none;
+    appearance:none;
+    -moz-appearance:none;
+    -webkit-appearance:none;
+    background: url('/exam/right.png') no-repeat;
+    background-position: 97%;
+    background-size: 7px;
+}
+#sets>div>img{
+    display: block;
+    transform: scale(0.3);
+    float: right;
+}
+#exit{
+    width: 85%;;
+    height: 50px;
+    background-color: rgb(145, 145, 145);
+    position: relative;
+    top:200px;
+    left: 7.5%;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: 300;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    line-height:50px ;
+}

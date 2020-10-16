@@ -1,0 +1,72 @@
+#tel{
+    width: 100%;
+    height: 100%;
+}
+#tel_txt{
+    width: 90%;
+    height: 55px;
+    outline: none;
+    font-size: 20px;
+    text-indent: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-top: 5%;
+    margin-left: 5%;
+    border-bottom: 0.5px rgb(233, 233, 233) solid;
+}
+#tel_txt::placeholder{
+    font-size: 20px;
+    text-indent: 10px;
+    color:rgb(184, 181, 181);
+}
+.ok{
+    width: 85%;
+    height: 50px;
+    margin-left: 7%;
+    border-radius: 5px;
+    background-color: #2C9EF2;
+    color: white;
+    font-size:17px;
+    text-align: center;
+    font-weight: 300;
+    line-height: 50px;
+    position: absolute;
+    bottom: 5%;
+}
+
+#password{
+    width: 90%;
+    height: 45px;
+    outline: none;
+    font-size: 20px;
+    text-indent: 10px;
+    border: none;
+    /* background-color: rgb(247, 247, 247); */
+    border-radius: 5px;
+    margin-top: 5%;
+    margin-left: 5%;
+    border-bottom: 0.5px rgb(233, 233, 233) solid;
+}
+#newPassword{
+    width: 90%;
+    height: 55px;
+    outline: none;
+    font-size: 20px;
+    text-indent: 10px;
+    border: none;
+    /* background-color: rgb(247, 247, 247); */
+    border-radius: 5px;
+    margin-top: 5%;
+    margin-left: 5%;
+    border-bottom: 0.5px rgb(233, 233, 233) solid;
+}
+#password::placeholder{
+    font-size: 17px;
+    text-indent: 10px;
+    color: #D1DAF0;
+}
+#newPassword::placeholder{
+    font-size: 17px;
+    text-indent: 10px;
+    color: #D1DAF0;;
+}

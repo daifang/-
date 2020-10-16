@@ -1,0 +1,57 @@
+#title{
+    height: 10%;
+    margin-top: 10%;
+}
+#title>span{
+    display: block;
+    margin-left: 5%;
+}
+#title>span:first-of-type{
+    font-size: 26px;
+    font-weight: 550;
+
+}
+#title>span:last-of-type{
+    font-size: 15px;
+    font-weight: 400;
+    color: rgb(136, 136, 136);
+    margin-top: 15px;
+}
+#home{
+    height: 35px;
+    margin-left: 5%;
+    margin-top: 5%;
+    width: 35px;
+    border-radius: 100%;
+    background-color: rgb(194, 194, 194);
+    text-align: center;
+    line-height: 245%;
+}
+#homg>a{
+    display: block;
+    background-color: rgb(0, 145, 230);
+    border-radius: 100%;
+}
+#home>a>img{
+    height: 20px;
+    height: 20px;
+}
+input{
+    outline: none;
+}
+input::placeholder{
+    color: rgb(194, 194, 194);
+    font-size: 0.8rem;
+    font-size:18px;
+}
+#loginButton{
+    width: 75%;
+    height: 40px;
+    margin-left: 15%;
+    background-color: rgb(0, 168, 219);
+    color: white;
+    font-size: 17px;
+    text-align: center;
+    margin-top: 10%;
+    border-radius: 5px;
+}
